@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://r0a7ogbcfncc"]
+
+[ext_resource type="Script" path="res://Script/slime.gd" id="1_00y4f"]
+[ext_resource type="Texture2D" uid="uid://c5eqf364203pf" path="res://brackeys_platformer_assets/sprites/slime_purple.png" id="1_e8jf5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iso8"]
+atlas = ExtResource("1_e8jf5")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5mog"]
+atlas = ExtResource("1_e8jf5")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoq6c"]
+atlas = ExtResource("1_e8jf5")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pijpk"]
+atlas = ExtResource("1_e8jf5")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_soryg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4iso8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5mog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoq6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pijpk")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34r3i"]
+size = Vector2(8, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jpb0"]
+size = Vector2(10, 12)
+
+[node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_00y4f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_soryg")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.238827
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, -8)
+target_position = Vector2(7, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -8)
+target_position = Vector2(-7, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_34r3i")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="HitBoxShape" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_0jpb0")
+debug_color = Color(0.992156, 0, 0.255926, 0.42)

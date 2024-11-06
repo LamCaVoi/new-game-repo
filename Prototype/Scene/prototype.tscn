@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvxcehedise6y"]
+
+[ext_resource type="Script" path="res://Prototype/Script/prototype.gd" id="1_viymu"]
+[ext_resource type="PackedScene" uid="uid://cwt2ynums1yd6" path="res://Prototype/Scene/disappear_platform.tscn" id="2_xqvuo"]
+[ext_resource type="PackedScene" uid="uid://bx40ec1qc8msu" path="res://Scene/kill_zone.tscn" id="3_8dte1"]
+[ext_resource type="Texture2D" uid="uid://gfildddu5xg7" path="res://Prototype/Prototype Asset/Sprite-0001.png" id="4_w4iyh"]
+[ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="5_88j6j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5w0p3"]
+size = Vector2(171, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y744a"]
+size = Vector2(169, 14)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gr4kj"]
+
+[node name="Prototype" type="Node2D"]
+script = ExtResource("1_viymu")
+
+[node name="DisappearPlatform" parent="." instance=ExtResource("2_xqvuo")]
+
+[node name="Spikes" type="StaticBody2D" parent="."]
+position = Vector2(19, -1)
+
+[node name="KillZone" parent="Spikes" instance=ExtResource("3_8dte1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes/KillZone"]
+position = Vector2(88.5, 32.5)
+shape = SubResource("RectangleShape2D_5w0p3")
+debug_color = Color(0.941617, 0, 0.067199, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="Spikes"]
+position = Vector2(75, 33)
+scale = Vector2(1, 0.75)
+texture = ExtResource("4_w4iyh")
+region_enabled = true
+region_rect = Rect2(6, 4, 229, 23)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes"]
+position = Vector2(88.5, 33)
+shape = SubResource("RectangleShape2D_y744a")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(15.5403, 1.39737)
+scale = Vector2(1.3832, 1.00987)
+polygon = PackedVector2Array(-145.516, -143.977, -126.568, -119.221, -126.568, 11.4893, -106.105, 11.4893, -103.051, -74.6606, -65.457, -46.9342, -65.1789, 10.499, -30.3158, 6.53811, -24.2526, -9.30554, 6.06317, -9.30554, 6.06317, 38.2254, 48.5053, 38.2254, 48.5053, -17.2274, 66.8447, -17.2274, 70.4595, 36.245, 126.85, 39.2156, 154.323, -27.1296, 159.384, -27.1296, 160.107, -2.37394, 219.389, -1.38371, 223.727, 55.0593, -145.516, 54.0691)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
+position = Vector2(1.37329e-05, -0.393486)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(1, -27)
+polygon = PackedVector2Array(70, -36, 71, -15, 59, -15)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(1, -7)
+polygon = PackedVector2Array(81, -75, 93, -82, 91, -129, 79, -127)
+
+[node name="KillZone" parent="." instance=ExtResource("3_8dte1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(0, 80)
+shape = SubResource("WorldBoundaryShape2D_gr4kj")
+
+[node name="Player" parent="." instance=ExtResource("5_88j6j")]
+position = Vector2(0, -9)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-1, -43)
+zoom = Vector2(3, 3)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
