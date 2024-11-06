@@ -3,8 +3,13 @@
 class_name State
 extends Node
 
+var movement_data: PlayerMovementData
+
 ## Emitted when the state finishes and wants to transition to another state.
 signal finished(next_state_path: String, data: Dictionary)
+var parent:CharacterBody2D
+var animated_sprite: AnimatedSprite2D
+@export var animation_name:String
 
 ## Called by the state machine when receiving unhandled input events.
 func handle_input(_event: InputEvent) -> void:
@@ -21,9 +26,26 @@ func physics_update(_delta: float) -> void:
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(previous_state_path: String, data := {}) -> void:
-	pass
+	animated_sprite.play(animation_name)
+	
 
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.
 func exit() -> void:
 	pass
+
+func get_fall_gravity():
+	return movement_data.jump_gravity if parent.velocity.y < 0.0 else movement_data.fall_gravity
+
+func apply_gravity(delta: float):
+	if parent.is_climbing:
+		parent.velocity.y = 0
+	elif parent.velocity.y <= movement_data.max_y_speed:
+		parent.velocity.y += get_fall_gravity() * delta
+	else: parent.velocity.y = movement_data.max_y_speed
+
+
+func run(direction):
+	#velocity.x = max_x_speed * direction
+	if not direction == 0:
+		animated_sprite.flip_h = direction < 0

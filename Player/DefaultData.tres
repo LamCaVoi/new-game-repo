@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="PlayerMovementData" load_steps=2 format=3 uid="uid://cbfpgy017isvq"]
+
+[ext_resource type="Script" path="res://Player/PlayerMovementData.gd" id="1_mehqu"]
+
+[resource]
+script = ExtResource("1_mehqu")
+max_x_speed = 130.0
+max_y_speed = 500.0
+jump_height = 60.0
+jump_time_to_peak = 0.4
+jump_time_to_descent = 0.3
+acceleration = 1200.0
+friction = 1200.0
+short_jump_cut = 0.6
+velocity_x_lerp_speed = 0.3
+velocity_y_lerp_speed = 0.8
+hang_threshold = 50.0
+dash_speed = 300.0
+dash_time = 0.2
+coyote_time = 0.2
+buffer_jump_time = 0.2

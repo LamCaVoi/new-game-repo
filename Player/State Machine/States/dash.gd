@@ -1,4 +1,4 @@
-extends PlayerState
+extends State
 
 var dir : Vector2 = Vector2.ZERO
 var dash_timer: float= 0.0
@@ -14,8 +14,8 @@ func physics_update(delta: float) -> void:
 	if dash_timer <=0:
 		finished.emit("Fall")
 		return
-	print(player.velocity)
-	player.move_and_slide()
+	print(parent.velocity)
+	parent.move_and_slide()
 
 func get_dir() -> Vector2:
 	var dir : Vector2 = Vector2.ZERO
@@ -23,7 +23,7 @@ func get_dir() -> Vector2:
 	dir.y = Input.get_axis("move_up","move_down")
 	
 	if dir == Vector2.ZERO:
-		if player.animated_sprite.flip_h:
+		if parent.animated_sprite.flip_h:
 			dir.x = -1
 		else:
 			dir.x = 1
@@ -31,11 +31,11 @@ func get_dir() -> Vector2:
 	return dir
 
 func enter(previous_state_path: String, data := {}) -> void:
-	player.can_dash = false
+	parent.can_dash = false
 	dir = get_dir()
-	player.velocity = dir * player.dash_speed
-	dash_timer = player.dash_time
+	parent.velocity = dir * movement_data.dash_speed
+	dash_timer = movement_data.dash_time
 
 
 func exit() -> void:
-	player.velocity = dir * 50
+	parent.velocity = dir * 50

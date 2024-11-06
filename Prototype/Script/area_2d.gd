@@ -16,9 +16,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	timer.autostart = false
 	timer.one_shot = true
 	timer.wait_time = 0.1
-	timer.timeout.connect(timer_timer_out)
+	timer.timeout.connect(timer_time_out)
 	timer.start()
 	
 
-func timer_timer_out():
+func timer_time_out():
 	get_parent().queue_free()

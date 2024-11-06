@@ -1,4 +1,4 @@
-extends PlayerState
+extends State
 
 var coyote_timer: float = 0
 var buffer_jump_timer: float = 0
@@ -8,20 +8,18 @@ var start_velocity = 0
 var was_jumping = false
 
 func handle_input(_event: InputEvent) -> void:
-	if Input.is_action_just_released("jump") and player.velocity.y < -100:
+	if Input.is_action_just_released("jump") and parent.velocity.y < -100:
 		print("Low jump")
-		player.velocity.y *= player.short_jump_cut
-	if Input.is_action_just_pressed("jump") and not player.is_on_floor():
+		parent.velocity.y *= movement_data.short_jump_cut
+
+	if Input.is_action_just_pressed("jump") and not parent.is_on_floor():
 		if coyote_timer >= 0:
 			finished.emit("Jump")
 		else:
-			buffer_jump_timer = player.buffer_jump_time
-	if Input.is_action_just_pressed("dash") and player.can_dash:
+			buffer_jump_timer = movement_data.buffer_jump_time
+	if Input.is_action_just_pressed("dash") and parent.can_dash:
 		finished.emit("Dash")
 
-func update(delta: float) -> void:
-	pass
-	
 func timer_update(delta):
 	if coyote_timer > 0:
 		coyote_timer -= delta
@@ -29,33 +27,33 @@ func timer_update(delta):
 		buffer_jump_timer -= delta
 
 func hang_boost():
-	if abs(player.velocity.y) > player.hang_threshold:
-		if player.velocity.y > 0:
-			player.max_x_speed = start_velocity
-			player.fall_gravity = start_fall_gravity
-			player.jump_gravity = start_jump_gravity
+	if abs(parent.velocity.y) > movement_data.hang_threshold:
+		if parent.velocity.y > 0:
+			movement_data.max_x_speed = start_velocity
+			movement_data.fall_gravity = start_fall_gravity
+			movement_data.jump_gravity = start_jump_gravity
 		return
-	if player.velocity.y < 0 and was_jumping:
-		player.jump_gravity *= 0.95
-		player.max_x_speed += 10
-	elif player.velocity.y > 0 and was_jumping: 
-		player.fall_gravity *= 0.95
-		player.max_x_speed += 10
+	if parent.velocity.y < 0 and was_jumping:
+		movement_data.jump_gravity *= 0.95
+		movement_data.max_x_speed += 10
+	elif parent.velocity.y > 0 and was_jumping: 
+		movement_data.fall_gravity *= 0.95
+		movement_data.max_x_speed += 10
 	
 func physics_update(delta: float) -> void:
 	timer_update(delta)
 	var direction = Input.get_axis("move_left", "move_right")
-	player.run(direction)
-	player.apply_gravity(delta)
+	run(direction)
+	apply_gravity(delta)
 	hang_boost()
-	player.velocity.x = lerp(player.velocity.x, player.max_x_speed * direction, player.velocity_x_lerp_speed)
-	print("player.max_x_speed: " + str(player.max_x_speed) + " player.velocity: " + str(player.velocity) + " direction = " + str(direction))
-	player.move_and_slide()
+	parent.velocity.x = lerp(parent.velocity.x, movement_data.max_x_speed * direction, movement_data.velocity_x_lerp_speed)
+	print("parent.max_x_speed: " + str(movement_data.max_x_speed) + " parent.velocity: " + str(parent.velocity) + " direction = " + str(direction))
+	parent.move_and_slide()
 	switch_state(direction)
 
 func switch_state(direction):
-	if player.is_on_floor():
-		player.can_dash = true
+	if parent.is_on_floor():
+		parent.can_dash = true
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1
 			finished.emit("Jump")
@@ -66,17 +64,17 @@ func switch_state(direction):
 	
 
 func enter(previous_state_path: String, data := {}) -> void:
-	start_fall_gravity = player.fall_gravity
-	start_jump_gravity = player.jump_gravity
-	start_velocity = player.max_x_speed
-	player.animated_sprite.play("fall")
+	super(previous_state_path,data)
+	start_fall_gravity = movement_data.fall_gravity
+	start_jump_gravity = movement_data.jump_gravity
+	start_velocity = movement_data.max_x_speed
 	if(previous_state_path != "Jump"):
-		coyote_timer = player.coyote_time
+		coyote_timer = movement_data.coyote_time
 	else: 
 		was_jumping = true
 		coyote_timer = -1
 
 func exit() -> void:
-	player.max_x_speed = start_velocity
-	player.fall_gravity = start_fall_gravity
-	player.jump_gravity = start_jump_gravity
+	movement_data.max_x_speed = start_velocity
+	movement_data.fall_gravity = start_fall_gravity
+	movement_data.jump_gravity = start_jump_gravity

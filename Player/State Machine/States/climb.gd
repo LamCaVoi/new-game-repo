@@ -1,4 +1,4 @@
-extends PlayerState
+extends State
 
 
 func handle_input(_event: InputEvent) -> void:
@@ -11,7 +11,7 @@ func physics_update(_delta: float) -> void:
 	pass
 
 func enter(previous_state_path: String, data := {}) -> void:
-	player.is_climbing = true
+	parent.is_climbing = true
 
 func exit() -> void:
 	pass

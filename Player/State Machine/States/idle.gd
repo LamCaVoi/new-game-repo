@@ -1,20 +1,13 @@
-extends PlayerState
-
-func handle_input(_event: InputEvent) -> void:
-	pass
-	
-
-func update(delta: float) -> void:
-	pass
+extends State
 
 func physics_update(delta: float) -> void:
-	player.apply_gravity(delta)
-	player.move_and_slide()
+	apply_gravity(delta)
+	parent.move_and_slide()
 	switch_state()
 
 func switch_state():
 	#Fall
-	if player.velocity.y > 0: 
+	if parent.velocity.y > 0: 
 		finished.emit("Fall")
 	#Jump
 	elif Input.is_action_just_pressed("jump"):
@@ -29,9 +22,9 @@ func switch_state():
 			finished.emit("Run")
 
 func enter(previous_state_path: String, data := {}) -> void:
-	player.can_dash = true
-	player.velocity = Vector2.ZERO
-	player.animated_sprite.play("idle")
+	super(previous_state_path, data)
+	parent.can_dash = true
+	parent.velocity = Vector2.ZERO
 
 func exit() -> void:
 	pass
