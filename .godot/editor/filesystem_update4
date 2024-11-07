@@ -1,17 +1,10 @@
-res://Prototype/Scene/prototype.tscn
+res://Scene/Level/lv_2.tscn
 res://Player/player.tscn
-res://Player/State Machine/state_machine.gd
-res://Player/player.gd
-res://Player/State Machine/state.gd
-res://Player/State Machine/States/dash.gd
-res://Player/State Machine/States/die.gd
-res://Player/State Machine/States/fall.gd
-res://Player/State Machine/States/idle.gd
-res://Player/State Machine/States/jump.gd
-res://Player/State Machine/States/run.gd
-res://Player/State Machine/States/climb.gd
-res://Player/PlayerMovementData.gd
+res://Prototype/Scene/prototype.tscn
 res://Prototype/Scene/disappear_platform.tscn
-res://Prototype/Script/area_2d.gd
-res://Player/Test.tres
-res://Player/wall_jump.gd
+res://Prototype/Prototype1/prototype.tscn
+res://Prototype/Prototype1/disappearing_platform/disappear_platform.tscn
+res://Prototype/Prototype2/Prototype2.tscn
+res://Prototype/Prototype2/prototype_2.gd
+res://Prototype/Prototype1/Spikes/spikes.tscn
+res://Player/Movement Data/DefaultDataMoveMent.tres

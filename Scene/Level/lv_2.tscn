@@ -192,12 +192,9 @@ tile_set = SubResource("TileSet_o2b6w")
 metadata/_edit_group_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_72vnq")]
-position = Vector2(23, 0)
+position = Vector2(-107, 51)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(4, 4)
-limit_smoothed = true
-position_smoothing_enabled = true
+[node name="Camera2D2" type="Camera2D" parent="Player"]
 
 [node name="Area2D" parent="." instance=ExtResource("4_ko15e")]
 

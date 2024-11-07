@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cvmxivkwdamdn" path="res://Prototype/Prototype Asset/Sprite-0003.png" id="2_vm4xm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w0p3"]
-size = Vector2(55, 14)
+size = Vector2(104, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y744a"]
-size = Vector2(169, 14)
+size = Vector2(104, 14)
 
 [node name="Spikes" type="StaticBody2D"]
 
@@ -16,6 +16,7 @@ size = Vector2(169, 14)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 position = Vector2(-16, 1)
 shape = SubResource("RectangleShape2D_5w0p3")
+debug_color = Color(0.998407, 0, 0.142817, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1, 0.75)

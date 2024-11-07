@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://ru86o3xdovdg"]
+
+[ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="1_l00s7"]
+[ext_resource type="Script" path="res://Prototype/Prototype2/prototype_2.gd" id="1_qdpov"]
+[ext_resource type="PackedScene" uid="uid://bx40ec1qc8msu" path="res://Scene/kill_zone.tscn" id="2_wv7s6"]
+[ext_resource type="Texture2D" uid="uid://gfildddu5xg7" path="res://Prototype/Prototype Asset/Sprite-0001.png" id="4_vak3t"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k5bup"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5w0p3"]
+size = Vector2(104, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y744a"]
+size = Vector2(104, 14)
+
+[node name="Prototype2" type="Node2D"]
+script = ExtResource("1_qdpov")
+
+[node name="Player" parent="." instance=ExtResource("1_l00s7")]
+position = Vector2(-136, 4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-192, 16, -152, 16, -152, -152, -144, -152, -144, -112, -72, -112, -72, -88, -144, -88, -144, 16, -104, 16, -104, -8, -56, -8, -56, 16, -24, 16, -24, -32, 8, -32, 8, 16, 72, 16, 72, -64, 112, -64, 112, -112, 72, -112, 72, -144, -88, -144, -88, -152, 168, -152, 168, 16, 192, 16, 192, 24, -192, 24)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(8, -64)
+zoom = Vector2(2, 2)
+
+[node name="KillZone" parent="." instance=ExtResource("2_wv7s6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(0, 48)
+shape = SubResource("WorldBoundaryShape2D_k5bup")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="Spikes" type="StaticBody2D" parent="."]
+position = Vector2(56, 8)
+
+[node name="KillZone" parent="Spikes" instance=ExtResource("2_wv7s6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes/KillZone"]
+position = Vector2(4, 1)
+shape = SubResource("RectangleShape2D_5w0p3")
+debug_color = Color(0.998407, 0, 0.142817, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="Spikes"]
+scale = Vector2(1, 0.75)
+texture = ExtResource("4_vak3t")
+region_enabled = true
+region_rect = Rect2(0, 0, 119, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes"]
+position = Vector2(4, 1.5)
+shape = SubResource("RectangleShape2D_y744a")

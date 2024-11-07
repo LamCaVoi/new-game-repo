@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Player/player.gd" id="1_4dk0b"]
 [ext_resource type="Texture2D" uid="uid://cpem1qlnborl7" path="res://brackeys_platformer_assets/sprites/knight.png" id="1_td3oy"]
 [ext_resource type="Script" path="res://Player/State Machine/state_machine.gd" id="3_qpl2d"]
-[ext_resource type="Resource" uid="uid://cbfpgy017isvq" path="res://Player/DefaultData.tres" id="4_fnn30"]
+[ext_resource type="Resource" uid="uid://cdiet5q81ycqm" path="res://Player/Movement Data/DefaultDataMoveMent.tres" id="4_0ixyb"]
 [ext_resource type="Script" path="res://Player/State Machine/States/run.gd" id="4_lsuwb"]
 [ext_resource type="Script" path="res://Player/State Machine/States/idle.gd" id="5_v5lr4"]
 [ext_resource type="Script" path="res://Player/State Machine/States/fall.gd" id="6_1myma"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://Player/State Machine/States/die.gd" id="8_oos3l"]
 [ext_resource type="Script" path="res://Player/State Machine/States/dash.gd" id="9_k7dci"]
 [ext_resource type="Script" path="res://Player/State Machine/States/climb.gd" id="9_mbwjs"]
-[ext_resource type="Script" path="res://Player/wall_jump.gd" id="12_xje4f"]
+[ext_resource type="Script" path="res://Player/State Machine/States/wall_jump.gd" id="12_xje4f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1yhwf"]
 atlas = ExtResource("1_td3oy")
@@ -257,7 +257,7 @@ debug_color = Color(0.94993, 0.197447, 0.280767, 0.42)
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_qpl2d")
 initial_state = NodePath("Idle")
-movement_data = ExtResource("4_fnn30")
+movement_data = ExtResource("4_0ixyb")
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("4_lsuwb")

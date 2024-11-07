@@ -11,12 +11,22 @@ config_version=5
 [application]
 
 config/name="New Game Project"
-run/main_scene="res://Prototype/Scene/prototype.tscn"
+run/main_scene="res://Prototype/Prototype2/Prototype2.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
 Events="*res://Script/Events.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/resizable=false
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [global_group]
 
@@ -74,3 +84,4 @@ move_down={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true

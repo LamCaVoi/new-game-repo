@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+
 var is_alive = true
 var can_dash = true
 var is_climbing = false
