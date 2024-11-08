@@ -10,19 +10,19 @@ func switch_state():
 	if parent.velocity.y > 0: 
 		finished.emit("Fall")
 	#Jump
-	elif Input.is_action_just_pressed("jump"):
+	elif movement_component.wants_jump():
 		finished.emit("Jump")
 	#Dash
-	elif Input.is_action_just_pressed("dash"):
+	elif movement_component.wants_dash():
 		finished.emit("Dash")
 	#Run
 	else:
-		var direction = Input.get_axis("move_left", "move_right")
+		var direction = movement_component.get_horizontal_input()
 		if direction != 0:
 			finished.emit("Run")
 
-func enter(previous_state_path: String, data := {}) -> void:
-	super(previous_state_path, data)
+func enter(previous_state_path: String) -> void:
+	super(previous_state_path)
 	parent.can_dash = true
 	parent.velocity = Vector2.ZERO
 

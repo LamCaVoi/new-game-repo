@@ -3,13 +3,16 @@
 class_name State
 extends Node
 
+@export var animation_name:String
+
 var movement_data: PlayerMovementData
+var movement_component: PlayerMovementInput
+var parent:CharacterBody2D
+var animated_sprite: AnimatedSprite2D
+var ray_cast_2d: RayCast2D
 
 ## Emitted when the state finishes and wants to transition to another state.
 signal finished(next_state_path: String, data: Dictionary)
-var parent:CharacterBody2D
-var animated_sprite: AnimatedSprite2D
-@export var animation_name:String
 
 ## Called by the state machine when receiving unhandled input events.
 func handle_input(_event: InputEvent) -> void:
@@ -25,7 +28,7 @@ func physics_update(_delta: float) -> void:
 
 ## Called by the state machine upon changing the active state. The `data` parameter
 ## is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(previous_state_path: String) -> void:
 	animated_sprite.play(animation_name)
 	
 
@@ -49,3 +52,5 @@ func run(direction):
 	#velocity.x = max_x_speed * direction
 	if not direction == 0:
 		animated_sprite.flip_h = direction < 0
+		ray_cast_2d.target_position = Vector2(-8,0) if animated_sprite.flip_h else Vector2(8,0)
+		

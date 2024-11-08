@@ -8,19 +8,21 @@ var start_velocity = 0
 var was_jumping = false
 
 func handle_input(_event: InputEvent) -> void:
-	if Input.is_action_just_released("jump") and parent.velocity.y < -100:
-		print("Low jump")
+	if movement_component.released_jump() and parent.velocity.y < -100:
 		parent.velocity.y *= movement_data.short_jump_cut
 
-	if Input.is_action_just_pressed("jump") and not parent.is_on_floor():
-		if coyote_timer >= 0:
-			finished.emit("Jump")
-		else:
-			buffer_jump_timer = movement_data.buffer_jump_time
-	if Input.is_action_just_pressed("dash") and parent.can_dash:
+	if movement_component.wants_jump():
+		if parent.on_wall():
+			finished.emit("WallJump")
+		elif not parent.is_on_floor():
+			if coyote_timer >= 0:
+				finished.emit("Jump")
+			else:
+				buffer_jump_timer = movement_data.buffer_jump_time
+	if movement_component.wants_dash() and parent.can_dash:
 		finished.emit("Dash")
 
-func timer_update(delta):
+func update(delta):
 	if coyote_timer > 0:
 		coyote_timer -= delta
 	if buffer_jump_timer > 0:
@@ -41,18 +43,22 @@ func hang_boost():
 		movement_data.max_x_speed += 10
 	
 func physics_update(delta: float) -> void:
-	timer_update(delta)
-	var direction = Input.get_axis("move_left", "move_right")
+	var direction = movement_component.get_horizontal_input()
 	run(direction)
 	apply_gravity(delta)
-	hang_boost()
+	#hang_boost()
+	#parent.velocity = lerp(parent.velocity, Vector2(movement_data.max_x_speed * direction, movement_data.max_y_speed), 0.09)
 	parent.velocity.x = lerp(parent.velocity.x, movement_data.max_x_speed * direction, movement_data.velocity_x_lerp_speed)
-	print("parent.max_x_speed: " + str(movement_data.max_x_speed) + " parent.velocity: " + str(parent.velocity) + " direction = " + str(direction))
+	#print("parent.max_x_speed: " + str(movement_data.max_x_speed) + " parent.velocity: " + str(parent.velocity) + " direction = " + str(direction))
 	parent.move_and_slide()
 	switch_state(direction)
 
 func switch_state(direction):
-	if parent.is_on_floor():
+	if parent.on_wall():
+		if buffer_jump_timer > 0:
+			buffer_jump_timer = -1
+			finished.emit("Wall Jump")
+	elif parent.is_on_floor():
 		parent.can_dash = true
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1
@@ -63,12 +69,12 @@ func switch_state(direction):
 			finished.emit("Run")
 	
 
-func enter(previous_state_path: String, data := {}) -> void:
-	super(previous_state_path,data)
+func enter(previous_state_path: String) -> void:
+	super(previous_state_path)
 	start_fall_gravity = movement_data.fall_gravity
 	start_jump_gravity = movement_data.jump_gravity
 	start_velocity = movement_data.max_x_speed
-	if(previous_state_path != "Jump"):
+	if (previous_state_path != "Jump") and (previous_state_path != "WallJump"):
 		coyote_timer = movement_data.coyote_time
 	else: 
 		was_jumping = true

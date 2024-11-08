@@ -1,6 +1,6 @@
 extends State
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(previous_state_path: String) -> void:
 	Engine.time_scale = 0.5
 	var timer : Timer = Timer.new()
 	timer.one_shot = true 
@@ -9,7 +9,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	timer.timeout.connect(reload)
 	add_child(timer)
 	timer.start()
-	super(previous_state_path,data)
+	super(previous_state_path)
 	
 func reload() -> void:
 	Engine.time_scale = 1

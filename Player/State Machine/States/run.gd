@@ -4,22 +4,19 @@ var prev_velocity: Vector2= Vector2.ZERO
 var start_accel: float = 0.0
 
 func handle_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("jump"):
+	if movement_component.wants_jump():
 		finished.emit("Jump")
-	if Input.is_action_just_pressed("dash"):
+	if movement_component.wants_dash():
 		finished.emit("Dash")
 
 func physics_update(delta: float) -> void:
-	var direction = Input.get_axis("move_left","move_right")
+	var direction = movement_component.get_horizontal_input()
 	if direction != 0:
 		if direction != sign(parent.velocity.x) and parent.velocity.x != 0:
 			parent.velocity.x = move_toward(parent.velocity.x, direction * movement_data.max_x_speed, movement_data.acceleration * delta * 2)
 		else:
 			parent.velocity.x = move_toward(parent.velocity.x, direction * movement_data.max_x_speed, movement_data.acceleration * delta)
-		if direction == 1: 
-			animated_sprite.flip_h = false
-		if direction == -1:
-			animated_sprite.flip_h = true
+		run(direction)
 	else:
 		parent.velocity.x = move_toward(parent.velocity.x, 0.0, movement_data.friction * delta)
 	apply_gravity(delta)
@@ -33,6 +30,6 @@ func switch_state(direction, delta):
 		finished.emit("Idle")
 
 func enter(previous_state_path: String, data := {}) -> void:
-	super(previous_state_path, data)
+	super(previous_state_path)
 	parent.can_dash = true
 	start_accel = movement_data.acceleration
