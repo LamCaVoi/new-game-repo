@@ -6,8 +6,8 @@
 script = ExtResource("1_bgw5n")
 max_x_speed = 100.0
 max_y_speed = 200.0
-jump_height = 35.0
-jump_time_to_peak = 0.2
+jump_height = 45.0
+jump_time_to_peak = 0.3
 jump_time_to_descent = 0.3
 acceleration = 1200.0
 friction = 1200.0

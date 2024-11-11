@@ -30,7 +30,7 @@ position = Vector2(16, 136)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(0, 32)
-polygon = PackedVector2Array(-16, 144, 8, 144, 8, 112, 48, 112, 48, 144, 88, 144, 88, 88, 120, 88, 120, 144, 176, 144, 176, 64, 208, 64, 208, 144, 312, 144, 312, 48, 256, 48, 256, 24, 339, 24, 338, -24, 8, -24, 8, 144, -16, 144, -16, -56, 344, -56, 344, 176, -16, 176)
+polygon = PackedVector2Array(-16, 144, 8, 144, 8, 112, 48, 112, 48, 144, 88, 144, 88, 88, 120, 88, 120, 144, 168, 144, 168, 64, 200, 64, 200, 144, 312, 144, 312, 48, 256, 48, 256, 24, 339, 24, 338, -24, 8, -24, 8, 144, -16, 144, -16, -56, 344, -56, 344, 176, -16, 176)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
 
@@ -104,6 +104,6 @@ shape = SubResource("RectangleShape2D_benyy")
 position = Vector2(0, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(329, -1)
+position = Vector2(336, 0)
 shape = SubResource("RectangleShape2D_hovnq")
 debug_color = Color(0.760212, 0.0197891, 0.1381, 0.42)
