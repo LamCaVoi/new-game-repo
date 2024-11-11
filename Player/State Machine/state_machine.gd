@@ -19,7 +19,7 @@ func init(parent: CharacterBody2D, animated_sprite: AnimatedSprite2D, ray_cast_2
 	
 func _transition_to_next_state(target_state_path: String, data: Dictionary = {}) -> void:
 	if not has_node(target_state_path):
-		printerr(owner.name + ": Trying to transition to state " + target_state_path + " but it does not exist.")
+		printerr(owner.name + ": Trying to transition to state " + target_state_path + " from " + state.name + " but it does not exist.")
 		return
 
 	var previous_state_path := state.name
@@ -36,4 +36,5 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	print(state.name)
 	state.physics_update(delta)

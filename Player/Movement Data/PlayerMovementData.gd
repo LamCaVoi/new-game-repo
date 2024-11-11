@@ -12,7 +12,7 @@ extends Resource
 @export var velocity_x_lerp_speed: float = 0.3
 @export var velocity_y_lerp_speed: float = 0.8
 @export var hang_threshold: float = 50.0
-@export var dash_speed: float = 300.0
+@export var dash_speed: float = 175.0
 @export var dash_time: float = 0.2
 
 

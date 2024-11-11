@@ -1,16 +1,16 @@
 res://Prototype/Prototype2/Prototype2.tscn
-res://Prototype/Prototype1/Spikes/spikes.tscn
 res://Player/player.tscn
-res://Player/State Machine/state_machine.gd
-res://Player/State Machine/States/wall_jump.gd
+res://Player/ghost.gd
+res://temp.tscn
+res://Player/State Machine/States/dash.gd
+res://Player/Movement Data/PlayerMovementData.gd
 res://Player/Movement Data/DefaultDataMoveMent.tres
 res://Player/State Machine/States/fall.gd
-res://Player/move_component.gd
+res://Player/State Machine/state_machine.gd
+res://Player/State Machine/States/wall_jump.gd
+res://Player/State Machine/States/ghost.tscn
+res://Player/State Machine/States/Dash State/dash.gd
+res://Player/State Machine/States/Dash State/ghost.tscn
+res://Player/State Machine/States/Dash State/ghost.gd
+res://Player/State Machine/States/Idle State/idle.gd
 res://Player/player.gd
-res://Player/State Machine/state.gd
-res://Player/Movement Data/PlayerMovementData.gd
-res://Player/State Machine/States/run.gd
-res://Player/State Machine/States/idle.gd
-res://Player/State Machine/States/dash.gd
-res://Player/State Machine/States/die.gd
-res://Player/State Machine/States/jump.gd

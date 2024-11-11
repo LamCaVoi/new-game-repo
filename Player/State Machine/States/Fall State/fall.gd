@@ -57,7 +57,7 @@ func switch_state(direction):
 	if parent.on_wall():
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1
-			finished.emit("Wall Jump")
+			finished.emit("WallJump")
 	elif parent.is_on_floor():
 		parent.can_dash = true
 		if buffer_jump_timer > 0:

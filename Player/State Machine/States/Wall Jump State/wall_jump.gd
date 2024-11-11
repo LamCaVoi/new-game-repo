@@ -25,7 +25,7 @@ func switch_case(dir):
 		else:
 			finished.emit("Idle")
 	elif parent.on_wall() and movement_component.wants_jump():
-		finished.emit("Wall Jump")
+		finished.emit("WallJump")
 
 func enter(previous_state_path: String, data := {}) -> void:
 	wall_jump_gravity = movement_data.jump_gravity * 1.8

@@ -20,8 +20,8 @@ Events="*res://Script/Events.gd"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=320
+window/size/viewport_height=180
 window/size/resizable=false
 window/size/window_width_override=1280
 window/size/window_height_override=720
@@ -81,7 +81,10 @@ move_down={
 2d_physics/layer_2="PlayerLayer"
 2d_physics/layer_3="EnemyLayer"
 
+[physics]
+
+common/physics_interpolation=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-2d/snap/snap_2d_transforms_to_pixel=true

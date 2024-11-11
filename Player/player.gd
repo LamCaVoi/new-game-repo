@@ -30,4 +30,4 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 		is_alive = false
 
 func on_wall():
-	return ray_cast_2d.is_colliding()
+	return ray_cast_2d.is_colliding() and not is_on_floor()
