@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://wmdmlqp0lxn4"]
+[gd_scene load_steps=43 format=3 uid="uid://wmdmlqp0lxn4"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_4dk0b"]
 [ext_resource type="Texture2D" uid="uid://cpem1qlnborl7" path="res://brackeys_platformer_assets/sprites/knight.png" id="1_td3oy"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://Player/State Machine/States/Die State/die.gd" id="8_oos3l"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Dash State/dash.gd" id="9_k7dci"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Climb State/climb.gd" id="9_mbwjs"]
-[ext_resource type="PackedScene" uid="uid://b8g7dpl0t6toa" path="res://Player/State Machine/States/Dash State/ghost.tscn" id="11_1pkqb"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Wall Jump State/wall_jump.gd" id="12_xje4f"]
 [ext_resource type="Script" path="res://Player/PlayerMovementInput.gd" id="13_mjohn"]
 
@@ -284,8 +283,6 @@ animation_name = "die"
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("9_k7dci")
 animation_name = "dash"
-
-[node name="Ghost" parent="StateMachine/Dash" instance=ExtResource("11_1pkqb")]
 
 [node name="Timer" type="Timer" parent="StateMachine/Dash"]
 wait_time = 0.15

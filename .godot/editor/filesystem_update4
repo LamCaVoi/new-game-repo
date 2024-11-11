@@ -14,3 +14,6 @@ res://Player/State Machine/States/Dash State/ghost.tscn
 res://Player/State Machine/States/Dash State/ghost.gd
 res://Player/State Machine/States/Idle State/idle.gd
 res://Player/player.gd
+res://Prototype/Prototype3/Prototype3.tscn
+res://Prototype/Prototype3/prototype_3.gd
+res://Prototype/Prototype1/Spikes/spikes.tscn

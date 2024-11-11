@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpo678hx8k7ka"]
 
 [ext_resource type="PackedScene" uid="uid://bx40ec1qc8msu" path="res://Scene/kill_zone.tscn" id="1_agaem"]
-[ext_resource type="Texture2D" uid="uid://cvmxivkwdamdn" path="res://Prototype/Prototype Asset/Sprite-0003.png" id="2_vm4xm"]
+[ext_resource type="Texture2D" uid="uid://gfildddu5xg7" path="res://Prototype/Prototype Asset/Sprite-0001.png" id="2_m7e08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w0p3"]
-size = Vector2(104, 14)
+size = Vector2(64, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y744a"]
-size = Vector2(104, 14)
+size = Vector2(65, 13.5)
 
 [node name="Spikes" type="StaticBody2D"]
 
@@ -20,7 +20,7 @@ debug_color = Color(0.998407, 0, 0.142817, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1, 0.75)
-texture = ExtResource("2_vm4xm")
+texture = ExtResource("2_m7e08")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-15, 1.5)
