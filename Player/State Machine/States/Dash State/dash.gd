@@ -44,6 +44,5 @@ func add_ghost():
 	get_tree().current_scene.add_child(new_ghost)
 
 func exit() -> void:
-	parent.velocity = dir*50
 	ghost_timer.stop()
 	

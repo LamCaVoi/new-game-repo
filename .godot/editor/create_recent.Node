@@ -1,5 +1,7 @@
-CollisionShape2D
 Node
+CollisionShape2D
+TileMapLayer
+Camera2D
 Polygon2D
 CollisionPolygon2D
 StaticBody2D
@@ -7,4 +9,3 @@ Timer
 Sprite2D
 RayCast2D
 Node2D
-Camera2D

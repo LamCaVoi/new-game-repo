@@ -22,7 +22,7 @@ func handle_input(_event: InputEvent) -> void:
 	if movement_component.wants_dash() and parent.can_dash:
 		finished.emit("Dash")
 
-func update(delta):
+func timer_update(delta):
 	if coyote_timer > 0:
 		coyote_timer -= delta
 	if buffer_jump_timer > 0:
@@ -43,6 +43,8 @@ func hang_boost():
 		movement_data.max_x_speed += 10
 	
 func physics_update(delta: float) -> void:
+	print(parent.velocity)
+	timer_update(delta)
 	var direction = movement_component.get_horizontal_input()
 	run(direction)
 	apply_gravity(delta)

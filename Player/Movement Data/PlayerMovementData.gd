@@ -27,3 +27,4 @@ func _init() -> void:
 	high_jump_velocity = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 	jump_gravity =((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 	fall_gravity =((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
+	print("high_jump_velocity: " + str(high_jump_velocity) + " jump_gravity: " + str(jump_gravity / 60) + " fall_gravity: " + str(fall_gravity / 60))
