@@ -1,14 +1,5 @@
-res://Player/player.tscn
-res://Player/State Machine/States/Dash State/ghost.tscn
-res://Prototype/Prototype3/Prototype3.tscn
-res://Prototype/Prototype2/Prototype2.tscn
-res://Prototype/Prototype1/Spikes/spikes.tscn
-res://Scene/Level/lv_2.tscn
-res://Prototype/Prototype4/Prototype3.tscn
-res://Player/Movement Data/DefaultDataMoveMent.tres
-res://Player/State Machine/States/Dash State/dash.gd
-res://Player/State Machine/States/Fall State/fall.gd
-res://Player/State Machine/state_machine.gd
-res://Player/Movement Data/PlayerMovementData.gd
-res://Player/State Machine/state.gd
+res://Prototype/Prototype5/Prototype5.tscn
 res://Prototype/Prototype4/Prototype4.tscn
+res://Prototype/Prototype3/Prototype3.tscn
+res://Prototype/Prototype1/Spikes/spikes.tscn
+res://Player/player.tscn
