@@ -1,5 +1,2 @@
-res://Prototype/Prototype5/Prototype5.tscn
-res://Prototype/Prototype4/Prototype4.tscn
-res://Prototype/Prototype3/Prototype3.tscn
-res://Prototype/Prototype1/Spikes/spikes.tscn
-res://Player/player.tscn
+res://Prototype/Prototype6/Prototype6.tscn
+res://Script/Events.gd

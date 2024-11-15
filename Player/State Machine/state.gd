@@ -6,7 +6,8 @@ extends Node
 @export var animation_name:String
 
 var movement_data: PlayerMovementData
-var movement_component: PlayerMovementInput
+var movement_input: PlayerMovementInput
+var movement: Movement
 var parent:CharacterBody2D
 var animated_sprite: AnimatedSprite2D
 var ray_cast_2d: RayCast2D

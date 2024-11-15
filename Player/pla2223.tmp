@@ -14,7 +14,6 @@
 [ext_resource type="Script" path="res://Player/State Machine/States/Wall Jump State/wall_jump.gd" id="12_xje4f"]
 [ext_resource type="Script" path="res://Player/PlayerMovementInput.gd" id="13_mjohn"]
 [ext_resource type="Script" path="res://Player/pixel_perfect_movement.gd" id="14_467xb"]
-[ext_resource type="PackedScene" uid="uid://cyy6m5tds74bu" path="res://Player/hit_box.tscn" id="15_c6oci"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1yhwf"]
 atlas = ExtResource("1_td3oy")
@@ -230,6 +229,10 @@ animations = [{
 radius = 4.0
 height = 16.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3c2r8"]
+radius = 5.0
+height = 18.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_4dk0b")
@@ -244,6 +247,15 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_kdmcf")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_3c2r8")
+debug_color = Color(0.94993, 0.197447, 0.280767, 0.42)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_qpl2d")
@@ -293,8 +305,7 @@ target_position = Vector2(8, 0)
 [node name="PixelPerfectMovement" type="Node2D" parent="."]
 script = ExtResource("14_467xb")
 
-[node name="HitBox" parent="." instance=ExtResource("15_c6oci")]
-x = -5
-y = -18
+[node name="HitBox" type="Node2D" parent="."]
 
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="timeout" from="StateMachine/Dash/Timer" to="StateMachine/Dash" method="add_ghost"]

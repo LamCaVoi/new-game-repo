@@ -8,10 +8,10 @@ var start_velocity = 0
 var was_jumping = false
 
 func handle_input(_event: InputEvent) -> void:
-	if movement_component.released_jump() and parent.velocity.y < -100:
+	if movement_input.released_jump() and parent.velocity.y < -100:
 		parent.velocity.y *= movement_data.short_jump_cut
 
-	if movement_component.wants_jump():
+	if movement_input.wants_jump():
 		if parent.on_wall():
 			finished.emit("WallJump")
 		elif not parent.is_on_floor():
@@ -19,7 +19,7 @@ func handle_input(_event: InputEvent) -> void:
 				finished.emit("Jump")
 			else:
 				buffer_jump_timer = movement_data.buffer_jump_time
-	if movement_component.wants_dash() and parent.can_dash:
+	if movement_input.wants_dash() and parent.can_dash:
 		finished.emit("Dash")
 
 func timer_update(delta):
@@ -43,16 +43,17 @@ func hang_boost():
 		movement_data.max_x_speed += 10
 	
 func physics_update(delta: float) -> void:
-	print(parent.velocity)
 	timer_update(delta)
-	var direction = movement_component.get_horizontal_input()
+	var direction = movement_input.get_horizontal_input()
 	run(direction)
 	apply_gravity(delta)
 	#hang_boost()
 	#parent.velocity = lerp(parent.velocity, Vector2(movement_data.max_x_speed * direction, movement_data.max_y_speed), 0.09)
 	parent.velocity.x = lerp(parent.velocity.x, movement_data.max_x_speed * direction, movement_data.velocity_x_lerp_speed)
 	#print("parent.max_x_speed: " + str(movement_data.max_x_speed) + " parent.velocity: " + str(parent.velocity) + " direction = " + str(direction))
-	parent.move_and_slide()
+	#parent.move_and_slide()
+	movement.move_x(parent.velocity.x *delta)
+	movement.move_y(parent.velocity.y *delta)
 	switch_state(direction)
 
 func switch_state(direction):
@@ -60,7 +61,7 @@ func switch_state(direction):
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1
 			finished.emit("WallJump")
-	elif parent.is_on_floor():
+	elif parent.is_colliding_y:
 		parent.can_dash = true
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1

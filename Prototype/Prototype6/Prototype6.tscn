@@ -1,123 +1,123 @@
-[gd_scene load_steps=44 format=3 uid="uid://wmdmlqp0lxn4"]
+[gd_scene load_steps=45 format=3 uid="uid://cn8jfylfbst1h"]
 
-[ext_resource type="Script" path="res://Player/player.gd" id="1_4dk0b"]
-[ext_resource type="Texture2D" uid="uid://cpem1qlnborl7" path="res://brackeys_platformer_assets/sprites/knight.png" id="1_td3oy"]
-[ext_resource type="Script" path="res://Player/State Machine/state_machine.gd" id="3_qpl2d"]
-[ext_resource type="Resource" uid="uid://cdiet5q81ycqm" path="res://Player/Movement Data/DefaultDataMoveMent.tres" id="4_0ixyb"]
-[ext_resource type="Script" path="res://Player/State Machine/States/Run State/run.gd" id="4_lsuwb"]
-[ext_resource type="Script" path="res://Player/State Machine/States/Idle State/idle.gd" id="5_v5lr4"]
-[ext_resource type="Script" path="res://Player/State Machine/States/Fall State/fall.gd" id="6_1myma"]
-[ext_resource type="Script" path="res://Player/State Machine/States/Jump State/jump.gd" id="7_pxw2k"]
-[ext_resource type="Script" path="res://Player/State Machine/States/Die State/die.gd" id="8_oos3l"]
-[ext_resource type="Script" path="res://Player/State Machine/States/Dash State/dash.gd" id="9_k7dci"]
-[ext_resource type="Script" path="res://Player/State Machine/States/Climb State/climb.gd" id="9_mbwjs"]
-[ext_resource type="Script" path="res://Player/State Machine/States/Wall Jump State/wall_jump.gd" id="12_xje4f"]
-[ext_resource type="Script" path="res://Player/PlayerMovementInput.gd" id="13_mjohn"]
-[ext_resource type="Script" path="res://Player/pixel_perfect_movement.gd" id="14_467xb"]
-[ext_resource type="PackedScene" uid="uid://cyy6m5tds74bu" path="res://Player/hit_box.tscn" id="15_c6oci"]
+[ext_resource type="Script" path="res://Player/player.gd" id="1_u132e"]
+[ext_resource type="PackedScene" uid="uid://cyy6m5tds74bu" path="res://Player/hit_box.tscn" id="2_huxqr"]
+[ext_resource type="Resource" uid="uid://cdiet5q81ycqm" path="res://Player/Movement Data/DefaultDataMoveMent.tres" id="2_who3t"]
+[ext_resource type="Texture2D" uid="uid://cpem1qlnborl7" path="res://brackeys_platformer_assets/sprites/knight.png" id="3_2xqqj"]
+[ext_resource type="Script" path="res://Player/State Machine/state_machine.gd" id="4_sbbf2"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Run State/run.gd" id="5_l6pbj"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Idle State/idle.gd" id="6_nludi"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Fall State/fall.gd" id="7_rnnf2"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Jump State/jump.gd" id="8_8mc7j"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Die State/die.gd" id="9_68v3e"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Dash State/dash.gd" id="10_82jkp"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Climb State/climb.gd" id="11_e07cw"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Wall Jump State/wall_jump.gd" id="12_1d7e5"]
+[ext_resource type="Script" path="res://Player/PlayerMovementInput.gd" id="13_di5px"]
+[ext_resource type="Script" path="res://Player/pixel_perfect_movement.gd" id="14_u3x3l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1yhwf"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(0, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ifrse"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(32, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4soc7"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(64, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5s84r"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(96, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_knrl2"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5eomf"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mela2"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hsb7q"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gicj"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqc4j"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4lyk"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0secr"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uv6xa"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ungrt"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwban"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkeva"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(160, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3xgv"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(192, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lqj63"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(224, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5d5pe"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xao50"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hoayr"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vi86"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b1mwa"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(128, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owyra"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(160, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2a3i"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(192, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sg0hr"]
-atlas = ExtResource("1_td3oy")
+atlas = ExtResource("3_2xqqj")
 region = Rect2(224, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8t3j1"]
@@ -230,71 +230,91 @@ animations = [{
 radius = 4.0
 height = 16.0
 
-[node name="Player" type="CharacterBody2D"]
-collision_layer = 2
-script = ExtResource("1_4dk0b")
-movement_data = ExtResource("4_0ixyb")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow7m6"]
+size = Vector2(301, 20)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Prototype6" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(0, 56)
+collision_layer = 2
+script = ExtResource("1_u132e")
+movement_data = ExtResource("2_who3t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_8t3j1")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_kdmcf")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_qpl2d")
+[node name="StateMachine" type="Node" parent="Player" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_sbbf2")
 initial_state = NodePath("Idle")
 
-[node name="Run" type="Node" parent="StateMachine"]
-script = ExtResource("4_lsuwb")
+[node name="Run" type="Node" parent="Player/StateMachine"]
+script = ExtResource("5_l6pbj")
 animation_name = "run"
 
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("5_v5lr4")
+[node name="Idle" type="Node" parent="Player/StateMachine"]
+script = ExtResource("6_nludi")
 animation_name = "idle"
 
-[node name="Fall" type="Node" parent="StateMachine"]
-script = ExtResource("6_1myma")
+[node name="Fall" type="Node" parent="Player/StateMachine"]
+script = ExtResource("7_rnnf2")
 animation_name = "fall"
 
-[node name="Jump" type="Node" parent="StateMachine"]
-script = ExtResource("7_pxw2k")
+[node name="Jump" type="Node" parent="Player/StateMachine"]
+script = ExtResource("8_8mc7j")
 animation_name = "jump"
 
-[node name="Die" type="Node" parent="StateMachine"]
-script = ExtResource("8_oos3l")
+[node name="Die" type="Node" parent="Player/StateMachine"]
+script = ExtResource("9_68v3e")
 animation_name = "die"
 
-[node name="Dash" type="Node" parent="StateMachine"]
-script = ExtResource("9_k7dci")
+[node name="Dash" type="Node" parent="Player/StateMachine"]
+script = ExtResource("10_82jkp")
 animation_name = "dash"
 
-[node name="Timer" type="Timer" parent="StateMachine/Dash"]
+[node name="Timer" type="Timer" parent="Player/StateMachine/Dash"]
 wait_time = 0.15
 
-[node name="Climb" type="Node" parent="StateMachine"]
-script = ExtResource("9_mbwjs")
+[node name="Climb" type="Node" parent="Player/StateMachine"]
+script = ExtResource("11_e07cw")
 animation_name = "climb"
 
-[node name="WallJump" type="Node" parent="StateMachine"]
-script = ExtResource("12_xje4f")
+[node name="WallJump" type="Node" parent="Player/StateMachine"]
+script = ExtResource("12_1d7e5")
 
-[node name="MovementInput" type="Node" parent="."]
-script = ExtResource("13_mjohn")
+[node name="MovementInput" type="Node" parent="Player"]
+script = ExtResource("13_di5px")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="Player"]
 position = Vector2(0, -9)
 target_position = Vector2(8, 0)
 
-[node name="PixelPerfectMovement" type="Node2D" parent="."]
-script = ExtResource("14_467xb")
+[node name="PixelPerfectMovement" type="Node2D" parent="Player"]
+script = ExtResource("14_u3x3l")
 
-[node name="HitBox" parent="." instance=ExtResource("15_c6oci")]
+[node name="HitBox" parent="Player" instance=ExtResource("2_huxqr")]
 x = -5
 y = -18
 
-[connection signal="timeout" from="StateMachine/Dash/Timer" to="StateMachine/Dash" method="add_ghost"]
+[node name="HitBox" parent="." groups=["Walls"] instance=ExtResource("2_huxqr")]
+position = Vector2(-153, 56)
+width = 300.0
+height = 8.0
+color = Color(1, 0.105906, 0.184565, 0.729412)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-3.5, 66)
+shape = SubResource("RectangleShape2D_ow7m6")
+
+[connection signal="timeout" from="Player/StateMachine/Dash/Timer" to="Player/StateMachine/Dash" method="add_ghost"]

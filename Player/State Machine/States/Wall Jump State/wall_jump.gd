@@ -9,7 +9,7 @@ func physics_update(delta: float) -> void:
 	if(input_block_timer < 0):
 		finished.emit("Fall")
 		return
-	var dir = movement_component.get_horizontal_input()
+	var dir = movement_input.get_horizontal_input()
 	run(dir)
 	if(dir != jump_dir):
 		parent.velocity.y += wall_jump_gravity * delta
@@ -24,7 +24,7 @@ func switch_case(dir):
 			finished.emit("Run")
 		else:
 			finished.emit("Idle")
-	elif parent.on_wall() and movement_component.wants_jump():
+	elif parent.on_wall() and movement_input.wants_jump():
 		finished.emit("WallJump")
 
 func enter(previous_state_path: String, data := {}) -> void:

@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="New Game Project"
-run/main_scene="res://Prototype/Prototype5/Prototype5.tscn"
+run/main_scene="res://Prototype/Prototype6/Prototype6.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
 Events="*res://Script/Events.gd"
+Game="*res://Prototype/Prototype6/prototype_6.gd"
 
 [display]
 
@@ -30,6 +31,7 @@ window/stretch/scale_mode="integer"
 [global_group]
 
 Enemy=""
+Walls=""
 
 [importer_defaults]
 

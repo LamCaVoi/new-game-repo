@@ -2,22 +2,23 @@ extends State
 
 func physics_update(delta: float) -> void:
 	apply_gravity(delta)
-	parent.move_and_slide()
+	movement.move_x(parent.velocity.x *delta)
+	movement.move_y(parent.velocity.y *delta)
 	switch_state()
 
 func switch_state():
 	#Fall
-	if parent.velocity.y > 0: 
+	if not parent.is_colliding_y: 
 		finished.emit("Fall")
 	#Jump
-	elif movement_component.wants_jump():
+	elif movement_input.wants_jump():
 		finished.emit("Jump")
 	#Dash
-	elif movement_component.wants_dash():
+	elif movement_input.wants_dash():
 		finished.emit("Dash")
 	#Run
 	else:
-		var direction = movement_component.get_horizontal_input()
+		var direction = movement_input.get_horizontal_input()
 		if direction != 0:
 			finished.emit("Run")
 

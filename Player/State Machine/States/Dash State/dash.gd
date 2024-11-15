@@ -9,12 +9,14 @@ func physics_update(delta: float) -> void:
 	dash_duration_timer -= delta
 	if dash_duration_timer <=0:
 		switch_state()
-	parent.move_and_slide()
+	
+	movement.move_x(parent.velocity.x *delta)
+	movement.move_y(parent.velocity.y *delta)
 
 func switch_state():
-	if(parent.is_on_floor()):
+	if(parent.is_colliding_y):
 		parent.can_dash = true
-		if(movement_component.get_horizontal_input() != 0):
+		if(movement_input.get_horizontal_input() != 0):
 			finished.emit("Run")
 		else:
 			finished.emit("Idle")
@@ -22,7 +24,7 @@ func switch_state():
 		finished.emit("Fall")
 
 func get_dir():
-	dir = movement_component.get_8_directional_input()
+	dir = movement_input.get_8_directional_input()
 	if dir == Vector2.ZERO:
 		if parent.animated_sprite.flip_h:
 			dir.x = -1
