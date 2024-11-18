@@ -1,2 +1,7 @@
 res://Prototype/Prototype6/Prototype6.tscn
-res://Script/Events.gd
+res://Player/player.tscn
+res://Player/pixel_perfect_movement.gd
+res://Player/player.gd
+res://Prototype/Prototype6/prototype_6.gd
+res://Script/global.gd
+res://Prototype/Prototype5/Prototype5.tscn

@@ -1,9 +1,9 @@
+TileMapLayer
+Node2D
 StaticBody2D
 CollisionShape2D
-Node2D
 Camera2D
 Node
-TileMapLayer
 TileMap
 Polygon2D
 CollisionPolygon2D

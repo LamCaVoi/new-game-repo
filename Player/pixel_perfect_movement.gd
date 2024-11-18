@@ -1,13 +1,11 @@
-extends Node
+extends Node2D
 class_name Movement
 
 var remainder: Vector2 = Vector2.ZERO
 var parent: CharacterBody2D
-var hitbox: HitBox
 
-func init(parent: CharacterBody2D, hitbox: HitBox) -> void:
+func init(parent: CharacterBody2D) -> void:
 	self.parent = parent
-	self.hitbox = hitbox
 
 func move_x(amount: float):
 	remainder.x += amount
@@ -21,18 +19,16 @@ func move_x_exact(move: int):
 	var step : int = sign(move)
 	
 	while (move):
-		if Game.is_colliding(hitbox, Vector2(step, 0)):
-			print("helolo")
-			zero_remainder_x()
+		if Global.curr_level.check_intersection(Vector2i(step,0)):
 			Events.player_colliding_x.emit(true)
 			return
 		parent.global_position.x += step
-		move-=step
+		move -= step
 	Events.player_colliding_x.emit(false)
-		
+
 func move_y(amount: float):
 	remainder.y += amount
-	amount = round(remainder.y)
+	amount = floor(remainder.y)
 	
 	if(amount != 0):
 		remainder.y -= amount
@@ -42,17 +38,15 @@ func move_y_exact(move: int):
 	var step : int = sign(move)
 	
 	while (move):
-		if Game.is_colliding(hitbox, Vector2(0, step)):
-			zero_remainder_y()
+		if Global.curr_level.check_intersection(Vector2i(0,step)):
 			Events.player_colliding_y.emit(true)
 			return
 		parent.global_position.y += step
 		move-=step
-	Events.player_colliding_y.emit(false)
+	Events.player_colliding_x.emit(false)
 
 func zero_remainder_x():
 	remainder.x = 0
 
 func zero_remainder_y():
 	remainder.y = 0
-	
