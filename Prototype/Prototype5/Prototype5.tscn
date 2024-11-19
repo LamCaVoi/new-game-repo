@@ -41,7 +41,7 @@ tile_map_data = PackedByteArray("AAD3/wwAAAACAAQAAADs//P/AAACAAQAAADs//T/AAAEAAc
 tile_set = SubResource("TileSet_6sxoi")
 
 [node name="Player" parent="." instance=ExtResource("2_adels")]
-position = Vector2(-142, 31)
+position = Vector2(81, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

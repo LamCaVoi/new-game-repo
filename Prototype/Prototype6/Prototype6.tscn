@@ -44,4 +44,3 @@ tile_set = SubResource("TileSet_pux28")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("3_xf3ui")]
-color = Color(0.649488, 0.00183532, 0.835865, 1)

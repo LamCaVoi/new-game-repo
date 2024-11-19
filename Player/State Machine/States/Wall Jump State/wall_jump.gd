@@ -15,11 +15,12 @@ func physics_update(delta: float) -> void:
 		parent.velocity.y += wall_jump_gravity * delta
 	else:
 		apply_gravity(delta)
-	parent.move_and_slide()
+	movement.move_x(parent.velocity.x * delta)
+	movement.move_y(parent.velocity.y * delta)
 	switch_case(dir)
 
 func switch_case(dir):
-	if (parent.is_on_floor()):
+	if (is_on_floor()):
 		if dir != 0:
 			finished.emit("Run")
 		else:

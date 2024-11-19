@@ -42,8 +42,8 @@ func move_y_exact(move: int):
 			Events.player_colliding_y.emit(true)
 			return
 		parent.global_position.y += step
-		move-=step
-	Events.player_colliding_x.emit(false)
+		move -= step
+	Events.player_colliding_y.emit(false)
 
 func zero_remainder_x():
 	remainder.x = 0

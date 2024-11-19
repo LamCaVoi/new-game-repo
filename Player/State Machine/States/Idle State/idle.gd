@@ -1,5 +1,14 @@
 extends State
 
+func handle_input(event: InputEvent) -> void:
+	if movement_input.wants_jump():
+		finished.emit("Jump")
+		
+	#Dash
+	if movement_input.wants_dash():
+		finished.emit("Dash")
+	
+
 func physics_update(delta: float) -> void:
 	apply_gravity(delta)
 	movement.move_x(parent.velocity.x *delta)
@@ -8,14 +17,8 @@ func physics_update(delta: float) -> void:
 
 func switch_state():
 	#Fall
-	if not parent.is_colliding_y: 
+	if not is_on_floor(): 
 		finished.emit("Fall")
-	#Jump
-	elif movement_input.wants_jump():
-		finished.emit("Jump")
-	#Dash
-	elif movement_input.wants_dash():
-		finished.emit("Dash")
 	#Run
 	else:
 		var direction = movement_input.get_horizontal_input()
@@ -23,8 +26,9 @@ func switch_state():
 			finished.emit("Run")
 
 func enter(previous_state_path: String) -> void:
+	is_colliding_y = true
 	super(previous_state_path)
-	parent.can_dash = true
+	can_dash = true
 	parent.velocity = Vector2.ZERO
 
 func exit() -> void:

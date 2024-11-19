@@ -14,12 +14,12 @@ func handle_input(_event: InputEvent) -> void:
 	if movement_input.wants_jump():
 		if parent.on_wall():
 			finished.emit("WallJump")
-		elif not parent.is_on_floor():
+		elif not is_on_floor():
 			if coyote_timer >= 0:
 				finished.emit("Jump")
 			else:
 				buffer_jump_timer = movement_data.buffer_jump_time
-	if movement_input.wants_dash() and parent.can_dash:
+	if movement_input.wants_dash() and can_dash:
 		finished.emit("Dash")
 
 func timer_update(delta):
@@ -47,22 +47,22 @@ func physics_update(delta: float) -> void:
 	var direction = movement_input.get_horizontal_input()
 	run(direction)
 	apply_gravity(delta)
+	parent.velocity.x = lerp(parent.velocity.x, direction * movement_data.max_x_speed, movement_data.velocity_x_lerp_speed)
 	#hang_boost()
-	#parent.velocity = lerp(parent.velocity, Vector2(movement_data.max_x_speed * direction, movement_data.max_y_speed), 0.09)
-	parent.velocity.x = lerp(parent.velocity.x, movement_data.max_x_speed * direction, movement_data.velocity_x_lerp_speed)
-	#print("parent.max_x_speed: " + str(movement_data.max_x_speed) + " parent.velocity: " + str(parent.velocity) + " direction = " + str(direction))
-	#parent.move_and_slide()
 	movement.move_x(parent.velocity.x *delta)
 	movement.move_y(parent.velocity.y *delta)
+	if (is_colliding_y and parent.velocity.y < 0):
+		is_colliding_y = false
+		parent.velocity.y = 0
 	switch_state(direction)
 
 func switch_state(direction):
-	if parent.on_wall():
+	if false:
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1
 			finished.emit("WallJump")
-	elif parent.is_colliding_y:
-		parent.can_dash = true
+	elif is_on_floor():
+		can_dash = true
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1
 			finished.emit("Jump")

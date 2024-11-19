@@ -39,3 +39,9 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	print(state.name)
 	state.physics_update(delta)
+
+func set_colliding_x(val : bool) -> void:
+	state.set_colliding_x(val)
+
+func set_colliding_y(val : bool) -> void:
+	state.set_colliding_y(val)

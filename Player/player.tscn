@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://wmdmlqp0lxn4"]
+[gd_scene load_steps=44 format=3 uid="uid://wmdmlqp0lxn4"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_4dk0b"]
 [ext_resource type="Texture2D" uid="uid://cpem1qlnborl7" path="res://brackeys_platformer_assets/sprites/knight.png" id="1_td3oy"]
@@ -11,9 +11,13 @@
 [ext_resource type="Script" path="res://Player/State Machine/States/Die State/die.gd" id="8_oos3l"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Dash State/dash.gd" id="9_k7dci"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Climb State/climb.gd" id="9_mbwjs"]
+[ext_resource type="PackedScene" uid="uid://b8g7dpl0t6toa" path="res://Player/State Machine/States/Dash State/ghost.tscn" id="11_go550"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Wall Jump State/wall_jump.gd" id="12_xje4f"]
 [ext_resource type="Script" path="res://Player/PlayerMovementInput.gd" id="13_mjohn"]
 [ext_resource type="Script" path="res://Player/pixel_perfect_movement.gd" id="14_467xb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svwkv"]
+size = Vector2(8, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1yhwf"]
 atlas = ExtResource("1_td3oy")
@@ -225,10 +229,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kdmcf"]
-radius = 4.0
-height = 16.0
-
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_4dk0b")
@@ -236,19 +236,18 @@ movement_data = ExtResource("4_0ixyb")
 width = 8
 height = 14
 x = -4
-y = -15
+y = -7
 color = Color(0.649488, 0.00183532, 0.835865, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_svwkv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
-position = Vector2(0, -12)
+position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_8t3j1")
 animation = &"idle"
 autoplay = "idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9)
-shape = SubResource("CapsuleShape2D_kdmcf")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_qpl2d")
@@ -281,6 +280,8 @@ animation_name = "dash"
 [node name="Timer" type="Timer" parent="StateMachine/Dash"]
 wait_time = 0.15
 
+[node name="Ghost" parent="StateMachine/Dash" instance=ExtResource("11_go550")]
+
 [node name="Climb" type="Node" parent="StateMachine"]
 script = ExtResource("9_mbwjs")
 animation_name = "climb"
@@ -292,10 +293,7 @@ script = ExtResource("12_xje4f")
 script = ExtResource("13_mjohn")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(0, -9)
 target_position = Vector2(8, 0)
-
-[node name="Node2D" type="Node2D" parent="."]
 
 [node name="PixelPerfectMovement" type="Node2D" parent="."]
 script = ExtResource("14_467xb")

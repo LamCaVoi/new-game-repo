@@ -2,7 +2,7 @@ extends State
 
 var dir : Vector2 = Vector2.ZERO
 var dash_duration_timer: float= 0.0
-var ghost = preload("res://Player/State Machine/States/Dash State/ghost.tscn")
+@onready var ghost = preload("res://Player/State Machine/States/Dash State/ghost.tscn")
 @onready var ghost_timer: Timer = $Timer
 
 func physics_update(delta: float) -> void:
@@ -14,8 +14,8 @@ func physics_update(delta: float) -> void:
 	movement.move_y(parent.velocity.y *delta)
 
 func switch_state():
-	if(parent.is_colliding_y):
-		parent.can_dash = true
+	if(is_colliding_y):
+		can_dash = true
 		if(movement_input.get_horizontal_input() != 0):
 			finished.emit("Run")
 		else:
@@ -32,7 +32,7 @@ func get_dir():
 			dir.x = 1
 
 func enter(previous_state_path: String) -> void:
-	parent.can_dash = false
+	can_dash = false
 	get_dir()
 	parent.velocity = dir * movement_data.dash_speed
 	dash_duration_timer = movement_data.dash_time

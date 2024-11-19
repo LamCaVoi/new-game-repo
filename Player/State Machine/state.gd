@@ -12,6 +12,11 @@ var parent:CharacterBody2D
 var animated_sprite: AnimatedSprite2D
 var ray_cast_2d: RayCast2D
 
+var is_colliding_x :bool= false
+var is_colliding_y :bool= false
+var can_dash = true
+
+
 ## Emitted when the state finishes and wants to transition to another state.
 signal finished(next_state_path: String, data: Dictionary)
 
@@ -54,4 +59,12 @@ func run(direction):
 	if not direction == 0:
 		animated_sprite.flip_h = direction < 0
 		ray_cast_2d.target_position = Vector2(-8,0) if animated_sprite.flip_h else Vector2(8,0)
-		
+
+func set_colliding_x(val : bool) -> void:
+	is_colliding_x = val
+
+func set_colliding_y(val : bool) -> void:
+	is_colliding_y = val
+
+func is_on_floor() -> bool:
+	return is_colliding_y and (parent.velocity.y > 0)
