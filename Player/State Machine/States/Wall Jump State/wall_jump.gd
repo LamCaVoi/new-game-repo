@@ -25,7 +25,7 @@ func switch_case(dir):
 			finished.emit("Run")
 		else:
 			finished.emit("Idle")
-	elif parent.on_wall() and movement_input.wants_jump():
+	elif is_on_wall() and movement_input.wants_jump():
 		finished.emit("WallJump")
 
 func enter(previous_state_path: String, data := {}) -> void:

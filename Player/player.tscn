@@ -237,7 +237,7 @@ width = 8
 height = 14
 x = -4
 y = -7
-color = Color(0.649488, 0.00183532, 0.835865, 1)
+color = Color(0.65098, 0, 0.835294, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_svwkv")

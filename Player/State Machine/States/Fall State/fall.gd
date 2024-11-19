@@ -12,7 +12,7 @@ func handle_input(_event: InputEvent) -> void:
 		parent.velocity.y *= movement_data.short_jump_cut
 
 	if movement_input.wants_jump():
-		if parent.on_wall():
+		if is_on_wall():
 			finished.emit("WallJump")
 		elif not is_on_floor():
 			if coyote_timer >= 0:
@@ -57,7 +57,7 @@ func physics_update(delta: float) -> void:
 	switch_state(direction)
 
 func switch_state(direction):
-	if false:
+	if is_on_wall():
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1
 			finished.emit("WallJump")

@@ -39,9 +39,6 @@ func _ready() -> void:
 func die():
 	state_machine._transition_to_next_state("Die")
 
-func on_wall():
-	return ray_cast_2d.is_colliding() and not is_on_floor()
-
 func get_global_rect() -> Vector2:
 	return to_global(rect2.position)
 

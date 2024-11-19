@@ -68,3 +68,6 @@ func set_colliding_y(val : bool) -> void:
 
 func is_on_floor() -> bool:
 	return is_colliding_y and (parent.velocity.y > 0)
+
+func is_on_wall() -> bool:
+	return is_colliding_x and not is_on_floor()
