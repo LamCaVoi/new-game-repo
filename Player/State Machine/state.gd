@@ -53,13 +53,8 @@ func enter(previous_state_path: String) -> void:
 
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.
-func exit(is_colliding_top: bool,is_colliding_bottom: bool,is_colliding_x: bool,can_dash: bool, is_on_wall: bool) -> Dictionary:
-	data.is_collidingz_top = is_colliding_top
-	data.is_colliding_bottom = is_colliding_bottom
-	data.is_colliding_x = is_colliding_x
-	data.can_dash = can_dash
-	data.is_on_wall = is_on_wall
-	return data
+func exit():
+	pass
 
 func get_fall_gravity():
 	return movement_data.jump_gravity if parent.velocity.y < 0.0 else movement_data.fall_gravity

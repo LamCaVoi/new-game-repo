@@ -32,7 +32,7 @@ func _transition_to_next_state(target_state_path: String) -> void:
 		printerr(owner.name + ": Trying to transition to state " + target_state_path + " from " + state.name + " but it does not exist.")
 		return
 	var previous_state_path := state.name
-	self.data = state.exit(state.is_colliding_top,state.is_colliding_bottom,state.is_colliding_x,state.can_dash, state.is_on_wall)
+	update_shared_data()
 	state = get_node(target_state_path)
 	state.data = self.data
 	state.enter(previous_state_path)
@@ -57,3 +57,10 @@ func set_colliding_top(val : bool) -> void:
 	
 func set_colliding_bottom(val : bool) -> void:
 	state.is_colliding_bottom = val
+
+func update_shared_data():
+	data.is_colliding_top = state.is_colliding_top
+	data.is_colliding_bottom = state.is_colliding_bottom
+	data.is_colliding_x = state.is_colliding_x
+	data.can_dash = state.can_dash
+	data.is_on_wall = state.is_on_wall

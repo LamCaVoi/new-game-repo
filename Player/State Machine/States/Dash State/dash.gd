@@ -46,8 +46,8 @@ func add_ghost():
 	new_ghost.flip(parent.animated_sprite.flip_h)
 	get_tree().current_scene.add_child(new_ghost)
 
-func exit(is_colliding_top: bool,is_colliding_bottom: bool,is_colliding_x: bool,can_dash: bool, is_on_wall: bool) -> Dictionary:
+func exit():
 	ghost_timer.stop()
-	return super(self.is_colliding_top,self.is_colliding_bottom,self.is_colliding_x,self.can_dash, self.is_on_wall)
+	return super()
 	
 	
