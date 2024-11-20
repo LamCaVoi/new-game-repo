@@ -12,16 +12,16 @@ func _ready() -> void:
 	Global.curr_level = self
 
 
-func get_left_other (rect2: Rect2) -> int:
+func get_tile_left (rect2: Rect2) -> int:
 	return to_global(rect2.position).x
 
-func get_right_other (rect2: Rect2) -> int:
+func get_tile_right (rect2: Rect2) -> int:
 	return to_global(rect2.position).x + 8
 	
-func get_top_other (rect2: Rect2) -> int:
+func get_tile_top (rect2: Rect2) -> int:
 	return to_global(rect2.position).y
 	
-func get_bottom_other(rect2: Rect2) -> int:
+func get_tile_bottom(rect2: Rect2) -> int:
 	return to_global(rect2.position).y + 8
 
 func check_intersection(offset: Vector2i = Vector2i.ZERO):
@@ -36,13 +36,13 @@ func check_intersection(offset: Vector2i = Vector2i.ZERO):
 				return true
 	return false
 
-func intersect(other: Rect2, offset: Vector2i) -> bool:
+func intersect(tile: Rect2, offset: Vector2i) -> bool:
 	#print("Player postion : " + str(player.rect2.position) + " Global postion : " + str(player.get_global_rect()))
-	#print("other postion : " + str(other.position) + " Global postion : " + str(to_global(other.position)))
-	#print("left : " + str(player.get_left_other_rect()) + " right : " + str(str(player.get_right_other_rect())) + " top : " + str(str(player.get_top_other_rect())) + " bottom : " + str(str(player.get_bottom_other_rect())))
-	#print("left : " + str(get_left_other(other)) + " right : " + str(get_right_other(other)) + " top : " + str(get_top_other(other)) + " bottom : " + str(get_bottom_other(other)))
-	var res : bool = (player.get_left_rect() + offset.x < get_right_other(other) and
-	player.get_right_rect() + offset.x > get_left_other(other) and 
-	player.get_top_rect() + offset.y < get_bottom_other(other) and
-	player.get_bottom_rect() + offset.y > get_top_other(other))
+	#print("tile postion : " + str(tile.position) + " Global postion : " + str(to_global(tile.position)))
+	#print("left : " + str(player.get_left_rect()) + " right : " + str(str(player.get_right_rect())) + " top : " + str(str(player.get_top_rect())) + " bottom : " + str(player.get_bottom_rect()))
+	#print("left : " + str(get_tile_left(tile)) + " right : " + str(get_tile_right(tile)) + " top : " + str(get_tile_top(tile)) + " bottom : " + str(get_tile_bottom(tile)))
+	var res : bool = (player.get_left_rect() + offset.x < get_tile_right(tile) and
+	player.get_right_rect() + offset.x > get_tile_left(tile) and 
+	player.get_top_rect() + offset.y < get_tile_bottom(tile) and
+	player.get_bottom_rect() + offset.y > get_tile_top(tile))
 	return res

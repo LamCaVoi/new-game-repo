@@ -22,16 +22,14 @@ func physics_update(delta: float) -> void:
 	apply_gravity(delta)
 	movement.move_x(parent.velocity.x * delta)
 	movement.move_y(parent.velocity.y * delta)
-	
 	switch_state(direction, delta)
 	
 func switch_state(direction, delta):
-	if not is_on_floor():
+	if not is_colliding_bottom:
 		finished.emit("Fall")
 	elif abs(parent.velocity.x) < movement_data.friction * delta and direction == 0:
 		finished.emit("Idle")
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(previous_state_path: String) -> void:
 	super(previous_state_path)
-	can_dash = true
 	start_accel = movement_data.acceleration

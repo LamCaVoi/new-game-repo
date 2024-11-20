@@ -16,10 +16,6 @@ extends CharacterBody2D
 @export var x : int = -5
 @export var y : int = 0
 @export var color : Color
-
-var is_alive = true
-var is_climbing = false
-
 @onready var rect2 : Rect2 = Rect2(x,y,width,height)
 
 func _draw() -> void:
@@ -31,8 +27,9 @@ func _physics_process(delta: float) -> void:
 func _ready() -> void:
 	Events.player_entered_kill_zone.connect(die)
 	Events.player_colliding_x.connect(state_machine.set_colliding_x)
-	Events.player_colliding_y.connect(state_machine.set_colliding_y)
-	movement_data._init()
+	Events.player_colliding_top.connect(state_machine.set_colliding_top)
+	Events.player_colliding_bottom.connect(state_machine.set_colliding_bottom)
+	movement_data.init()
 	movement.init(self)
 	state_machine.init(self, animated_sprite, ray_cast_2d, movement_data, movement_input, movement)
 

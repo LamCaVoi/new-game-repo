@@ -9,12 +9,13 @@ func physics_update(delta: float) -> void:
 	dash_duration_timer -= delta
 	if dash_duration_timer <=0:
 		switch_state()
-	
+		return
 	movement.move_x(parent.velocity.x *delta)
 	movement.move_y(parent.velocity.y *delta)
+	
 
 func switch_state():
-	if(is_colliding_y):
+	if(is_colliding_bottom):
 		can_dash = true
 		if(movement_input.get_horizontal_input() != 0):
 			finished.emit("Run")
@@ -45,6 +46,8 @@ func add_ghost():
 	new_ghost.flip(parent.animated_sprite.flip_h)
 	get_tree().current_scene.add_child(new_ghost)
 
-func exit() -> void:
+func exit(is_colliding_top: bool,is_colliding_bottom: bool,is_colliding_x: bool,can_dash: bool, is_on_wall: bool) -> Dictionary:
 	ghost_timer.stop()
+	return super(self.is_colliding_top,self.is_colliding_bottom,self.is_colliding_x,self.can_dash, self.is_on_wall)
+	
 	
