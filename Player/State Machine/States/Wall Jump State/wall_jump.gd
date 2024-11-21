@@ -20,12 +20,12 @@ func physics_update(delta: float) -> void:
 	switch_case(dir)
 
 func switch_case(dir):
-	if (is_colliding_bottom):
+	if (movement_data.is_colliding_bottom):
 		if dir != 0:
 			finished.emit("Run")
 		else:
 			finished.emit("Idle")
-	elif is_on_wall and movement_input.wants_jump():
+	elif movement_data.is_near_wall and movement_input.wants_jump():
 		finished.emit("WallJump")
 
 func enter(previous_state_path: String, data := {}) -> void:

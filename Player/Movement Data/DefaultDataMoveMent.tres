@@ -4,18 +4,18 @@
 
 [resource]
 script = ExtResource("1_bgw5n")
-max_x_speed = 100.0
-max_y_speed = 150.0
-jump_height = 45.0
-jump_time_to_peak = 0.3
-jump_time_to_descent = 0.2
+max_x_speed = 120.0
+max_y_speed = 250.0
+jump_height = 35.0
+jump_time_to_peak = 0.35
+jump_time_to_descent = 0.23
 acceleration = 1200.0
 friction = 1200.0
 short_jump_cut = 0.6
 velocity_x_lerp_speed = 0.3
 velocity_y_lerp_speed = 0.8
-hang_threshold = 50.0
-dash_speed = 220.0
+hang_threshold = 30.0
+dash_speed = 175.0
 dash_time = 0.2
-coyote_time = 0.1
-buffer_jump_time = 0.1
+coyote_time = 0.2
+buffer_jump_time = 0.2

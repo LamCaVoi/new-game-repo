@@ -11,15 +11,15 @@ func handle_input(_event: InputEvent) -> void:
 		parent.velocity.y *= movement_data.short_jump_cut
 
 	elif movement_input.wants_jump():
-		if is_on_wall:
+		if movement_data.is_near_wall:
 			finished.emit("WallJump")
-		elif not is_colliding_bottom:
+		elif not movement_data.is_colliding_bottom:
 			if coyote_timer >= 0:
 				finished.emit("Jump")
 			else:
 				buffer_jump_timer = movement_data.buffer_jump_time
-	elif movement_input.wants_dash() and can_dash:
-		can_dash = false
+	elif movement_input.wants_dash() and movement_data.can_dash:
+		movement_data.can_dash = false
 		finished.emit("Dash")
 
 func timer_update(delta):
@@ -34,20 +34,21 @@ func physics_update(delta: float) -> void:
 	run(direction)
 	apply_gravity(delta, abs(parent.velocity.y) < movement_data.hang_threshold)
 	parent.velocity.x = lerp(parent.velocity.x, direction * movement_data.max_x_speed, movement_data.velocity_x_lerp_speed)
-	movement.move_x(parent.velocity.x *delta)
-	movement.move_y(parent.velocity.y *delta)
-	if is_colliding_top:
-		is_colliding_top = false
+	movement.move_x(parent.velocity.x *delta, true)
+	movement.move_y(parent.velocity.y *delta, true)
+
+	if movement_data.is_colliding_top:
+		movement_data.is_colliding_top = false
 		parent.velocity.y = 0
 	switch_state(direction)
 
 func switch_state(direction):
-	if is_on_wall:
+	if movement_data.is_near_wall:
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1
 			finished.emit("WallJump")
-	elif is_colliding_bottom:
-		can_dash = true
+	elif movement_data.is_colliding_bottom:
+		movement_data.can_dash = true
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1
 			finished.emit("Jump")

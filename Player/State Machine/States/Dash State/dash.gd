@@ -7,16 +7,16 @@ var dash_duration_timer: float= 0.0
 
 func physics_update(delta: float) -> void:
 	dash_duration_timer -= delta
+	movement.move_x(parent.velocity.x *delta)
+	movement.move_y(parent.velocity.y *delta)
 	if dash_duration_timer <=0:
 		switch_state()
 		return
-	movement.move_x(parent.velocity.x *delta)
-	movement.move_y(parent.velocity.y *delta)
 	
 
 func switch_state():
-	if(is_colliding_bottom):
-		can_dash = true
+	if(movement_data.is_colliding_bottom):
+		movement_data.can_dash = true
 		if(movement_input.get_horizontal_input() != 0):
 			finished.emit("Run")
 		else:
@@ -33,7 +33,7 @@ func get_dir():
 			dir.x = 1
 
 func enter(previous_state_path: String) -> void:
-	can_dash = false
+	movement_data.can_dash = false
 	get_dir()
 	parent.velocity = dir * movement_data.dash_speed
 	dash_duration_timer = movement_data.dash_time
@@ -48,6 +48,5 @@ func add_ghost():
 
 func exit():
 	ghost_timer.stop()
-	return super()
 	
 	

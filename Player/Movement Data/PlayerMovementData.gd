@@ -22,6 +22,11 @@ extends Resource
 var high_jump_velocity:float 
 var jump_gravity:float
 var fall_gravity:float 
+var can_dash: bool = true
+var is_colliding_top: bool
+var is_colliding_bottom: bool = true
+var is_colliding_x: bool
+var is_near_wall: bool = false
 
 func init() -> void:
 	high_jump_velocity = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
