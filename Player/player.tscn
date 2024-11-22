@@ -282,6 +282,7 @@ animation_name = "dash"
 wait_time = 0.15
 
 [node name="Ghost" parent="StateMachine/Dash" instance=ExtResource("11_go550")]
+visible = false
 
 [node name="Climb" type="Node" parent="StateMachine"]
 script = ExtResource("9_mbwjs")

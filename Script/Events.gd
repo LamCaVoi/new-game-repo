@@ -1,5 +1,4 @@
-extends Node
-
+extends  Node
 
 signal player_entered_kill_zone
 signal player_colliding_y

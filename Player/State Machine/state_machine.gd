@@ -36,6 +36,4 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(state.name)
-	print("state.movement_data.can_dash : " + str(state.movement_data.can_dash))
 	state.physics_update(delta)

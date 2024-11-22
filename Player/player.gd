@@ -22,10 +22,10 @@ func _physics_process(delta: float) -> void:
 	queue_redraw()
 
 func _ready() -> void:
-	Events.player_entered_kill_zone.connect(die)
 	Events.player_near_wall.connect(set_near_wall)
 	Events.player_colliding_x.connect(set_colliding_x)
 	Events.player_colliding_y.connect(set_colliding_y)
+	Events.player_entered_kill_zone.connect(die)
 	movement_data.init()
 	movement.init(self)
 	state_machine.init(self, animated_sprite, ray_cast_2d, movement_data, movement_input, movement)
