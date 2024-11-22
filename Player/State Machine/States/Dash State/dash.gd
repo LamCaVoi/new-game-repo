@@ -15,7 +15,7 @@ func physics_update(delta: float) -> void:
 	
 
 func switch_state():
-	if(movement_data.is_colliding_bottom):
+	if(movement_data.is_colliding_y == 1):
 		movement_data.can_dash = true
 		if(movement_input.get_horizontal_input() != 0):
 			finished.emit("Run")
@@ -26,6 +26,7 @@ func switch_state():
 
 func get_dir():
 	dir = movement_input.get_8_directional_input()
+	
 	if dir == Vector2.ZERO:
 		if parent.animated_sprite.flip_h:
 			dir.x = -1

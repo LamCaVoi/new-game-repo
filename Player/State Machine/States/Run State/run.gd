@@ -22,12 +22,12 @@ func physics_update(delta: float) -> void:
 	apply_gravity(delta)
 	movement.move_x(parent.velocity.x * delta)
 	movement.move_y(parent.velocity.y * delta)
-	if(movement_data.is_colliding_bottom):
+	if(movement_data.is_colliding_y == 1):
 		parent.velocity.y = 0
 	switch_state(direction, delta)
 	
 func switch_state(direction, delta):
-	if not movement_data.is_colliding_bottom:
+	if not movement_data.is_colliding_y == 1:
 		finished.emit("Fall")
 	elif abs(parent.velocity.x) < movement_data.friction * delta and direction == 0:
 		finished.emit("Idle")

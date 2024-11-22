@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://wmdmlqp0lxn4"]
+[gd_scene load_steps=45 format=3 uid="uid://wmdmlqp0lxn4"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_4dk0b"]
 [ext_resource type="Texture2D" uid="uid://cpem1qlnborl7" path="res://brackeys_platformer_assets/sprites/knight.png" id="1_td3oy"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b8g7dpl0t6toa" path="res://Player/State Machine/States/Dash State/ghost.tscn" id="11_go550"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Wall Jump State/wall_jump.gd" id="12_xje4f"]
 [ext_resource type="Script" path="res://Player/PlayerMovementInput.gd" id="13_mjohn"]
+[ext_resource type="Script" path="res://Player/wall_slide.gd" id="14_5gyv0"]
 [ext_resource type="Script" path="res://Player/pixel_perfect_movement.gd" id="14_467xb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svwkv"]
@@ -253,13 +254,13 @@ autoplay = "idle"
 script = ExtResource("3_qpl2d")
 initial_state = NodePath("Idle")
 
-[node name="Run" type="Node" parent="StateMachine"]
-script = ExtResource("4_lsuwb")
-animation_name = "run"
-
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("5_v5lr4")
 animation_name = "idle"
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("4_lsuwb")
+animation_name = "run"
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("6_1myma")
@@ -286,8 +287,11 @@ wait_time = 0.15
 script = ExtResource("9_mbwjs")
 animation_name = "climb"
 
-[node name="WallJump" type="Node" parent="StateMachine"]
+[node name="Wall Jump" type="Node" parent="StateMachine"]
 script = ExtResource("12_xje4f")
+
+[node name="Wall Slide" type="Node" parent="StateMachine"]
+script = ExtResource("14_5gyv0")
 
 [node name="MovementInput" type="Node" parent="."]
 script = ExtResource("13_mjohn")

@@ -8,3 +8,10 @@ res://Player/State Machine/state_machine.gd
 res://Player/pixel_perfect_movement.gd
 res://Player/State Machine/States/Idle State/idle.gd
 res://Player/State Machine/States/Fall State/fall.gd
+res://Player/player.gd
+res://Player/Movement Data/PlayerMovementData.gd
+res://Player/State Machine/States/Dash State/dash.gd
+res://Player/State Machine/States/Run State/run.gd
+res://Player/State Machine/States/Wall Jump State/wall_jump.gd
+res://Player/PlayerMovementInput.gd
+res://Player/wall_slide.gd

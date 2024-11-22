@@ -2,9 +2,6 @@ extends State
 
 var coyote_timer: float = 0
 var buffer_jump_timer: float = 0
-var start_fall_gravity = 0
-var start_jump_gravity = 0
-var start_velocity = 0
 
 func handle_input(_event: InputEvent) -> void:
 	if movement_input.released_jump() and parent.velocity.y < -100:
@@ -12,8 +9,8 @@ func handle_input(_event: InputEvent) -> void:
 
 	elif movement_input.wants_jump():
 		if movement_data.is_near_wall:
-			finished.emit("WallJump")
-		elif not movement_data.is_colliding_bottom:
+			finished.emit("Wall Jump")
+		elif not movement_data.is_colliding_y == 1:
 			if coyote_timer >= 0:
 				finished.emit("Jump")
 			else:
@@ -29,6 +26,7 @@ func timer_update(delta):
 		buffer_jump_timer -= delta
 
 func physics_update(delta: float) -> void:
+	Global.curr_level.find_wall()
 	timer_update(delta)
 	var direction = movement_input.get_horizontal_input()
 	run(direction)
@@ -36,18 +34,13 @@ func physics_update(delta: float) -> void:
 	parent.velocity.x = lerp(parent.velocity.x, direction * movement_data.max_x_speed, movement_data.velocity_x_lerp_speed)
 	movement.move_x(parent.velocity.x *delta)
 	movement.move_y(parent.velocity.y *delta)
-
-	if movement_data.is_colliding_top:
-		movement_data.is_colliding_top = false
+	if movement_data.is_colliding_y == -1:
+		movement_data.is_colliding_y = 0
 		parent.velocity.y = 0
 	switch_state(direction)
 
 func switch_state(direction):
-	if movement_data.is_near_wall:
-		if buffer_jump_timer > 0:
-			buffer_jump_timer = -1
-			finished.emit("WallJump")
-	elif movement_data.is_colliding_bottom:
+	if movement_data.is_colliding_y == 1:
 		movement_data.can_dash = true
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1
@@ -56,11 +49,9 @@ func switch_state(direction):
 			finished.emit("Idle")
 		else:
 			finished.emit("Run")
-	
-
 func enter(previous_state_path: String) -> void:
 	super(previous_state_path)
-	if (previous_state_path != "Jump") and (previous_state_path != "WallJump"):
+	if (previous_state_path != "Jump") and (previous_state_path != "Wall Jump"):
 		coyote_timer = movement_data.coyote_time
 	else: 
 		coyote_timer = -1

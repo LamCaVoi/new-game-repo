@@ -42,8 +42,9 @@ func find_wall():
 			continue
 		var tile_rect = Rect2(position, size)
 		if(intersect(tile_rect,Vector2(side * 3, 0), true)):
-			return true
-	return false
+			Events.player_near_wall.emit(side)
+			return
+	Events.player_near_wall.emit(0)
 	
 func check_intersection(offset: Vector2i = Vector2i.ZERO):
 	var player_tile : Vector2i = level_layer.local_to_map(to_local(player.global_position))

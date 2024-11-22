@@ -39,13 +39,11 @@ func move_y_exact(move: int):
 	
 	while (move):
 		if Global.curr_level.check_intersection(Vector2i(0,step)):
-			Events.player_colliding_bottom.emit(step > 0)
-			Events.player_colliding_top.emit(not step > 0)
+			Events.player_colliding_y.emit(1 if step > 0 else -1)
 			return
 		parent.global_position.y += step
 		move -= step
-	Events.player_colliding_bottom.emit(false)
-	Events.player_colliding_top.emit(false)
+	Events.player_colliding_y.emit(0)
 
 func zero_remainder_x():
 	remainder.x = 0

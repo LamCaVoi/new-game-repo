@@ -6,14 +6,6 @@ class_name StateMachine extends Node
 	return initial_state if initial_state != null else get_child(0)
 ).call()
 
-var data: Dictionary = {
-	"is_colliding_top": false,
-	"is_colliding_bottom": false,
-	"is_colliding_x": false,
-	"can_dash": false,
-	"is_on_wall": false
-}
-
 func init(parent: CharacterBody2D, animated_sprite: AnimatedSprite2D, ray_cast_2d: RayCast2D, movement_data : PlayerMovementData, movement_input: PlayerMovementInput, movement: Movement) -> void:
 	for state_node: State in find_children("*", "State"):
 		state_node.finished.connect(_transition_to_next_state)
@@ -44,5 +36,6 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(int(Global.curr_level.find_wall()))
+	print(state.name)
+	print("state.movement_data.can_dash : " + str(state.movement_data.can_dash))
 	state.physics_update(delta)
