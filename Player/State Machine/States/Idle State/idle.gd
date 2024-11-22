@@ -10,7 +10,7 @@ func handle_input(event: InputEvent) -> void:
 
 func physics_update(delta: float) -> void:
 	apply_gravity(delta)
-	movement.move_y(parent.velocity.y * delta, true)
+	movement.move_y(parent.velocity.y * delta)
 	if(movement_data.is_colliding_bottom):
 		parent.velocity.y = 0
 	switch_state()

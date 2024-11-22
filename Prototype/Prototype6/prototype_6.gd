@@ -26,14 +26,23 @@ func get_tile_bottom(rect2: Rect2) -> int:
 
 func find_wall():
 	var player_tile : Vector2i = level_layer.local_to_map(to_local(player.global_position))
-	for i in range(player_tile.x - 1, player_tile.x + 2,2):
-		for j in range(player_tile.y, player_tile.y + 2):
-			if (not used_cell_dict.has(Vector2i(i,j))):
-				continue
-			var tile_rect = Rect2(level_layer.map_to_local(Vector2(i,j)) + Vector2(-4,-4), Vector2(8,8))
-			var step =-3 if i < 0 else 3 
-			if intersect(tile_rect,Vector2(step, 0), true):
-				return true
+	for side in range(-1,2,2):
+		var position : Vector2 
+		var size : Vector2
+		if (used_cell_dict.has(player_tile + Vector2i(side, 0))):
+			position = level_layer.map_to_local(player_tile + Vector2i(side, 0)) + Vector2(-4,-4)
+			if (used_cell_dict.has(player_tile + Vector2i(side, 1))):
+				size = Vector2(8,16)
+			else:
+				size = Vector2(8,8)
+		elif(used_cell_dict.has(player_tile + Vector2i(side, 1))):
+			position = level_layer.map_to_local(player_tile + Vector2i(side, 1)) + Vector2(-4,4)
+			size = Vector2(8,8)
+		else:
+			continue
+		var tile_rect = Rect2(position, size)
+		if(intersect(tile_rect,Vector2(side * 3, 0), true)):
+			return true
 	return false
 	
 func check_intersection(offset: Vector2i = Vector2i.ZERO):
@@ -54,5 +63,5 @@ func intersect(tile: Rect2, offset: Vector2i, wall_detection: bool = false) -> b
 	#print("left : " + str(get_tile_left(tile)) + " right : " + str(get_tile_right(tile)) + " top : " + str(get_tile_top(tile)) + " bottom : " + str(get_tile_bottom(tile)))
 	return (player.get_left_rect() + offset.x < get_tile_right(tile) and
 	player.get_right_rect() + offset.x > get_tile_left(tile) and 
-	player.get_top_rect() + offset.y + player.height * int(wall_detection) < get_tile_bottom(tile) and
+	player.get_top_rect() + player.height * int(wall_detection) * 0.5 + offset.y < get_tile_bottom(tile) and
 	player.get_bottom_rect() + offset.y > get_tile_top(tile))

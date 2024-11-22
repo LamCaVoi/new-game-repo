@@ -44,5 +44,5 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(state.movement_data.is_near_wall)
+	print(int(Global.curr_level.find_wall()))
 	state.physics_update(delta)
