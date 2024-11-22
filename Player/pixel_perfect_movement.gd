@@ -7,7 +7,7 @@ var parent: CharacterBody2D
 func init(parent: CharacterBody2D) -> void:
 	self.parent = parent
 
-func move_x(amount: float, wall_detection_enabled: bool = false):
+func move_x(amount: float):
 	remainder.x += amount
 	amount = round(remainder.x)
 	
@@ -15,7 +15,7 @@ func move_x(amount: float, wall_detection_enabled: bool = false):
 		remainder.x -= amount
 		move_x_exact(amount)
 
-func move_x_exact(move: int):
+func move_x_exact(move: float):
 	var step : int = sign(move)
 
 	while (move):
@@ -34,7 +34,7 @@ func move_y(amount: float):
 		remainder.y -= amount
 		move_y_exact(amount)
 
-func move_y_exact(move: int):
+func move_y_exact(move: float):
 	var step : int = sign(move)
 	
 	while (move):

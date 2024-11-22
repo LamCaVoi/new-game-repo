@@ -1,8 +1,7 @@
 res://Prototype/Prototype6/Prototype6.tscn
 res://Player/Movement Data/DefaultDataMoveMent.tres
-res://Script/Events.gd
 res://Prototype/Prototype5/Prototype5.tscn
 res://Player/player.tscn
-res://Player/player.gd
-res://Player/State Machine/state_machine.gd
-res://Player/State Machine/States/Wall Jump State/wall_jump.gd
+res://Prototype/Prototype7/Prototype7.tscn
+res://Player/pixel_perfect_movement.gd
+res://Player/State Machine/States/Idle State/idle.gd
