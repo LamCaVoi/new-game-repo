@@ -7,6 +7,8 @@ extends State
 var timer:float = -1
 
 func handle_input(_event: InputEvent) -> void:
+	if (movement_input.wants_dash() and movement_data.can_dash):
+		finished.emit("Dash")
 	if (movement_input.wants_jump() and movement_data.is_colliding_x != 0):
 		movement_data.wall_dir = movement_data.is_colliding_x
 		finished.emit("Wall Jump")
