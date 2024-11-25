@@ -17,7 +17,7 @@ func physics_update(delta: float) -> void:
 func switch_state():
 	if(movement_data.is_colliding_y == 1):
 		movement_data.can_dash = true
-		if(movement_input.get_horizontal_input() != 0):
+		if(movement_input.get_horizontal_input_pressed() != 0):
 			finished.emit("Run")
 		else:
 			finished.emit("Idle")
@@ -48,6 +48,7 @@ func add_ghost():
 	get_tree().current_scene.add_child(new_ghost)
 
 func exit():
+	parent.velocity.y *= 0.8
 	ghost_timer.stop()
 	
 	

@@ -9,7 +9,7 @@ func physics_update(delta: float) -> void:
 	if(input_block_timer < 0):
 		finished.emit("Fall")
 		return
-	var dir = movement_input.get_horizontal_input()
+	var dir = movement_input.get_horizontal_input_pressed()
 	run(dir)
 	if(dir != jump_dir):
 		parent.velocity.y += wall_jump_gravity * delta
@@ -17,6 +17,8 @@ func physics_update(delta: float) -> void:
 		apply_gravity(delta)
 	movement.move_x(parent.velocity.x * delta)
 	movement.move_y(parent.velocity.y * delta)
+	if (movement_data.is_colliding_y == -1):
+		parent.velocity.y = 0
 	switch_case(dir)
 
 func switch_case(dir):
@@ -26,13 +28,13 @@ func switch_case(dir):
 		else:
 			finished.emit("Idle")
 	elif movement_input.wants_jump():
-		Global.curr_level.find_wall()
-		if(movement_data.is_near_wall):
+		movement_data.wall_dir = movement.find_wall()
+		if(movement_data.wall_dir):
 			finished.emit("Wall Jump")
 
 func enter(previous_state_path: String, data := {}) -> void:
 	wall_jump_gravity = movement_data.jump_gravity * 1.8
-	jump_dir = movement_data.is_near_wall * -1
+	jump_dir = movement_data.wall_dir * -1
 	parent.velocity.x = 75 * jump_dir
 	parent.velocity.y = movement_data.high_jump_velocity
 	input_block_timer = 0.2

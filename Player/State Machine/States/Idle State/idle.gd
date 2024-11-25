@@ -21,7 +21,7 @@ func switch_state():
 		finished.emit("Fall")
 	#Run
 	else:
-		var direction = movement_input.get_horizontal_input()
+		var direction = movement_input.get_horizontal_input_pressed()
 		if direction != 0:
 			finished.emit("Run")
 

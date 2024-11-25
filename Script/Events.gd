@@ -3,4 +3,3 @@ extends  Node
 signal player_entered_kill_zone
 signal player_colliding_y
 signal player_colliding_x
-signal player_near_wall

@@ -10,7 +10,7 @@ func handle_input(_event: InputEvent) -> void:
 		finished.emit("Dash")
 
 func physics_update(delta: float) -> void:
-	var direction = movement_input.get_horizontal_input()
+	var direction = movement_input.get_horizontal_input_pressed()
 	if direction != 0:
 		if direction != sign(parent.velocity.x) and parent.velocity.x != 0:
 			parent.velocity.x = move_toward(parent.velocity.x, direction * movement_data.max_x_speed, movement_data.acceleration * delta * 2)

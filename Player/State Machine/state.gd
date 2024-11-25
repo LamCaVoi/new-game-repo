@@ -40,12 +40,9 @@ func exit():
 func get_fall_gravity():
 	return movement_data.jump_gravity if parent.velocity.y < 0.0 else movement_data.fall_gravity
 
-func apply_gravity(delta: float, is_at_apex : bool = false):
+func apply_gravity(delta: float, decrease_by : float = 1.0):
 	if parent.velocity.y <= movement_data.max_y_speed:
-		if (is_at_apex):
-			parent.velocity.y += get_fall_gravity() * 0.8 * delta
-		else:
-			parent.velocity.y += get_fall_gravity() * delta
+		parent.velocity.y += get_fall_gravity() * decrease_by * delta
 	else: parent.velocity.y = movement_data.max_y_speed
 
 

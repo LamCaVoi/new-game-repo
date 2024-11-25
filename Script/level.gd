@@ -24,7 +24,7 @@ func get_tile_top (rect2: Rect2) -> int:
 func get_tile_bottom(rect2: Rect2) -> int:
 	return to_global(rect2.position).y + 8
 
-func find_wall():
+func find_wall() -> int:
 	var player_tile : Vector2i = level_layer.local_to_map(to_local(player.global_position))
 	for side in range(-1,2,2):
 		var position : Vector2 
@@ -42,9 +42,8 @@ func find_wall():
 			continue
 		var tile_rect = Rect2(position, size)
 		if(intersect(tile_rect,Vector2(side * 3, 0), true)):
-			Events.player_near_wall.emit(side)
-			return
-	Events.player_near_wall.emit(0)
+			return side
+	return 0
 	
 func check_intersection(offset: Vector2i = Vector2i.ZERO):
 	var player_tile : Vector2i = level_layer.local_to_map(to_local(player.global_position))

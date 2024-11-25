@@ -15,7 +15,6 @@ extends Resource
 @export var dash_speed: float = 175.0
 @export var dash_time: float = 0.2
 
-
 @export var coyote_time: float = 0.2
 @export var buffer_jump_time: float = 0.2
 
@@ -25,7 +24,7 @@ var fall_gravity:float
 var can_dash: bool = true
 var is_colliding_y: int
 var is_colliding_x: int
-var is_near_wall: int = 0
+var wall_dir: int = 0
 
 func init() -> void:
 	high_jump_velocity = ((2.0 * jump_height) / jump_time_to_peak) * -1.0

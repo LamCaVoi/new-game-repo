@@ -20,11 +20,11 @@ func move_x_exact(move: float):
 
 	while (move):
 		if Global.curr_level.check_intersection(Vector2i(step,0)):
-			Events.player_colliding_x.emit(true)
+			Events.player_colliding_x.emit(step)
 			return
 		parent.global_position.x += step
 		move -= step
-	Events.player_colliding_x.emit(false)
+	Events.player_colliding_x.emit(0)
 
 func move_y(amount: float):
 	remainder.y += amount
@@ -39,7 +39,7 @@ func move_y_exact(move: float):
 	
 	while (move):
 		if Global.curr_level.check_intersection(Vector2i(0,step)):
-			Events.player_colliding_y.emit(1 if step > 0 else -1)
+			Events.player_colliding_y.emit(step)
 			return
 		parent.global_position.y += step
 		move -= step
@@ -50,3 +50,6 @@ func zero_remainder_x():
 
 func zero_remainder_y():
 	remainder.y = 0
+
+func find_wall() -> int:
+	return Global.curr_level.find_wall()

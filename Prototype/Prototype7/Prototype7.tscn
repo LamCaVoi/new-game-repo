@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Script/level.gd" id="1_rrbkt"]
 [ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="2_4y12d"]
 [ext_resource type="Texture2D" uid="uid://dpdf0jkg6hfc6" path="res://Touchgrass (1).png" id="3_1a8qc"]
-[ext_resource type="Texture2D" uid="uid://de7u2fe8ltdd7" path="res://Pixelart Grasslands/GrassTiles.png" id="4_ws67f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xn585"]
 texture = ExtResource("3_1a8qc")
@@ -34,8 +33,11 @@ texture_region_size = Vector2i(8, 8)
 23:9/0 = 0
 22:9/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2x76i"]
+load_path = "res://.godot/imported/GrassTiles.png-0a9fa29d78428e50e87a1646f9902b2b.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bf6sr"]
-texture = ExtResource("4_ws67f")
+texture = SubResource("CompressedTexture2D_2x76i")
 texture_region_size = Vector2i(8, 8)
 2:0/0 = 0
 4:0/0 = 0
