@@ -17,5 +17,6 @@ velocity_y_lerp_speed = 0.8
 hang_threshold = 30.0
 dash_speed = 175.0
 dash_time = 0.2
+climb_speed = 50.0
 coyote_time = 0.08
 buffer_jump_time = 0.2
