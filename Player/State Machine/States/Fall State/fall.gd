@@ -6,7 +6,10 @@ var buffer_jump_timer: float = 0
 func handle_input(_event: InputEvent) -> void:
 	if movement_input.released_jump() and parent.velocity.y < -100:
 		parent.velocity.y *= movement_data.short_jump_cut
-
+	elif movement_input.wants_climb():
+		movement_data.wall_dir = movement.find_wall()
+		if movement_data.wall_dir:
+			finished.emit("Climb")
 	elif movement_input.wants_jump():
 		movement_data.wall_dir = movement.find_wall()
 		if movement_data.wall_dir:

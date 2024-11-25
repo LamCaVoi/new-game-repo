@@ -31,6 +31,10 @@ func switch_case(dir):
 		movement_data.wall_dir = movement.find_wall()
 		if(movement_data.wall_dir):
 			finished.emit("Wall Jump")
+	elif movement_input.wants_climb():
+		movement_data.wall_dir = movement.find_wall()
+		if(movement_data.wall_dir):
+			finished.emit("Climb")
 
 func enter(previous_state_path: String, data := {}) -> void:
 	wall_jump_gravity = movement_data.jump_gravity * 1.8

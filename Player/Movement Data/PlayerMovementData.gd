@@ -14,6 +14,7 @@ extends Resource
 @export var hang_threshold: float = 50.0
 @export var dash_speed: float = 175.0
 @export var dash_time: float = 0.2
+@export var climb_speed :float= 80
 
 @export var coyote_time: float = 0.2
 @export var buffer_jump_time: float = 0.2

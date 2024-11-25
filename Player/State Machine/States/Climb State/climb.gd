@@ -1,4 +1,25 @@
 extends State
 
-func enter(previous_state_path: String, data := {}) -> void:
-	parent.is_climbing = true
+func handle_input(_event: InputEvent) -> void:
+	if movement_input.released_climb():
+		if movement_data.is_colliding_y == 1:
+			finished.emit("Idle")
+		else:
+			finished.emit("Fall")
+	elif movement_input.wants_jump():
+		finished.emit("Wall Jump")
+
+func physics_update(delta: float):
+	var dir = movement_input.get_vertical_input_pressed()
+	parent.velocity.y = dir * movement_data.climb_speed
+	parent.velocity.x = movement_data.wall_dir * movement_data.max_x_speed
+	movement.move_x(parent.velocity.x * delta)
+	movement.move_y(parent.velocity.y * delta)
+	switch_case(dir)
+
+func switch_case(dir: float):
+	if movement_data.is_colliding_x == 0:
+		if dir > 0:
+			finished.emit("Run")
+		else:
+			finished.emit("Fall")
