@@ -12,7 +12,7 @@ func handle_input(_event: InputEvent) -> void:
 			finished.emit("Climb")
 	elif movement_input.wants_jump():
 		movement_data.wall_dir = movement.find_wall()
-		if movement_data.wall_dir:
+		if movement_data.is_colliding_x or movement_data.wall_dir:
 			finished.emit("Wall Jump")
 		elif not movement_data.is_colliding_y == 1:
 			if coyote_timer >= 0:
