@@ -238,7 +238,7 @@ width = 8
 height = 14
 x = -4
 y = -7
-color = Color(0.65098, 0, 0.835294, 0)
+color = Color(0.65098, 0, 0.835294, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_svwkv")
@@ -298,10 +298,7 @@ max_gravity_decrease_by = 0.4
 [node name="MovementInput" type="Node" parent="."]
 script = ExtResource("13_mjohn")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(8, 0)
-
-[node name="PixelPerfectMovement" type="Node2D" parent="."]
+[node name="PixelPerfectMovement" type="Node" parent="."]
 script = ExtResource("14_467xb")
 
 [connection signal="timeout" from="StateMachine/Dash/Timer" to="StateMachine/Dash" method="add_ghost"]

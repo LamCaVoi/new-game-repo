@@ -10,7 +10,6 @@ var movement_input: PlayerMovementInput
 var movement: Movement
 var parent:CharacterBody2D
 var animated_sprite: AnimatedSprite2D
-var ray_cast_2d: RayCast2D
 
 ## Emitted when the state finishes and wants to transition to another state.
 signal finished(next_state_path: String, data : Dictionary)
@@ -49,4 +48,3 @@ func apply_gravity(delta: float, decrease_by : float = 1.0):
 func run(direction):
 	if not direction == 0:
 		animated_sprite.flip_h = direction < 0
-		ray_cast_2d.target_position = Vector2(-8,0) if animated_sprite.flip_h else Vector2(8,0)

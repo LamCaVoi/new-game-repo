@@ -1,3 +1,4 @@
+@tool
 class_name Player
 extends CharacterBody2D
 
@@ -6,7 +7,6 @@ extends CharacterBody2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var movement_input: PlayerMovementInput = $MovementInput
-@onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var movement: Movement = $PixelPerfectMovement
 
 @export_group("player's AABB")
@@ -17,19 +17,24 @@ extends CharacterBody2D
 @export var color : Color
 @onready var rect2 : Rect2 = Rect2(x,y,width,height)
 
+func _draw() -> void:
+	draw_rect(rect2, color)
+	
+func _physics_process(delta: float) -> void:
+	queue_redraw()
+
 func _ready() -> void:
 	Events.player_colliding_x.connect(set_colliding_x)
 	Events.player_colliding_y.connect(set_colliding_y)
 	Events.player_entered_kill_zone.connect(die)
 	movement_data.init()
 	movement.init(self)
-	state_machine.init(self, animated_sprite, ray_cast_2d, movement_data, movement_input, movement)
+	state_machine.init(self, animated_sprite, movement_data, movement_input, movement)
 
 func set_colliding_x(val : int):
 	movement_data.is_colliding_x = val
 func set_colliding_y(val : int):
 	movement_data.is_colliding_y = val
-
 func die():
 	state_machine._transition_to_next_state("Die")
 

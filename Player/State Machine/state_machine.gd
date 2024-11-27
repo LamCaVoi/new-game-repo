@@ -6,12 +6,11 @@ class_name StateMachine extends Node
 	return initial_state if initial_state != null else get_child(0)
 ).call()
 
-func init(parent: CharacterBody2D, animated_sprite: AnimatedSprite2D, ray_cast_2d: RayCast2D, movement_data : PlayerMovementData, movement_input: PlayerMovementInput, movement: Movement) -> void:
+func init(parent: CharacterBody2D, animated_sprite: AnimatedSprite2D, movement_data : PlayerMovementData, movement_input: PlayerMovementInput, movement: Movement) -> void:
 	for state_node: State in find_children("*", "State"):
 		state_node.finished.connect(_transition_to_next_state)
 		state_node.parent = parent
 		state_node.animated_sprite = animated_sprite
-		state_node.ray_cast_2d = ray_cast_2d
 		state_node.movement_data = movement_data
 		state_node.movement_input = movement_input
 		state_node.movement = movement
@@ -36,5 +35,5 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	#print(state.name)
+	print(state.name)
 	state.physics_update(delta)

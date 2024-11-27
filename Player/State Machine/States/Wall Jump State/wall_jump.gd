@@ -15,8 +15,8 @@ func physics_update(delta: float) -> void:
 		parent.velocity.y += wall_jump_gravity * delta
 	else:
 		apply_gravity(delta)
-	movement.move_x(parent.velocity.x * delta)
-	movement.move_y(parent.velocity.y * delta)
+	movement.move_x(parent.velocity.x * delta, true)
+	movement.move_y(parent.velocity.y * delta, true)
 	if (movement_data.is_colliding_y == -1):
 		parent.velocity.y = 0
 	switch_case(dir)

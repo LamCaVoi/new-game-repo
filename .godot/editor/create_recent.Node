@@ -1,7 +1,7 @@
+Node
 Level
 TileMapLayer
 Camera2D
-Node
 CollisionShape2D
 Node2D
 StaticBody2D
