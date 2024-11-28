@@ -25,7 +25,7 @@ func move_x_exact(move: float, edge_detection_enabled: bool = false):
 				zero_remainder_x()
 				Events.player_colliding_x.emit(step)
 				return
-			offset = Global.curr_level.find_edge(Vector2(step, 0))
+			offset = Global.curr_level.find_edge_x(Vector2(step, 0))
 			if offset != Vector2.ZERO:
 				edge_detected = true
 			if offset == Vector2.ZERO:
@@ -55,7 +55,7 @@ func move_y_exact(move: float, edge_detection_enabled: bool = false):
 				zero_remainder_y()
 				Events.player_colliding_y.emit(step)
 				return
-			offset = Global.curr_level.find_edge(offset)
+			offset = Global.curr_level.find_edge_y(offset)
 			if offset == Vector2.ZERO:
 				zero_remainder_y()
 				Events.player_colliding_y.emit(step)

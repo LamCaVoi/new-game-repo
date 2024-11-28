@@ -36,7 +36,7 @@ func physics_update(delta: float) -> void:
 	apply_gravity(delta, 0.8 if abs(parent.velocity.y) < movement_data.hang_threshold else 1.0)
 	parent.velocity.x = lerp(parent.velocity.x, direction * movement_data.max_x_speed, movement_data.velocity_x_lerp_speed)
 	movement.move_x(parent.velocity.x *delta,true)
-	movement.move_y(parent.velocity.y *delta,true)
+	movement.move_y(parent.velocity.y *delta,parent.velocity.y < 0)
 	if movement_data.is_colliding_y == -1:
 		movement_data.is_colliding_y = 0
 		parent.velocity.y = 0

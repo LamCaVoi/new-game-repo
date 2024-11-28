@@ -7,12 +7,8 @@ var dash_duration_timer: float= 0.0
 
 func physics_update(delta: float) -> void:
 	dash_duration_timer -= delta
-	movement.move_x(parent.velocity.x *delta,true)
-	movement.move_y(parent.velocity.y *delta, true)
-	if (movement_data.is_colliding_x):
-		parent.velocity.y/=2
-	if (movement_data.is_colliding_y):
-		parent.velocity.x/=2
+	movement.move_x(parent.velocity.x *delta)
+	movement.move_y(parent.velocity.y *delta)
 	if dash_duration_timer <=0:
 		switch_state()
 		return
