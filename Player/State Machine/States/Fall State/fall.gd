@@ -12,7 +12,7 @@ func handle_input(_event: InputEvent) -> void:
 			finished.emit("Climb")
 	elif movement_input.wants_jump():
 		movement_data.wall_dir = movement.find_wall()
-		if movement_data.is_colliding_x or movement_data.wall_dir:
+		if movement_data.wall_dir != 0:
 			finished.emit("Wall Jump")
 		elif not movement_data.is_colliding_y == 1:
 			if coyote_timer >= 0:
@@ -34,7 +34,7 @@ func physics_update(delta: float) -> void:
 	var direction = movement_input.get_horizontal_input_pressed()
 	run(direction)
 	apply_gravity(delta, 0.8 if abs(parent.velocity.y) < movement_data.hang_threshold else 1.0)
-	parent.velocity.x = lerp(parent.velocity.x, direction * movement_data.max_x_speed, movement_data.velocity_x_lerp_speed)
+	parent.velocity.x = lerp(parent.velocity.x, direction * movement_data.max_air_x_speed, movement_data.velocity_x_lerp_speed)
 	movement.move_x(parent.velocity.x *delta,true)
 	movement.move_y(parent.velocity.y *delta,parent.velocity.y < 0)
 	if movement_data.is_colliding_y == -1:
@@ -53,7 +53,7 @@ func switch_state(direction):
 		else:
 			finished.emit("Run")
 	elif (parent.velocity.y > -100):
-		if(movement_data.is_colliding_x != 0 and movement_data.is_colliding_x == direction):
+		if(direction!=0 and movement_data.is_colliding_x):
 			finished.emit("Wall Slide")
 
 func enter(previous_state_path: String) -> void:

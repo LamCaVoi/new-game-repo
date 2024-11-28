@@ -2,6 +2,7 @@ class_name PlayerMovementData
 extends Resource
 
 @export var max_x_speed: float = 130
+@export var max_air_x_speed: float = 100
 @export var max_y_speed: float = 250
 @export var jump_height: float = 50
 @export var jump_time_to_peak:float = 0.4

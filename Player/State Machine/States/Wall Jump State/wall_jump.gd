@@ -13,8 +13,11 @@ func physics_update(delta: float) -> void:
 	run(dir)
 	if(dir != jump_dir):
 		parent.velocity.y += wall_jump_gravity * delta
+		parent.velocity.x = 75
 	else:
 		apply_gravity(delta)
+		parent.velocity.x = lerp(parent.velocity.x, dir * movement_data.max_air_x_speed, movement_data.velocity_x_lerp_speed)
+	
 	movement.move_x(parent.velocity.x * delta, true)
 	movement.move_y(parent.velocity.y * delta, true)
 	if (movement_data.is_colliding_y == -1):
@@ -37,8 +40,8 @@ func switch_case(dir):
 			finished.emit("Climb")
 
 func enter(previous_state_path: String, data := {}) -> void:
-	wall_jump_gravity = movement_data.jump_gravity * 1.8
+	wall_jump_gravity = movement_data.jump_gravity * 1.5
 	jump_dir = movement_data.wall_dir * -1
-	parent.velocity.x = 75 * jump_dir
+	parent.velocity.x = movement_data.max_air_x_speed * jump_dir
 	parent.velocity.y = movement_data.high_jump_velocity
 	input_block_timer = 0.2

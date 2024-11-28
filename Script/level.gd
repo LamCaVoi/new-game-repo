@@ -56,11 +56,11 @@ func check_intersection(offset: Vector2i = Vector2i.ZERO) -> bool:
 			if intersect(tile_rect,offset):
 				curr_collided_tile_rect = tile_rect
 				return true
-	curr_collided_tile_rect = Rect2()
+	curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
 	return false
 	
 func find_edge_x(offset: Vector2) -> Vector2:
-	if curr_collided_tile_rect == Rect2():
+	if curr_collided_tile_rect == Rect2(Vector2.ZERO, Vector2.ZERO):
 		return Vector2.ZERO
 	var tile_coord: Vector2i = level_layer.local_to_map(curr_collided_tile_rect.position + Vector2(4,4))
 	for dir in range (-1,2,2):
@@ -69,11 +69,13 @@ func find_edge_x(offset: Vector2) -> Vector2:
 		for i in range(1,4,1):
 			if intersect(curr_collided_tile_rect, Vector2i(offset.x, dir * i)):
 				continue
-			curr_collided_tile_rect = Rect2()
+			curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
 			return Vector2(offset.x, dir * i)
 	return Vector2.ZERO
 
 func find_edge_y(offset: Vector2) -> Vector2:
+	if curr_collided_tile_rect == Rect2(Vector2.ZERO, Vector2.ZERO):
+		return Vector2.ZERO
 	var tile_coord: Vector2i = level_layer.local_to_map(curr_collided_tile_rect.position + Vector2(4,4))
 	for dir in range (-1,2,2):
 		if(used_cell_dict.has(tile_coord + Vector2i(dir * 1, 0))):
@@ -81,7 +83,7 @@ func find_edge_y(offset: Vector2) -> Vector2:
 		for i in range(1,4,1):
 			if intersect(curr_collided_tile_rect, Vector2i(dir * i, offset.y)):
 				continue
-			curr_collided_tile_rect = Rect2()
+			curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
 			return Vector2(dir * i, offset.y)
 	return Vector2.ZERO
 

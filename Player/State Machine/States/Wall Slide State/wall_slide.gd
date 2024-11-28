@@ -26,11 +26,11 @@ func physics_update(delta: float) -> void:
 			finished.emit("Fall")
 	var dir = movement_input.get_horizontal_input_pressed()
 	apply_gravity(delta, gravity_decrease_by)
-	movement.move_x(movement_data.max_x_speed * delta * movement_data.is_colliding_x, true)
+	movement.move_x(movement_data.max_x_speed * delta * dir, true)
 	movement.move_y(parent.velocity.y * delta if parent.velocity.y < movement_data.max_y_speed * max_gravity_decrease_by else movement_data.max_y_speed * max_gravity_decrease_by * delta, true)
-	switch_case(dir)
+	switch_case()
 
-func switch_case(dir: int):
+func switch_case():
 	if (movement_data.is_colliding_y == 1):
 		finished.emit("Run")
 	elif(movement_data.is_colliding_x == 0):
