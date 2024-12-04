@@ -252,7 +252,7 @@ autoplay = "idle"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_qpl2d")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Fall")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("5_v5lr4")
@@ -293,7 +293,6 @@ script = ExtResource("12_xje4f")
 
 [node name="Wall Slide" type="Node" parent="StateMachine"]
 script = ExtResource("14_b2d66")
-max_gravity_decrease_by = 0.4
 
 [node name="MovementInput" type="Node" parent="."]
 script = ExtResource("13_mjohn")

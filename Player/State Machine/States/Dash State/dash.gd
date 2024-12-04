@@ -15,8 +15,8 @@ func physics_update(delta: float) -> void:
 	
 
 func switch_state():
-	if(movement_data.is_colliding_y == 1):
-		movement_data.can_dash = true
+	if(is_colliding_y == 1):
+		can_dash = true
 		if(movement_input.get_horizontal_input_pressed() != 0):
 			finished.emit("Run")
 		else:
@@ -34,7 +34,7 @@ func get_dir():
 			dir.x = 1
 
 func enter(previous_state_path: String) -> void:
-	movement_data.can_dash = false
+	can_dash = false
 	get_dir()
 	parent.velocity = dir * movement_data.dash_speed
 	dash_duration_timer = movement_data.dash_time

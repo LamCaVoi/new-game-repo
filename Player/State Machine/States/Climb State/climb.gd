@@ -2,7 +2,7 @@ extends State
 
 func handle_input(_event: InputEvent) -> void:
 	if movement_input.released_climb():
-		if movement_data.is_colliding_y == 1:
+		if is_colliding_y == 1:
 			finished.emit("Idle")
 		else:
 			finished.emit("Fall")
@@ -12,13 +12,13 @@ func handle_input(_event: InputEvent) -> void:
 func physics_update(delta: float):
 	var dir = movement_input.get_vertical_input_pressed()
 	parent.velocity.y = dir * movement_data.climb_speed
-	parent.velocity.x = movement_data.wall_dir * movement_data.max_x_speed
+	parent.velocity.x = wall_dir * movement_data.max_x_speed
 	movement.move_x(parent.velocity.x * delta)
 	movement.move_y(parent.velocity.y * delta)
 	switch_case(dir)
 
 func switch_case(dir: float):
-	if movement_data.is_colliding_x == 0:
+	if is_colliding_x == 0:
 		if dir > 0:
 			finished.emit("Run")
 		else:

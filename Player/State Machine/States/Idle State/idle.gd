@@ -5,19 +5,19 @@ func handle_input(event: InputEvent) -> void:
 		finished.emit("Jump")
 		
 	#Dash
-	if movement_input.wants_dash() and movement_data.can_dash:
+	if movement_input.wants_dash() and can_dash:
 		finished.emit("Dash")
 
 func physics_update(delta: float) -> void:
 	apply_gravity(delta)
 	movement.move_y(parent.velocity.y * delta)
-	if(movement_data.is_colliding_y == 1):
+	if(is_colliding_y == 1):
 		parent.velocity.y = 0
 	switch_state()
 
 func switch_state():
 	#Fall
-	if not movement_data.is_colliding_y == 1: 
+	if not is_colliding_y == 1: 
 		finished.emit("Fall")
 	#Run
 	else:
@@ -27,5 +27,5 @@ func switch_state():
 
 func enter(previous_state_path: String) -> void:
 	super(previous_state_path)
-	movement_data.can_dash = true
+	can_dash = true
 	parent.velocity = Vector2.ZERO

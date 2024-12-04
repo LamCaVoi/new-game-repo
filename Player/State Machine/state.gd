@@ -11,6 +11,11 @@ var movement: Movement
 var parent:CharacterBody2D
 var animated_sprite: AnimatedSprite2D
 
+static var can_dash = false
+static var is_colliding_x : int = 0
+static var is_colliding_y : int = 0
+static var wall_dir : int = 0
+
 ## Emitted when the state finishes and wants to transition to another state.
 signal finished(next_state_path: String, data : Dictionary)
 
