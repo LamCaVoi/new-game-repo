@@ -1,4 +1,4 @@
-extends State
+extends Player_State
 
 #The amount of gravity get decreased, ie: 0.5 make the gravity halved
 @export_range(0,1) var gravity_decrease_by: float = 0.5
@@ -37,6 +37,3 @@ func switch_case():
 		finished.emit("Run")
 	elif(is_colliding_x == 0):
 		finished.emit("Fall")
-		
-func enter(previous_state_path):
-	print("stop")

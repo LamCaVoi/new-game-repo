@@ -1,4 +1,4 @@
-extends State
+extends Player_State
 
 var dir : Vector2 = Vector2.ZERO
 var dash_duration_timer: float= 0.0
@@ -7,8 +7,8 @@ var dash_duration_timer: float= 0.0
 
 func physics_update(delta: float) -> void:
 	dash_duration_timer -= delta
-	movement.move_x(parent.velocity.x *delta)
-	movement.move_y(parent.velocity.y *delta)
+	movement.move_x(parent.velocity.x *delta, true)
+	movement.move_y(parent.velocity.y *delta, parent.velocity.y < 0)
 	if dash_duration_timer <=0:
 		switch_state()
 		return

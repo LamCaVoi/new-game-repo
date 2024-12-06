@@ -1,5 +1,4 @@
-class_name PlayerMovementInput
-extends Node
+extends MovementInput
 
 func wants_jump()-> bool:
 	return Input.is_action_just_pressed("jump")

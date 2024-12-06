@@ -1,4 +1,4 @@
-extends State
+extends Player_State
 
 func handle_input(event: InputEvent) -> void:
 	if movement_input.wants_jump():

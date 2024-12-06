@@ -1,4 +1,4 @@
-extends State
+extends Player_State
 
 func handle_input(_event: InputEvent) -> void:
 	if movement_input.released_climb():

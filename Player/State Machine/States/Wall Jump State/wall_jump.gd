@@ -1,4 +1,4 @@
-extends State
+extends Player_State
 
 var wall_jump_gravity:float
 var input_block_timer: float

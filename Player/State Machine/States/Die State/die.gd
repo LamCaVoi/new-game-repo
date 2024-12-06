@@ -1,4 +1,4 @@
-extends State
+extends Player_State
 
 func enter(previous_state_path: String) -> void:
 	Engine.time_scale = 0.5

@@ -25,7 +25,7 @@ func get_tile_top (rect2: Rect2) -> int:
 func get_tile_bottom(rect2: Rect2) -> int:
 	return to_global(rect2.position).y + 8
 
-func find_wall() -> int:
+func find_wall(x_offset_amount) -> int:
 	var player_tile : Vector2i = level_layer.local_to_map(to_local(player.global_position))
 	var player_rect : Rect2 = player.rect2
 	player_rect.position += Vector2(0, player_rect.size.y/2)
@@ -46,7 +46,7 @@ func find_wall() -> int:
 		else:
 			continue
 		var tile_rect = Rect2(position, size)
-		if (intersect(player_rect,tile_rect,Vector2(side * 3, 0))):
+		if (intersect(player_rect,tile_rect,Vector2(side * x_offset_amount, 0))):
 			return side
 	return 0
 	
@@ -70,7 +70,7 @@ func find_edge_x(offset: Vector2) -> Vector2:
 	for dir in range (-1,2,2):
 		if(used_cell_dict.has(tile_coord + Vector2i(0,dir * 1)) or used_cell_dict.has(tile_coord + Vector2i(0,dir * 2))):
 			continue
-		for i in range(1,4,1):
+		for i in range(1,3,1):
 			if intersect(Rect2(player.global_position + player.rect2.position,player.rect2.size), curr_collided_tile_rect, Vector2i(offset.x, dir * i)):
 				continue
 			curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)

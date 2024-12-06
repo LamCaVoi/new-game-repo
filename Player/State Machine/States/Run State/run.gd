@@ -1,7 +1,4 @@
-extends State
-
-var prev_velocity: Vector2= Vector2.ZERO
-var start_accel: float = 0.0
+extends Player_State
 
 func handle_input(_event: InputEvent) -> void:
 	if movement_input.wants_jump():
@@ -34,4 +31,3 @@ func switch_state(direction, delta):
 
 func enter(previous_state_path: String) -> void:
 	super(previous_state_path)
-	start_accel = movement_data.acceleration

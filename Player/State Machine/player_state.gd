@@ -1,12 +1,10 @@
-## Virtual base class for all states.
-## Extend this class and override its methods to implement a state.
-class_name State
-extends Node
+extends State
+class_name Player_State
 
 @export var animation_name:String
 
 var movement_data: PlayerMovementData
-var movement_input: PlayerMovementInput
+var movement_input: MovementInput
 var movement: Movement
 var parent:CharacterBody2D
 var animated_sprite: AnimatedSprite2D
@@ -16,8 +14,6 @@ static var is_colliding_x : int = 0
 static var is_colliding_y : int = 0
 static var wall_dir : int = 0
 
-## Emitted when the state finishes and wants to transition to another state.
-signal finished(next_state_path: String, data : Dictionary)
 
 ## Called by the state machine when receiving unhandled input events.
 func handle_input(_event: InputEvent) -> void:

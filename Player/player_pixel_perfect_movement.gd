@@ -1,12 +1,10 @@
-extends Node
-class_name Movement
+extends Movement
+class_name PlayerMovement
 
-var remainder: Vector2 = Vector2.ZERO
-var parent: CharacterBody2D
-var edge_detected: bool = false
+var edge_detected : bool = false
 
-func init(parent: CharacterBody2D) -> void:
-	self.parent = parent
+func init(parent: CharacterBody2D)-> void:
+	self.parent = parent 
 
 func move_x(amount: float, edge_detection_enabled: bool = false) -> void:
 	remainder.x += amount
@@ -14,9 +12,9 @@ func move_x(amount: float, edge_detection_enabled: bool = false) -> void:
 	
 	if(amount != 0):
 		remainder.x -= amount
-		move_x_exact(amount, edge_detection_enabled)
+		_move_x_exact(amount, edge_detection_enabled)
 
-func move_x_exact(move: float, edge_detection_enabled: bool = false):
+func _move_x_exact(move: float, edge_detection_enabled: bool = false):
 	var step : int = sign(move)
 	while (move):
 		var offset : Vector2 = Vector2(step, 0)
@@ -27,8 +25,10 @@ func move_x_exact(move: float, edge_detection_enabled: bool = false):
 				return
 			offset = Global.curr_level.find_edge_x(Vector2(step, 0))
 			if offset != Vector2.ZERO:
+				print("bro niceeeeeeeeeeeee!!!")
 				edge_detected = true
-			if offset == Vector2.ZERO:
+			else:
+				print("WTF man!!!")
 				edge_detected = false
 				zero_remainder_x()
 				Events.player_colliding_x.emit(step)
@@ -43,15 +43,16 @@ func move_y(amount: float, edge_detection_enabled: bool = false):
 	
 	if(amount != 0):
 		remainder.y -= amount
-		move_y_exact(amount,edge_detection_enabled)
+		_move_y_exact(amount,edge_detection_enabled)
 
-func move_y_exact(move: float, edge_detection_enabled: bool = false):
+func _move_y_exact(move: float, edge_detection_enabled: bool = false):
 	var step : int = sign(move)
 	
 	while (move):
 		var offset: Vector2 = Vector2(0,step)
 		if Global.curr_level.check_intersection(Vector2i(0,step)):
 			if (not edge_detection_enabled) or edge_detected:
+				edge_detected = false
 				zero_remainder_y()
 				Events.player_colliding_y.emit(step)
 				return
@@ -70,5 +71,5 @@ func zero_remainder_x():
 func zero_remainder_y():
 	remainder.y = 0
 
-func find_wall() -> int:
-	return Global.curr_level.find_wall()
+func find_wall(x_offset_amount: int = 3) -> int:
+	return Global.curr_level.find_wall(x_offset_amount)
