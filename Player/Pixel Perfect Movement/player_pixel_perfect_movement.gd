@@ -1,10 +1,7 @@
-extends Movement
 class_name PlayerMovement
+extends Movement
 
 var edge_detected : bool = false
-
-func init(parent: CharacterBody2D)-> void:
-	self.parent = parent 
 
 func move_x(amount: float, edge_detection_enabled: bool = false) -> void:
 	remainder.x += amount
@@ -18,21 +15,12 @@ func _move_x_exact(move: float, edge_detection_enabled: bool = false):
 	var step : int = sign(move)
 	while (move):
 		var offset : Vector2 = Vector2(step, 0)
-		if Global.curr_level.check_intersection(offset):
-			if (not edge_detection_enabled):
-				zero_remainder_x()
-				Events.player_colliding_x.emit(step)
-				return
-			offset = Global.curr_level.find_edge_x(Vector2(step, 0))
-			if offset != Vector2.ZERO:
-				print("bro niceeeeeeeeeeeee!!!")
-				edge_detected = true
-			else:
-				print("WTF man!!!")
-				edge_detected = false
-				zero_remainder_x()
-				Events.player_colliding_x.emit(step)
-				return
+		offset = Global.curr_level.check_intersection(offset, edge_detection_enabled) 
+		if offset == Vector2.ZERO:
+			edge_detected = false
+			zero_remainder_x()
+			Events.player_colliding_x.emit(step)
+			return
 		parent.global_position += offset
 		move -= step
 	Events.player_colliding_x.emit(0)
@@ -49,8 +37,8 @@ func _move_y_exact(move: float, edge_detection_enabled: bool = false):
 	var step : int = sign(move)
 	
 	while (move):
-		var offset: Vector2 = Vector2(0,step)
-		if Global.curr_level.check_intersection(Vector2i(0,step)):
+		var offset: Vector2i = Vector2i(0,step)
+		if Global.curr_level.check_intersection(Vector2i(0,step), edge_detection_enabled):
 			if (not edge_detection_enabled) or edge_detected:
 				edge_detected = false
 				zero_remainder_y()

@@ -3,11 +3,11 @@ class_name Player_State
 
 @export var animation_name:String
 
-var movement_data: PlayerMovementData
-var movement_input: MovementInput
-var movement: Movement
-var parent:CharacterBody2D
-var animated_sprite: AnimatedSprite2D
+static var movement_data: PlayerMovementData
+static var movement_input: MovementInput
+static var movement: PlayerMovement
+static var parent:CharacterBody2D
+static var animated_sprite: AnimatedSprite2D
 
 static var can_dash = false
 static var is_colliding_x : int = 0

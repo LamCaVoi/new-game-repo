@@ -1,3 +1,4 @@
+class_name PlayerMovementInput
 extends MovementInput
 
 func wants_jump()-> bool:

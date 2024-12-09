@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://b8g7dpl0t6toa" path="res://Player/State Machine/States/Dash State/ghost.tscn" id="11_go550"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Wall Jump State/wall_jump.gd" id="12_xje4f"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Wall Slide State/wall_slide.gd" id="14_b2d66"]
-[ext_resource type="Script" path="res://Player/Movement Input/player_movement_input.gd" id="15_kgvrd"]
-[ext_resource type="Script" path="res://Player/Pixel Perfect Movement/player_pixel_perfect_movement.gd" id="16_nitba"]
+[ext_resource type="Script" path="res://Player/player_movement_input.gd" id="15_kgvrd"]
+[ext_resource type="Script" path="res://Player/player_pixel_perfect_movement.gd" id="16_nitba"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svwkv"]
 size = Vector2(8, 14)

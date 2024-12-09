@@ -12,19 +12,6 @@ func _ready() -> void:
 		used_cell_dict[i] = 1
 	Global.curr_level = self
 
-
-func get_tile_left (rect2: Rect2) -> int:
-	return to_global(rect2.position).x
-
-func get_tile_right (rect2: Rect2) -> int:
-	return to_global(rect2.position).x + 8
-	
-func get_tile_top (rect2: Rect2) -> int:
-	return to_global(rect2.position).y
-	
-func get_tile_bottom(rect2: Rect2) -> int:
-	return to_global(rect2.position).y + 8
-
 func find_wall(x_offset_amount) -> int:
 	var player_tile : Vector2i = level_layer.local_to_map(to_local(player.global_position))
 	var player_rect : Rect2 = player.rect2
@@ -50,7 +37,7 @@ func find_wall(x_offset_amount) -> int:
 			return side
 	return 0
 	
-func check_intersection(offset: Vector2i = Vector2i.ZERO) -> bool:
+func check_player_tiles_intersection(offset: Vector2i = Vector2i.ZERO) -> bool:
 	var player_tile : Vector2i = level_layer.local_to_map(to_local(player.global_position))
 	for i in range(player_tile.x - 1,player_tile.x + 2):
 		for j in range(player_tile.y - 2,player_tile.y + 3):
@@ -62,6 +49,17 @@ func check_intersection(offset: Vector2i = Vector2i.ZERO) -> bool:
 				return true
 	curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
 	return false
+	
+func check_player_solids_intersection(offset: Vector2i = Vector2i.ZERO)->bool:
+	return false
+
+func check_intersection(offset: Vector2i = Vector2i.ZERO, edge_detection_enabled: bool = false) -> Vector2i:
+	if (check_player_tiles_intersection()):
+		return Vector2i.ZERO
+	if (check_player_tiles_intersection(offset)):
+		return Vector2i.ZERO
+	return offset
+
 	
 func find_edge_x(offset: Vector2) -> Vector2:
 	if curr_collided_tile_rect == Rect2(Vector2.ZERO, Vector2.ZERO):

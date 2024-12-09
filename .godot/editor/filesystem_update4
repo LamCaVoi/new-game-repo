@@ -1,9 +1,12 @@
-res://Prototype/Prototype5/Prototype5.tscn
-res://Player/Movement Data/DefaultDataMoveMent.tres
 res://Player/player.tscn
-res://Script/level.gd
+res://Player/Movement Data/DefaultDataMoveMent.tres
 res://Player/player.gd
-res://Player/State Machine/States/Fall State/fall.gd
-res://Player/pixel_perfect_movement.gd
-res://script_templates/Node/pixel_perfect_movement.gd
 res://Player/player_pixel_perfect_movement.gd
+res://Player/State Machine/player_state.gd
+res://Player/State Machine/state_machine.gd
+res://Script/pixel_perfect_movement.gd
+res://Prototype/Prototype5/Prototype5.tscn
+res://Player/player_movement_input.gd
+res://script_templates/Node/state_template.gd
+res://Script/level.gd
+res://Player/Pixel Perfect Movement/player_pixel_perfect_movement.gd

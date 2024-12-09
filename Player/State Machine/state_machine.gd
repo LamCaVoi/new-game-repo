@@ -6,7 +6,7 @@ class_name StateMachine extends Node
 	return initial_state if initial_state != null else get_child(0)
 ).call()
 
-func init(parent: CharacterBody2D, animated_sprite: AnimatedSprite2D, movement_data : PlayerMovementData, movement_input: MovementInput, movement: Movement) -> void:
+func init(parent: CharacterBody2D, animated_sprite: AnimatedSprite2D, movement_data : PlayerMovementData, movement_input: PlayerMovementInput, movement: PlayerMovement) -> void:
 	for state_node: Player_State in find_children("*", "Player_State"):
 		state_node.finished.connect(_transition_to_next_state)
 		state_node.parent = parent
