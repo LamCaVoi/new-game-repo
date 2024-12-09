@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="New Game Project"
-run/main_scene="res://Solids/solid.tscn"
+run/main_scene="res://Prototype/Prototype4/Prototype4.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-Events="*res://Script/Events.gd"
-Global="*res://Script/Global.gd"
+Events="*res://Script/Global Script/Events.gd"
+Global="*res://Script/Global Script/Global.gd"
 
 [display]
 

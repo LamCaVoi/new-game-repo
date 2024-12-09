@@ -1,10 +1,11 @@
 [gd_scene load_steps=16 format=4 uid="uid://bhbhf6pkfs2ep"]
 
-[ext_resource type="Script" path="res://Script/level.gd" id="1_hs0dq"]
-[ext_resource type="Texture2D" uid="uid://b3e1xoon1xuax" path="res://Sprite-0001.png" id="1_wnrm4"]
+[ext_resource type="Script" path="res://Script/Others/level.gd" id="1_hs0dq"]
+[ext_resource type="Texture2D" uid="uid://b3e1xoon1xuax" path="res://Prototype/Prototype Asset/Sprite-0001 (2).png" id="1_wnrm4"]
 [ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="2_ws023"]
 [ext_resource type="PackedScene" uid="uid://bx40ec1qc8msu" path="res://Scene/kill_zone.tscn" id="3_od22t"]
 [ext_resource type="Texture2D" uid="uid://dyqotk7g4oqu1" path="res://Prototype/Prototype Asset/Sprite-0002.png" id="4_b3dam"]
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hiqc8"]
 texture = ExtResource("1_wnrm4")

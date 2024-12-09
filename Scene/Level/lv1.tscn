@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=4 uid="uid://bv1ereoyv4xf"]
 
 [ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="1_hjfyu"]
-[ext_resource type="Script" path="res://Script/game_manager.gd" id="1_mu8ht"]
+[ext_resource type="Script" path="res://Script/Not used script/game_manager.gd" id="1_mu8ht"]
 [ext_resource type="Texture2D" uid="uid://c8hl7mitg2c54" path="res://brackeys_platformer_assets/sprites/world_tileset.png" id="2_gc12u"]
 [ext_resource type="FontFile" uid="uid://cjeu0hxviapqu" path="res://brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_8y7op"]
 [ext_resource type="Texture2D" uid="uid://bcllv70tmyynf" path="res://brackeys_platformer_assets/sprites/platforms.png" id="3_frt32"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ddbeqgd5lerp8" path="res://Scene/coin.tscn" id="4_p0sy4"]
 [ext_resource type="PackedScene" uid="uid://bx40ec1qc8msu" path="res://Scene/kill_zone.tscn" id="5_hbu6x"]
 [ext_resource type="FontFile" uid="uid://co4h5s8iw2b8h" path="res://brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="7_gfp5n"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5ymy"]
 size = Vector2(32, 9)

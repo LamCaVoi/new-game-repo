@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://bgi5lxqw3fmgh"]
 
-[ext_resource type="Texture2D" uid="uid://b3e1xoon1xuax" path="res://Sprite-0001.png" id="1_eccdw"]
-[ext_resource type="Script" path="res://Script/level.gd" id="1_jrftt"]
+[ext_resource type="Texture2D" uid="uid://b3e1xoon1xuax" path="res://Prototype/Prototype Asset/Sprite-0001 (2).png" id="1_eccdw"]
+[ext_resource type="Script" path="res://Script/Others/level.gd" id="1_jrftt"]
 [ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="2_adels"]
 [ext_resource type="PackedScene" uid="uid://bx40ec1qc8msu" path="res://Scene/kill_zone.tscn" id="3_rkiss"]
 
