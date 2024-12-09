@@ -10,3 +10,9 @@ res://Player/player_movement_input.gd
 res://script_templates/Node/state_template.gd
 res://Script/level.gd
 res://Player/Pixel Perfect Movement/player_pixel_perfect_movement.gd
+res://Player/State Machine/States/Fall State/fall.gd
+res://Solids/solid.tscn
+res://Solids/solid.gd
+res://Solids/solid_movement.gd
+res://Solids/solid_pixel_perfect_movement.gd
+res://script_templates/Node/pixel_perfect_movement_template.gd

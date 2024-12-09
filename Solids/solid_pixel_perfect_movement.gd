@@ -1,10 +1,6 @@
-extends Node
+extends Movement
+class_name SolidMovement
 
-var remainder: Vector2 = Vector2.ZERO
-var parent: Node2D
-
-func init(parent: Node2D) -> void:
-	self.parent = parent
 
 func move_x(amount: float) -> void:
 	remainder.x += amount
@@ -18,7 +14,8 @@ func _move_x_exact(move: float):
 	var step : int = sign(move)
 	while(move):
 		parent.global_position.x += step
-		move-= step
+		move -= step
+		
 
 func move_y(amount: float):
 	remainder.y += amount
@@ -32,7 +29,7 @@ func _move_y_exact(move: float):
 	var step : int = sign(move)
 	while(move):
 		parent.global_position.y += step
-		move-= step
+		move -= step
 
 func zero_remainder_x():
 	remainder.x = 0

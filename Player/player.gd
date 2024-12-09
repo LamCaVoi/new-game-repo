@@ -33,18 +33,3 @@ func _ready() -> void:
 
 func die():
 	state_machine._transition_to_next_state("Die")
-
-func get_global_rect() -> Vector2:
-	return to_global(rect2.position)
-
-func get_left_rect():
-	return get_global_rect().x
-	
-func get_right_rect():
-	return get_global_rect().x + rect2.size.x
-	
-func get_top_rect():
-	return get_global_rect().y
-	
-func get_bottom_rect():
-	return get_global_rect().y + rect2.size.y

@@ -6,6 +6,12 @@ class_name Level
 
 var used_cell_dict: Dictionary
 var curr_collided_tile_rect: Rect2
+var edge_detected : bool = false
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("Reset"):
+		get_tree().reload_current_scene()
+		
 
 func _ready() -> void:
 	for i in level_layer.get_used_cells():
@@ -54,14 +60,17 @@ func check_player_solids_intersection(offset: Vector2i = Vector2i.ZERO)->bool:
 	return false
 
 func check_intersection(offset: Vector2i = Vector2i.ZERO, edge_detection_enabled: bool = false) -> Vector2i:
-	if (check_player_tiles_intersection()):
+	if (check_player_solids_intersection()):
 		return Vector2i.ZERO
-	if (check_player_tiles_intersection(offset)):
+	if (not check_player_tiles_intersection(offset)):
+		return offset 
+	if offset.x != 0:
+		if edge_detection_enabled:
+			return find_tile_edge_x(offset)
 		return Vector2i.ZERO
-	return offset
+	return find_tile_edge_y(offset) if edge_detection_enabled else Vector2i.ZERO
 
-	
-func find_edge_x(offset: Vector2) -> Vector2:
+func find_tile_edge_x(offset: Vector2) -> Vector2:
 	if curr_collided_tile_rect == Rect2(Vector2.ZERO, Vector2.ZERO):
 		return Vector2.ZERO
 	var tile_coord: Vector2i = level_layer.local_to_map(curr_collided_tile_rect.position + Vector2(4,4))
@@ -72,11 +81,14 @@ func find_edge_x(offset: Vector2) -> Vector2:
 			if intersect(Rect2(player.global_position + player.rect2.position,player.rect2.size), curr_collided_tile_rect, Vector2i(offset.x, dir * i)):
 				continue
 			curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
+			edge_detected = true
 			return Vector2(offset.x, dir * i)
+	edge_detected = false
 	return Vector2.ZERO
 
-func find_edge_y(offset: Vector2) -> Vector2:
-	if curr_collided_tile_rect == Rect2(Vector2.ZERO, Vector2.ZERO):
+func find_tile_edge_y(offset: Vector2) -> Vector2:
+	if curr_collided_tile_rect == Rect2(Vector2.ZERO, Vector2.ZERO) or edge_detected:
+		edge_detected = false
 		return Vector2.ZERO
 	var tile_coord: Vector2i = level_layer.local_to_map(curr_collided_tile_rect.position + Vector2(4,4))
 	for dir in range (-1,2,2):

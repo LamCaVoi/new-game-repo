@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyobaq8o2dfum"]
+
+[ext_resource type="Script" path="res://Solids/solid.gd" id="1_4cgye"]
+[ext_resource type="Texture2D" uid="uid://cgo7i3h5lp7d4" path="res://TEXTURE_ATLAS.png" id="1_asooa"]
+[ext_resource type="Script" path="res://Solids/solid_pixel_perfect_movement.gd" id="3_qgjmv"]
+
+[node name="Solid" type="Node2D"]
+position = Vector2(30, 94)
+script = ExtResource("1_4cgye")
+speed = Vector2(100, 50)
+keyframes = Array[Vector2]([Vector2(20, 100), Vector2(300, 58)])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("1_asooa")
+region_enabled = true
+region_rect = Rect2(0, 0, 28, 18)
+
+[node name="PixelPerfectMovement" type="Node" parent="."]
+script = ExtResource("3_qgjmv")
