@@ -1,24 +1,33 @@
 class_name PlayerMovementData
 extends Resource
 
+@export_group("On Ground States") 
+##The max x axis speed while on ground
 @export var max_x_speed: float = 130
+@export var acceleration: float= 1200
+@export var friction: float= 1200
+@export_group("On Air States") 
+##The max x axis speed while on air
 @export var max_air_x_speed: float = 100
+##The max y axis speed while on air
 @export var max_y_speed: float = 250
 @export var jump_height: float = 50
 @export var jump_time_to_peak:float = 0.4
 @export var jump_time_to_descent:float = 0.3
-@export var acceleration: float= 1200
-@export var friction: float= 1200
-@export var short_jump_cut: float= 0.6
-@export var velocity_x_lerp_speed: float = 0.3
-@export var velocity_y_lerp_speed: float = 0.8
-@export var hang_threshold: float = 50.0
-@export var dash_speed: float = 175.0
-@export var dash_time: float = 0.2
-@export var climb_speed :float= 80
-
+##Coyote time and buffer jump time to make the jump more responsive
 @export var coyote_time: float = 0.2
 @export var buffer_jump_time: float = 0.2
+##Time the player upward speed when release the jump button mid air, cut the jump short
+@export var short_jump_cut: float= 0.6
+##Use this to lerp the speed of the character on air to stimulate air friction
+@export var velocity_x_lerp_speed: float = 0.3
+##Use this to half the player gravity around the apex of a jump, make it easier to land precisely
+@export var hang_threshold: float = 50.0
+@export_group("Dash State") 
+@export var dash_speed: float = 175.0
+@export var dash_time: float = 0.2
+@export_group("Climb State") 
+@export var climb_speed :float= 80
 
 var high_jump_velocity:float 
 var jump_gravity:float

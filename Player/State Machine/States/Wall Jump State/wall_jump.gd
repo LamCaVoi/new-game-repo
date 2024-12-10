@@ -1,47 +1,59 @@
 extends Player_State
-
-var wall_jump_gravity:float
-var input_block_timer: float
+#Multiply the gravity if player attempts to return to the same wall
+var gravity_multiplier:float = 1.5
+var input_block_timer: float = 0.15
+var buffer_jump_timer: float = -1
+var initil_x_velocity: float = 100
+#Cut the jump velocity in wall jump state plus buffing the lateral movement in this state
+var jump_cut: float = 0.8
+var wall_jump_gravity: float
 var jump_dir: float
-var max_air_speed: float
+
 
 func handle_input(event: InputEvent) -> void:
 	if movement_input.wants_jump():
-		wall_dir = movement.find_wall(4)
+		wall_dir = movement.find_wall(3)
 		if(wall_dir):
 			finished.emit("Wall Jump")
+		else:
+			buffer_jump_timer = movement_data.buffer_jump_time
 	elif movement_input.wants_climb():
 		wall_dir = movement.find_wall(1)
 		if(wall_dir):
 			finished.emit("Climb")
 	elif movement_input.wants_dash() and can_dash:
 		finished.emit("Dash")
+		
+func timer_update(delta):
+	if(input_block_timer > 0):
+		input_block_timer -=delta
+	if(buffer_jump_timer > 0):
+		buffer_jump_timer -= delta
+		
+func apply_wall_jump_speed(dir: int, delta: float):
+	apply_gravity(delta, 1.0 if dir == jump_dir else gravity_multiplier)
+	parent.velocity.x = lerp(parent.velocity.x, dir * (movement_data.max_air_x_speed + (20 * int(parent.velocity.y < 0))), movement_data.velocity_x_lerp_speed)
 
 func physics_update(delta: float) -> void:
-	print(parent.velocity)
-	input_block_timer -=delta
+	timer_update(delta)
 	var dir = movement_input.get_horizontal_input_pressed()
 	if(input_block_timer > 0):
 		dir = jump_dir
 	run(dir)
-	if(dir == jump_dir):
-		apply_gravity(delta)
-		if(input_block_timer > 0):
-			parent.velocity.x = lerp(parent.velocity.x, dir * max_air_speed, movement_data.velocity_x_lerp_speed)
-		else:
-			parent.velocity.x = lerp(parent.velocity.x, dir * (max_air_speed + 20), movement_data.velocity_x_lerp_speed)
-	else:
-		parent.velocity.y = clamp(parent.velocity.y + wall_jump_gravity * delta,0,movement_data.max_y_speed)
-		parent.velocity.x = lerp(parent.velocity.x, dir * movement_data.max_air_x_speed, movement_data.velocity_x_lerp_speed)
+	apply_wall_jump_speed(dir,delta)
 	movement.move_x(parent.velocity.x * delta, true)
-	movement.move_y(parent.velocity.y * delta, true)
+	movement.move_y(parent.velocity.y * delta, parent.velocity.y < 0)
 	if (is_colliding_y == -1):
+		is_colliding_y = 0
 		parent.velocity.y = 0
 	switch_case(dir)
 
 func switch_case(dir):
 	if (is_colliding_y == 1):
-		if dir != 0:
+		if buffer_jump_timer > 0:
+			buffer_jump_timer = -1
+			finished.emit("Jump")
+		elif dir != 0:
 			finished.emit("Run")
 		else:
 			finished.emit("Idle")
@@ -51,9 +63,8 @@ func switch_case(dir):
 			finished.emit("Wall Slide")
 
 func enter(previous_state_path: String, data := {}) -> void:
-	wall_jump_gravity = movement_data.jump_gravity * 1.5
 	jump_dir = wall_dir * -1
-	max_air_speed = movement_data.max_air_x_speed * 1.0
+	wall_jump_gravity = movement_data.jump_gravity * gravity_multiplier
 	parent.velocity.x = 100 * jump_dir
-	parent.velocity.y = movement_data.high_jump_velocity * 0.9
+	parent.velocity.y = movement_data.high_jump_velocity * 0.8
 	input_block_timer = 0.15
