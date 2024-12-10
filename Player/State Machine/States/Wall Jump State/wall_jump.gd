@@ -53,7 +53,7 @@ func switch_case(dir):
 func enter(previous_state_path: String, data := {}) -> void:
 	wall_jump_gravity = movement_data.jump_gravity * 1.5
 	jump_dir = wall_dir * -1
-	max_air_speed = movement_data.max_air_x_speed * 1.3
+	max_air_speed = movement_data.max_air_x_speed * 1.0
 	parent.velocity.x = 100 * jump_dir
-	parent.velocity.y = movement_data.high_jump_velocity * 0.8
+	parent.velocity.y = movement_data.high_jump_velocity * 0.9
 	input_block_timer = 0.15

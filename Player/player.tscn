@@ -1,7 +1,7 @@
 [gd_scene load_steps=45 format=3 uid="uid://wmdmlqp0lxn4"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_4dk0b"]
-[ext_resource type="Texture2D" uid="uid://ciriokvl26n1w" path="res://brackeys_platformer_assets/sprites/knight.png" id="1_td3oy"]
+[ext_resource type="Texture2D" uid="uid://cpem1qlnborl7" path="res://brackeys_platformer_assets/sprites/knight.png" id="1_td3oy"]
 [ext_resource type="Script" path="res://Player/State Machine/state_machine.gd" id="3_qpl2d"]
 [ext_resource type="Resource" uid="uid://cdiet5q81ycqm" path="res://Player/Movement Data/DefaultDataMoveMent.tres" id="4_0ixyb"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Run State/run.gd" id="4_lsuwb"]
