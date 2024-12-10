@@ -33,7 +33,7 @@ func get_dir():
 		else:
 			dir.x = 1
 
-func enter(previous_state_path: String) -> void:
+func enter(_previous_state_path: String) -> void:
 	can_dash = false
 	get_dir()
 	parent.velocity = dir * movement_data.dash_speed

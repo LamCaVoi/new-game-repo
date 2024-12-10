@@ -230,10 +230,14 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "animated_sprite", "movement_input", "movement")]
 collision_layer = 2
 script = ExtResource("1_4dk0b")
 movement_data = ExtResource("4_0ixyb")
+state_machine = NodePath("StateMachine")
+animated_sprite = NodePath("AnimatedSprite2D")
+movement_input = NodePath("MovementInput")
+movement = NodePath("PixelPerfectMovement")
 width = 8
 height = 14
 x = -4

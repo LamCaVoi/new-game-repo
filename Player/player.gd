@@ -4,10 +4,10 @@ extends CharacterBody2D
 
 @export_group("player's components")
 @export var movement_data: PlayerMovementData
-@onready var state_machine: StateMachine = $StateMachine
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var movement_input: PlayerMovementInput = $MovementInput
-@onready var movement: PlayerMovement = $PixelPerfectMovement
+@export var state_machine: StateMachine
+@export var animated_sprite: AnimatedSprite2D
+@export var movement_input: PlayerMovementInput
+@export var movement: PlayerMovement
 
 @export_group("player's AABB")
 @export var width : int = 10

@@ -4,9 +4,9 @@ extends Sprite2D
 func _ready() -> void:
 	fading()
 
-func set_property(position: Vector2, scale: Vector2) -> void:
-	self.position = position
-	self.scale = scale
+func set_property(_position: Vector2, _scale: Vector2) -> void:
+	self.position = _position
+	self.scale = _scale
 	
 func flip(boolean: bool) -> void:
 	self.flip_h = boolean

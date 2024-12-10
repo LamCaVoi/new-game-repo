@@ -18,6 +18,8 @@ func physics_update(delta: float):
 	switch_case(dir)
 
 func switch_case(dir: float):
+	if is_colliding_y == 1:
+		finished.emit("Idle")
 	if is_colliding_x == 0:
 		if dir > 0:
 			finished.emit("Run")

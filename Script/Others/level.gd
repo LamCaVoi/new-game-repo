@@ -68,7 +68,7 @@ func check_intersection(offset: Vector2i = Vector2i.ZERO, edge_detection_enabled
 		if edge_detection_enabled:
 			return find_tile_edge_x(offset)
 		return Vector2i.ZERO
-	return find_tile_edge_y(offset) if edge_detection_enabled else Vector2i.ZERO
+	return find_tile_edge_y(offset) if edge_detection_enabled else Vector2.ZERO
 
 func find_tile_edge_x(offset: Vector2) -> Vector2:
 	if curr_collided_tile_rect == Rect2(Vector2.ZERO, Vector2.ZERO):
@@ -78,7 +78,7 @@ func find_tile_edge_x(offset: Vector2) -> Vector2:
 		if(used_cell_dict.has(tile_coord + Vector2i(0,dir * 1)) or used_cell_dict.has(tile_coord + Vector2i(0,dir * 2))):
 			continue
 		for i in range(1,3,1):
-			if intersect(Rect2(player.global_position + player.rect2.position,player.rect2.size), curr_collided_tile_rect, Vector2i(offset.x, dir * i)):
+			if intersect(Rect2(player.global_position + player.rect2.position,player.rect2.size), curr_collided_tile_rect, Vector2(offset.x, dir * i)):
 				continue
 			curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
 			edge_detected = true
@@ -95,7 +95,7 @@ func find_tile_edge_y(offset: Vector2) -> Vector2:
 		if(used_cell_dict.has(tile_coord + Vector2i(dir * 1, 0))):
 			continue
 		for i in range(1,4,1):
-			if intersect(Rect2(player.global_position + player.rect2.position,player.rect2.size), curr_collided_tile_rect, Vector2i(dir * i, offset.y)):
+			if intersect(Rect2(player.global_position + player.rect2.position,player.rect2.size), curr_collided_tile_rect, Vector2(dir * i, offset.y)):
 				continue
 			curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
 			return Vector2(dir * i, offset.y)

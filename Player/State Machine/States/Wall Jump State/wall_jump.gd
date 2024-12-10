@@ -10,7 +10,7 @@ var wall_jump_gravity: float
 var jump_dir: float
 
 
-func handle_input(event: InputEvent) -> void:
+func handle_input(_event: InputEvent) -> void:
 	if movement_input.wants_jump():
 		wall_dir = movement.find_wall(3)
 		if(wall_dir):
@@ -62,7 +62,7 @@ func switch_case(dir):
 		if(wall_dir and wall_dir == dir):
 			finished.emit("Wall Slide")
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String) -> void:
 	jump_dir = wall_dir * -1
 	wall_jump_gravity = movement_data.jump_gravity * gravity_multiplier
 	parent.velocity.x = 100 * jump_dir
