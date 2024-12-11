@@ -1,8 +1,9 @@
 [gd_scene load_steps=6 format=4 uid="uid://cn8jfylfbst1h"]
 
-[ext_resource type="Script" path="res://Script/Others/level.gd" id="1_wi7j3"]
+[ext_resource type="Script" path="res://Script/level.gd" id="1_wi7j3"]
 [ext_resource type="Texture2D" uid="uid://b3e1xoon1xuax" path="res://Prototype/Prototype Asset/Sprite-0001 (2).png" id="2_y0rh0"]
 [ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="3_xf3ui"]
+
 
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tg8bv"]

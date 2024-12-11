@@ -3,7 +3,7 @@ extends Movement
 
 func move_x(amount: float, edge_detection_enabled: bool = false) -> void:
 	remainder.x += amount
-	amount = floor(remainder.x)
+	amount = int(remainder.x)
 	
 	if(amount != 0):
 		remainder.x -= amount
@@ -24,7 +24,7 @@ func _move_x_exact(move: float, edge_detection_enabled: bool = false):
 
 func move_y(amount: float, edge_detection_enabled: bool = false):
 	remainder.y += amount
-	amount = floor(remainder.y)
+	amount = int(remainder.y)
 	
 	if(amount != 0):
 		remainder.y -= amount

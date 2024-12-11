@@ -9,7 +9,7 @@ func init(parent: Node2D) -> void:
 
 func move_x(amount: float) -> void:
 	remainder.x += amount
-	amount = round(remainder.x)
+	amount = int(remainder.x)
 	
 	if(amount != 0):
 		remainder.x -= amount
@@ -21,7 +21,7 @@ func _move_x_exact(move: float):
 
 func move_y(amount: float):
 	remainder.y += amount
-	amount = floor(remainder.y)
+	amount = int(remainder.y)
 	
 	if(amount != 0):
 		remainder.y -= amount

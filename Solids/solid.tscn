@@ -4,17 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://cgo7i3h5lp7d4" path="res://Prototype/Prototype Asset/TEXTURE_ATLAS.png" id="1_asooa"]
 [ext_resource type="Script" path="res://Solids/solid_pixel_perfect_movement.gd" id="3_qgjmv"]
 
-[node name="Solid" type="Node2D"]
-position = Vector2(30, 94)
-script = ExtResource("1_4cgye")
-speed = Vector2(100, 50)
-keyframes = Array[Vector2]([Vector2(20, 100), Vector2(300, 58)])
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Solid" type="Sprite2D"]
 z_index = -1
+position = Vector2(290, 23)
 texture = ExtResource("1_asooa")
 region_enabled = true
 region_rect = Rect2(0, 0, 28, 18)
+script = ExtResource("1_4cgye")
+color = Color(0, 0, 0, 0)
 
 [node name="PixelPerfectMovement" type="Node" parent="."]
 script = ExtResource("3_qgjmv")
