@@ -1,22 +1,22 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1733984307
+::res://::1733996184
 export_presets.cfg::TextFile::-1::1733984261::0::1::::<><>::
-::res://brackeys_platformer_assets/::1733984261
+::res://brackeys_platformer_assets/::1733984309
 LICENSE & CREDITS.txt::TextFile::-1::1733984261::0::1::::<><>::
 measuring_background.png::CompressedTexture2D::2662328882808433025::1733984261::1733984309::1::::<><>::
-::res://brackeys_platformer_assets/fonts/::1733984261
+::res://brackeys_platformer_assets/fonts/::1733984309
 PixelOperator8-Bold.ttf::FontFile::5815831722745695717::1733984261::1733984309::1::::<><>::
 PixelOperator8.ttf::FontFile::5414057860006489424::1733984261::1733984309::1::::<><>::
-::res://brackeys_platformer_assets/music/::1733984261
+::res://brackeys_platformer_assets/music/::1733984309
 time_for_adventure.mp3::AudioStreamMP3::4239229691907183647::1733984261::1733984309::1::::<><>::
-::res://brackeys_platformer_assets/sounds/::1733984261
+::res://brackeys_platformer_assets/sounds/::1733984309
 coin.wav::AudioStreamWAV::3160225280167944705::1733984261::1733984309::1::::<><>::
 explosion.wav::AudioStreamWAV::6170481803413447947::1733984261::1733984309::1::::<><>::
 hurt.wav::AudioStreamWAV::166127789001931165::1733984261::1733984309::1::::<><>::
 jump.wav::AudioStreamWAV::1057636093226829132::1733984261::1733984309::0::::<><>::
 power_up.wav::AudioStreamWAV::1574953161145797652::1733984261::1733984309::0::::<><>::
 tap.wav::AudioStreamWAV::3578704828030051818::1733984261::1733984309::1::::<><>::
-::res://brackeys_platformer_assets/sprites/::1733984261
+::res://brackeys_platformer_assets/sprites/::1733984309
 coin.png::CompressedTexture2D::9126614750784121455::1733984261::1733984309::1::::<><>::
 fruit.png::CompressedTexture2D::4463983537908772728::1733984261::1733984309::1::::<><>::
 knight.png::CompressedTexture2D::5834707425486669882::1733984261::1733984309::1::::<><>::
@@ -24,38 +24,38 @@ measuring_background.png::CompressedTexture2D::7521139208866954210::1733984261::
 platforms.png::CompressedTexture2D::2550213635103852863::1733984261::1733984309::1::::<><>::
 slime_purple.png::CompressedTexture2D::6887746108294665419::1733984261::1733984309::0::::<><>::
 world_tileset.png::CompressedTexture2D::7104249527556069689::1733984261::1733984309::1::::<><>::
-::res://Player/::1733984261
-player.gd::GDScript::-1::1733984261::0::1::::Player<>CharacterBody2D<>::
-player.tscn::PackedScene::1569131276779709307::1733984261::0::1::::<><>::res://Player/player.gd<>uid://cpem1qlnborl7::::res://brackeys_platformer_assets/sprites/knight.png<>res://Player/State Machine/state_machine.gd<>uid://cdiet5q81ycqm::::res://Player/Movement Data/DefaultDataMoveMent.tres<>res://Player/State Machine/States/Run State/run.gd<>res://Player/State Machine/States/Idle State/idle.gd<>res://Player/State Machine/States/Fall State/fall.gd<>res://Player/State Machine/States/Jump State/jump.gd<>res://Player/State Machine/States/Die State/die.gd<>res://Player/State Machine/States/Dash State/dash.gd<>res://Player/State Machine/States/Climb State/climb.gd<>uid://b8g7dpl0t6toa::::res://Player/State Machine/States/Dash State/ghost.tscn<>res://Player/State Machine/States/Wall Jump State/wall_jump.gd<>res://Player/State Machine/States/Wall Slide State/wall_slide.gd<>res://Player/Movement Input/player_movement_input.gd<>res://Player/Pixel Perfect Movement/player_pixel_perfect_movement.gd
-::res://Player/Movement Data/::1733984261
-DefaultDataMoveMent.tres::Resource/PlayerMovementData::5000201320340471220::1733984261::0::1::::<><>::res://Player/Movement Data/player_movement_data.gd
+::res://Player/::1733991966
+player.gd::GDScript::-1::1733987269::0::1::::Player<>CharacterBody2D<>::
+player.tscn::PackedScene::1569131276779709307::1733991966::0::1::::<><>::res://Player/player.gd<>uid://cpem1qlnborl7::::res://brackeys_platformer_assets/sprites/knight.png<>res://Player/State Machine/state_machine.gd<>uid://cdiet5q81ycqm::::res://Player/Movement Data/DefaultDataMoveMent.tres<>res://Player/State Machine/States/Run State/run.gd<>res://Player/State Machine/States/Idle State/idle.gd<>res://Player/State Machine/States/Fall State/fall.gd<>res://Player/State Machine/States/Jump State/jump.gd<>res://Player/State Machine/States/Die State/die.gd<>res://Player/State Machine/States/Dash State/dash.gd<>res://Player/State Machine/States/Climb State/climb.gd<>uid://b8g7dpl0t6toa::::res://Player/State Machine/States/Dash State/ghost.tscn<>res://Player/State Machine/States/Wall Jump State/wall_jump.gd<>res://Player/State Machine/States/Wall Slide State/wall_slide.gd<>res://Player/Movement Input/player_movement_input.gd<>res://Player/Pixel Perfect Movement/player_pixel_perfect_movement.gd
+::res://Player/Movement Data/::1733991966
+DefaultDataMoveMent.tres::Resource/PlayerMovementData::5000201320340471220::1733991966::0::1::::<><>::res://Player/Movement Data/player_movement_data.gd
 player_movement_data.gd::GDScript::-1::1733984261::0::1::::PlayerMovementData<>Resource<>::
 ::res://Player/Movement Input/::1733984261
 player_movement_input.gd::GDScript::-1::1733984261::0::1::::PlayerMovementInput<>MovementInput<>::
-::res://Player/Pixel Perfect Movement/::1733984261
-player_pixel_perfect_movement.gd::GDScript::-1::1733984261::0::1::::PlayerMovement<>Movement<>::
+::res://Player/Pixel Perfect Movement/::1733990668
+player_pixel_perfect_movement.gd::GDScript::-1::1733990668::0::1::::PlayerMovement<>Movement<>::
 ::res://Player/State Machine/::1733984261
 player_state.gd::GDScript::-1::1733984261::0::1::::Player_State<>State<>::
 state_machine.gd::GDScript::-1::1733984261::0::1::::StateMachine<>Node<>::
 ::res://Player/State Machine/States/::1733984261
 ::res://Player/State Machine/States/Climb State/::1733984261
 climb.gd::GDScript::-1::1733984261::0::1::::<>Player_State<>::
-::res://Player/State Machine/States/Dash State/::1733984261
-dash.gd::GDScript::-1::1733984261::0::1::::<>Player_State<>::
+::res://Player/State Machine/States/Dash State/::1733990740
+dash.gd::GDScript::-1::1733990740::0::1::::<>Player_State<>::
 ghost.gd::GDScript::-1::1733984261::0::1::::<>Sprite2D<>::
 ghost.tscn::PackedScene::4716987897428387504::1733984261::0::1::::<><>::uid://cpem1qlnborl7::::res://brackeys_platformer_assets/sprites/knight.png<>res://Player/State Machine/States/Dash State/ghost.gd
 ::res://Player/State Machine/States/Die State/::1733984261
 die.gd::GDScript::-1::1733984261::0::1::::<>Player_State<>::
-::res://Player/State Machine/States/Fall State/::1733984261
-fall.gd::GDScript::-1::1733984261::0::1::::<>Player_State<>::
+::res://Player/State Machine/States/Fall State/::1733990625
+fall.gd::GDScript::-1::1733990625::0::1::::<>Player_State<>::
 ::res://Player/State Machine/States/Idle State/::1733984261
 idle.gd::GDScript::-1::1733984261::0::1::::<>Player_State<>::
 ::res://Player/State Machine/States/Jump State/::1733984261
 jump.gd::GDScript::-1::1733984261::0::1::::<>Player_State<>::
 ::res://Player/State Machine/States/Run State/::1733984261
 run.gd::GDScript::-1::1733984261::0::1::::<>Player_State<>::
-::res://Player/State Machine/States/Wall Jump State/::1733984261
-wall_jump.gd::GDScript::-1::1733984261::0::1::::<>Player_State<>::
+::res://Player/State Machine/States/Wall Jump State/::1733989667
+wall_jump.gd::GDScript::-1::1733989667::0::1::::<>Player_State<>::
 ::res://Player/State Machine/States/Wall Slide State/::1733984261
 wall_slide.gd::GDScript::-1::1733984261::0::1::::<>Player_State<>::
 ::res://Prototype/::1733984261
@@ -76,13 +76,13 @@ prototype_3.gd::GDScript::-1::1733984261::0::1::::<>Node2D<>::
 ::res://Prototype/Prototype4/::1733984261
 camera_2d.gd::GDScript::-1::1733984261::0::1::::<>Camera2D<>::
 Prototype4.tscn::PackedScene::2880242566689972707::1733984261::0::1::::<><>::res://Script/level.gd<>uid://b3e1xoon1xuax::::res://Prototype/Prototype Asset/Sprite-0001 (2).png<>uid://wmdmlqp0lxn4::::res://Player/player.tscn<>uid://bx40ec1qc8msu::::res://Scene/kill_zone.tscn<>uid://dyqotk7g4oqu1::::res://Prototype/Prototype Asset/Sprite-0002.png
-::res://Prototype/Prototype5/::1733984261
-Prototype5.tscn::PackedScene::2825911154860852651::1733984261::0::1::::<><>::uid://b3e1xoon1xuax::::res://Prototype/Prototype Asset/Sprite-0001 (2).png<>res://Script/level.gd<>uid://wmdmlqp0lxn4::::res://Player/player.tscn<>uid://bx40ec1qc8msu::::res://Scene/kill_zone.tscn<>uid://cyobaq8o2dfum::::res://Solids/solid.tscn
+::res://Prototype/Prototype5/::1733991966
+Prototype5.tscn::PackedScene::2825911154860852651::1733991966::0::1::::<><>::uid://b3e1xoon1xuax::::res://Prototype/Prototype Asset/Sprite-0001 (2).png<>res://Script/level.gd<>uid://wmdmlqp0lxn4::::res://Player/player.tscn<>uid://bx40ec1qc8msu::::res://Scene/kill_zone.tscn<>uid://cyobaq8o2dfum::::res://Solids/solid.tscn
 ::res://Prototype/Prototype6/::1733984261
 Prototype6.tscn::PackedScene::5753977460251514183::1733984261::0::1::::<><>::res://Script/level.gd<>uid://b3e1xoon1xuax::::res://Prototype/Prototype Asset/Sprite-0001 (2).png<>uid://wmdmlqp0lxn4::::res://Player/player.tscn
 ::res://Prototype/Prototype7/::1733984261
 Prototype7.tscn::PackedScene::2430406003088401047::1733984261::0::1::::<><>::res://Script/level.gd<>uid://wmdmlqp0lxn4::::res://Player/player.tscn<>uid://dpdf0jkg6hfc6::::res://Prototype/Prototype Asset/Touchgrass (1).png
-::res://Prototype/Prototype Asset/::1733984261
+::res://Prototype/Prototype Asset/::1733984309
 Sprite-0001 (2).png::CompressedTexture2D::4361586289226483807::1733984261::1733984309::1::::<><>::
 Sprite-0001.png::CompressedTexture2D::431960492642281368::1733984261::1733984309::1::::<><>::
 Sprite-0002.png::CompressedTexture2D::8877708885419138818::1733984261::1733984309::1::::<><>::
@@ -98,9 +98,9 @@ slime.tscn::PackedScene::1244877675747049826::1733984261::0::1::::<><>::res://Sc
 ::res://Scene/Level/::1733984261
 lv1.tscn::PackedScene::115127461206033135::1733984261::0::1::::<><>::uid://wmdmlqp0lxn4::::res://Player/player.tscn<>res://Script/Not used script/game_manager.gd<>uid://c8hl7mitg2c54::::res://brackeys_platformer_assets/sprites/world_tileset.png<>uid://cjeu0hxviapqu::::res://brackeys_platformer_assets/fonts/PixelOperator8.ttf<>uid://bcllv70tmyynf::::res://brackeys_platformer_assets/sprites/platforms.png<>uid://r0a7ogbcfncc::::res://Scene/slime.tscn<>uid://ddbeqgd5lerp8::::res://Scene/coin.tscn<>uid://bx40ec1qc8msu::::res://Scene/kill_zone.tscn<>uid://co4h5s8iw2b8h::::res://brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf
 lv_2.tscn::PackedScene::355811129457855952::1733984261::0::1::::<><>::uid://wmdmlqp0lxn4::::res://Player/player.tscn<>uid://c8hl7mitg2c54::::res://brackeys_platformer_assets/sprites/world_tileset.png<>uid://bx40ec1qc8msu::::res://Scene/kill_zone.tscn<>uid://d3jtaa5sqa50y::::res://Scene/platforms.tscn
-::res://Script/::1733984261
+::res://Script/::1733989047
 kill_zone.gd::GDScript::-1::1733984261::0::1::::<>Area2D<>::
-level.gd::GDScript::-1::1733984261::0::1::::Level<>Node2D<>::
+level.gd::GDScript::-1::1733989047::0::1::::Level<>Node2D<>::
 state.gd::GDScript::-1::1733984261::0::1::::State<>Node<>::
 ::res://Script/Global Script/::1733984261
 Events.gd::GDScript::-1::1733984261::0::1::::<>Node<>::
@@ -117,7 +117,7 @@ slime.gd::GDScript::-1::1733984261::0::1::::<>Node2D<>::
 movement_input_template.gd::GDScript::-1::1733984261::0::1::::<>RefCounted<>::
 pixel_perfect_movement_template.gd::GDScript::-1::1733984261::0::1::::<>Node<>::
 state_template.gd::GDScript::-1::1733984261::0::1::::<>RefCounted<>::
-::res://Solids/::1733984261
+::res://Solids/::1733991966
 solid.gd::GDScript::-1::1733984261::0::1::::Solid<>Sprite2D<>::
-solid.tscn::PackedScene::6486336512273032080::1733984261::0::1::::<><>::res://Solids/solid.gd<>uid://cgo7i3h5lp7d4::::res://Prototype/Prototype Asset/TEXTURE_ATLAS.png<>res://Solids/solid_pixel_perfect_movement.gd
-solid_pixel_perfect_movement.gd::GDScript::-1::1733984261::0::1::::SolidMovement<>Node<>::
+solid.tscn::PackedScene::6486336512273032080::1733991966::0::1::::<><>::res://Solids/solid.gd<>uid://cgo7i3h5lp7d4::::res://Prototype/Prototype Asset/TEXTURE_ATLAS.png<>res://Solids/solid_pixel_perfect_movement.gd
+solid_pixel_perfect_movement.gd::GDScript::-1::1733987421::0::1::::SolidMovement<>Node<>::

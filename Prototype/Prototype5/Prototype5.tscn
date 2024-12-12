@@ -45,7 +45,7 @@ tile_map_data = PackedByteArray("AAD3/wwAAAACAAQAAADs//P/AAACAAQAAADs//T/AAAEAAc
 tile_set = SubResource("TileSet_6sxoi")
 
 [node name="Player" parent="." instance=ExtResource("2_adels")]
-position = Vector2(-64, 56)
+position = Vector2(-110, 15)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -60,6 +60,5 @@ debug_color = Color(0.999838, 0, 0.0993215, 0.42)
 
 [node name="Solid" parent="Solids" instance=ExtResource("5_ufrha")]
 position = Vector2(-15, 11)
-region_rect = Rect2(32, -1, 16, 14)
 color = Color(0, 0, 0, 1)
 keyframes = Array[Vector2]([Vector2(-85, 15), Vector2(0, 15)])
