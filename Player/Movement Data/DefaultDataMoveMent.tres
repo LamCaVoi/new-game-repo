@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_mkdhu")
 max_x_speed = 110.0
-acceleration = 1200.0
+acceleration = 900.0
 friction = 1200.0
-max_air_x_speed = 90.0
+max_air_x_speed = 95.0
 max_y_speed = 200.0
 jump_height = 35.0
 jump_time_to_peak = 0.35
@@ -15,7 +15,7 @@ jump_time_to_descent = 0.23
 coyote_time = 0.08
 buffer_jump_time = 0.2
 short_jump_cut = 0.6
-velocity_x_lerp_speed = 0.3
+velocity_x_lerp_speed = 0.4
 hang_threshold = 30.0
 dash_speed = 175.0
 dash_time = 0.2

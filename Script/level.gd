@@ -1,6 +1,10 @@
 extends Node2D
 class_name Level
 
+const PLAYER_HORIZONTAL_RANGE = 1
+const PLAYER_VERTICAL_RANGE = 2
+const TILE_SIZE = Vector2(8,8)
+
 @export var player: Player
 @export var level_layer: TileMapLayer
 @export var solids: Array[Solid]
@@ -35,15 +39,42 @@ func check_intersection(offset: Vector2i = Vector2i.ZERO, edge_detection_enabled
 
 func check_player_tiles_intersection(offset: Vector2i = Vector2i.ZERO) -> bool:
 	update_player()
-	for i in range(player_tile.x - 1,player_tile.x + 2):
-		for j in range(player_tile.y - 2,player_tile.y + 3):
-			if (not used_cell_dict.has(Vector2i(i,j))):
+	var res: bool = false
+	if (offset.x != 0):
+		res = check_horizontal_collision(offset)
+	if (not res and offset.y != 0):
+		res = check_vertical_collision(offset)
+	return res
+	
+		
+func check_horizontal_collision(offset: Vector2i, rect: Rect2 = player_rect, tile_coord: Vector2i = player_tile, horizontal_range: int = PLAYER_HORIZONTAL_RANGE, vertical_range: int = PLAYER_VERTICAL_RANGE, is_player: bool = true) -> bool:
+	var dir = sign(offset.x)
+	for y in range(tile_coord.y - vertical_range, tile_coord.y + vertical_range + 1):
+		for x in range (1,horizontal_range + 1):
+			if (not used_cell_dict.has(Vector2i(tile_coord.x + x * dir,y))):
 				continue
-			var tile_rect = Rect2(level_layer.map_to_local(Vector2(i,j)) + Vector2(-4,-4), Vector2(8,8))
-			if intersect(player_rect,tile_rect,offset):
-				curr_collided_tile_rect = tile_rect
+			var tile_rect = Rect2(level_layer.map_to_local(Vector2(tile_coord.x + x * dir,y)) + TILE_SIZE * -0.5, TILE_SIZE)
+			if intersect(rect,tile_rect,offset):
+				if(is_player):
+					curr_collided_tile_rect = tile_rect
 				return true
-	curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
+	if(is_player):
+		curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
+	return false
+
+func check_vertical_collision(offset: Vector2i, rect: Rect2 = player_rect, tile_coord: Vector2i = player_tile, horizontal_range: int = PLAYER_HORIZONTAL_RANGE, vertical_range: int = PLAYER_VERTICAL_RANGE, is_player: bool = true) -> bool:
+	var dir = sign(offset.y)
+	for x in range(tile_coord.x - horizontal_range, tile_coord.x + horizontal_range + 1):
+		for y in range (1,vertical_range + 1):
+			if (not used_cell_dict.has(Vector2i(x, tile_coord.y + y * dir))):
+				continue
+			var tile_rect = Rect2(level_layer.map_to_local(Vector2(x, tile_coord.y + y * dir)) + TILE_SIZE * -0.5, TILE_SIZE)
+			if intersect(rect,tile_rect,offset):
+				if(is_player):
+					curr_collided_tile_rect = tile_rect
+				return true
+	if(is_player):
+		curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
 	return false
 
 func check_player_solids_intersection(offset: Vector2i = Vector2i.ZERO)->bool:
@@ -54,31 +85,30 @@ func check_player_solids_intersection(offset: Vector2i = Vector2i.ZERO)->bool:
 	return false
 
 func find_wall(x_offset_amount) -> int:
+
 	update_player()
-	player_rect.position += Vector2(0, player_rect.size.y*0.5)
+	player_rect.position += Vector2(0, player_rect.size.y * 0.5)
 	player_rect.size.y *= 0.5
-	for side in range(-1,2,2):
-		if check_player_solids_intersection(Vector2(side * x_offset_amount, 0)):
-			return side
+	for dir in range(-1, 1 + 1,2):
+		if check_player_solids_intersection(Vector2(dir * x_offset_amount, 0)):
+			return dir
 		var position : Vector2 
 		var size : Vector2
-		if (used_cell_dict.has(player_tile + Vector2i(side, 0))):
-			position = level_layer.map_to_local(player_tile + Vector2i(side, 0)) + Vector2(-4,-4)
-			if (used_cell_dict.has(player_tile + Vector2i(side, 1))):
-				size = Vector2(8,16)
+		if (used_cell_dict.has(Vector2i(player_tile.x + dir, player_tile.y))):
+			position = level_layer.map_to_local(Vector2(player_tile.x + dir, player_tile.y)) + TILE_SIZE * -0.5
+			if (used_cell_dict.has(Vector2i(player_tile.x + dir, player_tile.y + 1))):
+				size = Vector2(TILE_SIZE.x,TILE_SIZE.y * 2)
 			else:
-				size = Vector2(8,8)
-		elif(used_cell_dict.has(player_tile + Vector2i(side, 1))):
-			position = level_layer.map_to_local(player_tile + Vector2i(side, 1)) + Vector2(-4,4)
-			size = Vector2(8,8)
+				size = TILE_SIZE
+		elif(used_cell_dict.has(Vector2i(player_tile.x + dir, player_tile.y + 1))):
+			position = level_layer.map_to_local(Vector2(player_tile.x + dir, player_tile.y + 1)) + TILE_SIZE * -0.5
+			size = TILE_SIZE
 		else:
 			continue
 		var tile_rect = Rect2(position, size)
-		if (intersect(player_rect,tile_rect,Vector2(side * x_offset_amount, 0))):
-			return side
+		if (intersect(player_rect,tile_rect,Vector2(dir * x_offset_amount, 0))):
+			return dir
 	return 0
-	
-
 
 func find_tile_edge_x(offset: Vector2) -> Vector2:
 	update_player()
@@ -118,7 +148,3 @@ func intersect(rect1: Rect2, rect2: Rect2, offset_rect1: Vector2i = Vector2i.ZER
 	and rect1.position.x + rect1.size.x  + offset_rect1.x > rect2.position.x + offset_rect2.x
 	and rect1.position.y  + offset_rect1.y < rect2.position.y + rect2.size.y + offset_rect2.y
 	and rect1.position.y + rect1.size.y  + offset_rect1.y > rect2.position.y + offset_rect2.y)
-	
-	
-	
-	

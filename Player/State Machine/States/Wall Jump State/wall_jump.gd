@@ -1,11 +1,12 @@
 extends Player_State
 #Multiply the gravity if player attempts to return to the same wall
-var gravity_multiplier:float = 1.5
-var input_block_timer: float = 0.15
+var gravity_multiplier:float = 1.0
+var input_block_time: float = 0.2
 var buffer_jump_timer: float = -1
 var initil_x_velocity: float = 100
 #Cut the jump velocity in wall jump state plus buffing the lateral movement in this state
 var jump_cut: float = 0.8
+var input_block_timer: float
 var wall_jump_gravity: float
 var jump_dir: float
 
@@ -31,7 +32,7 @@ func timer_update(delta):
 		buffer_jump_timer -= delta
 		
 func apply_wall_jump_speed(dir: int, delta: float):
-	apply_gravity(delta, 1.0 if dir == jump_dir else gravity_multiplier)
+	apply_gravity(delta, 1.0 if dir == 0 or dir == jump_dir else gravity_multiplier)
 	parent.velocity.x = lerp(parent.velocity.x, dir * (movement_data.max_air_x_speed + (20 * int(parent.velocity.y < 0))), movement_data.velocity_x_lerp_speed)
 
 func physics_update(delta: float) -> void:
@@ -51,7 +52,7 @@ func physics_update(delta: float) -> void:
 func switch_case(dir):
 	if (is_colliding_y == 1):
 		if buffer_jump_timer > 0:
-			buffer_jump_timer = -1
+			buffer_jump_timer = -1 
 			finished.emit("Jump")
 		elif dir != 0:
 			finished.emit("Run")
@@ -65,6 +66,6 @@ func switch_case(dir):
 func enter(_previous_state_path: String) -> void:
 	jump_dir = wall_dir * -1
 	wall_jump_gravity = movement_data.jump_gravity * gravity_multiplier
-	parent.velocity.x = 100 * jump_dir
+	parent.velocity.x = 30 * jump_dir
 	parent.velocity.y = movement_data.high_jump_velocity * 0.8
-	input_block_timer = 0.15
+	input_block_timer = input_block_time
