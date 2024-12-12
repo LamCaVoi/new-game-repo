@@ -48,7 +48,7 @@ func add_ghost():
 	get_tree().current_scene.add_child(new_ghost)
 
 func exit():
-	parent.velocity.y *= 0.8
+	parent.velocity = Vector2.ZERO
 	ghost_timer.stop()
 	
 	

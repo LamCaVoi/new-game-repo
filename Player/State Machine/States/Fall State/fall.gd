@@ -7,7 +7,7 @@ func handle_input(_event: InputEvent) -> void:
 	if movement_input.released_jump() and parent.velocity.y < -100:
 		parent.velocity.y *= movement_data.short_jump_cut
 	elif movement_input.wants_climb():
-		wall_dir = movement.find_wall(0)
+		wall_dir = movement.find_wall(1)
 		if wall_dir:
 			finished.emit("Climb")
 	elif movement_input.wants_jump():
@@ -34,7 +34,7 @@ func physics_update(delta: float) -> void:
 	var direction = movement_input.get_horizontal_input_pressed()
 	run(direction)
 	apply_gravity(delta, 0.8 if abs(parent.velocity.y) < movement_data.hang_threshold else 1.0)
-	parent.velocity.x = lerp(parent.velocity.x, direction * movement_data.max_air_x_speed, movement_data.velocity_x_lerp_speed)
+	parent.velocity.x = lerp(parent.velocity.x, direction * movement_data.max_air_x_speed, 1 - (1 - movement_data.velocity_x_lerp_speed) * delta)
 	movement.move_x(parent.velocity.x * delta, true)
 	movement.move_y(parent.velocity.y *delta,parent.velocity.y < 0)
 	if is_colliding_y == -1:

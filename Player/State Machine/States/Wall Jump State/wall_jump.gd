@@ -31,7 +31,7 @@ func timer_update(delta):
 		
 func apply_wall_jump_speed(dir: int, delta: float):
 	apply_gravity(delta)
-	parent.velocity.x = lerp(parent.velocity.x, dir * (movement_data.max_air_x_speed + (20 * int(parent.velocity.y < 0))), movement_data.velocity_x_lerp_speed)
+	parent.velocity.x = lerp(parent.velocity.x, dir * (movement_data.max_air_x_speed + (20 * int(parent.velocity.y < 0))), 1 - (1 - movement_data.velocity_x_lerp_speed) * delta)
 
 func physics_update(delta: float) -> void:
 	timer_update(delta)

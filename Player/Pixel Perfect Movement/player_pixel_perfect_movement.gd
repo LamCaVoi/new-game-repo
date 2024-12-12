@@ -51,4 +51,6 @@ func zero_remainder_y():
 	remainder.y = 0
 
 func find_wall(x_offset_amount: int = 3) -> int:
+	if(x_offset_amount == 0):
+		printerr("you fucking stupid!!")
 	return Global.curr_level.find_wall(x_offset_amount)

@@ -6,3 +6,6 @@ res://Player/Movement Data/DefaultDataMoveMent.tres
 res://Solids/solid_pixel_perfect_movement.gd
 res://Prototype/Prototype5/Prototype5.tscn
 res://Player/player.gd
+res://Player/State Machine/States/Fall State/fall.gd
+res://Player/State Machine/States/Wall Jump State/wall_jump.gd
+res://Player/State Machine/States/Dash State/dash.gd
