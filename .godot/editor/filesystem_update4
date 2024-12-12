@@ -1,5 +1,8 @@
-res://Prototype/Prototype5/Prototype5.tscn
-res://Player/Movement Data/DefaultDataMoveMent.tres
 res://Solids/solid.tscn
+res://Script/level.gd
+res://Player/Pixel Perfect Movement/player_pixel_perfect_movement.gd
 res://Player/player.tscn
-res://Player/State Machine/States/Wall Jump State/wall_jump.gd
+res://Player/Movement Data/DefaultDataMoveMent.tres
+res://Solids/solid_pixel_perfect_movement.gd
+res://Prototype/Prototype5/Prototype5.tscn
+res://Player/player.gd

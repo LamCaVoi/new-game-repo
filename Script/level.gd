@@ -28,7 +28,7 @@ func update_player():
 	player_tile = level_layer.local_to_map(to_local(player.global_position))
 	player_rect = Rect2(player.global_position + player.rect2.position,player.rect2.size)
 
-func check_intersection(offset: Vector2i = Vector2i.ZERO, edge_detection_enabled: bool = false) -> Vector2i:
+func check_player_intersection(offset: Vector2i = Vector2i.ZERO, edge_detection_enabled: bool = false) -> Vector2i:
 	if (check_player_solids_intersection(offset)):
 		return Vector2.ZERO
 	if (not check_player_tiles_intersection(offset)):
@@ -85,7 +85,6 @@ func check_player_solids_intersection(offset: Vector2i = Vector2i.ZERO)->bool:
 	return false
 
 func find_wall(x_offset_amount) -> int:
-
 	update_player()
 	player_rect.position += Vector2(0, player_rect.size.y * 0.5)
 	player_rect.size.y *= 0.5
@@ -142,6 +141,26 @@ func find_tile_edge_y(offset: Vector2) -> Vector2:
 			curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
 			return Vector2(dir * i, offset.y)
 	return Vector2.ZERO
+
+func check_solid_intersection(solid: Solid, offset: Vector2):
+	update_player()
+	var solid_rect = get_solid_rect(solid)
+	var has_collision: bool= false
+	if(intersect(solid_rect, player_rect, offset)):
+		if(check_player_tiles_intersection(offset)):
+			if(not player_rect.position.y + player.height - 1 == solid_rect.position.y):
+				player.die()
+			has_collision = true
+		if(has_collision):
+			return
+		player.global_position += offset
+
+func get_solid_rect(solid: Solid)-> Rect2:
+	var solid_rect = solid.get_rect()
+	solid_rect.position += Vector2(-1,-1)
+	solid_rect.size += Vector2(2,1)
+	solid_rect.position += solid.global_position
+	return solid_rect
 
 func intersect(rect1: Rect2, rect2: Rect2, offset_rect1: Vector2i = Vector2i.ZERO, offset_rect2: Vector2i = Vector2i.ZERO) -> bool:
 	return (rect1.position.x + offset_rect1.x < rect2.position.x + rect2.size.x + offset_rect2.x

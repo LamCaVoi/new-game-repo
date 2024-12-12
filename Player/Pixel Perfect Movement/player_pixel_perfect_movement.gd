@@ -13,7 +13,7 @@ func _move_x_exact(move: float, edge_detection_enabled: bool = false):
 	var step : int = sign(move)
 	while (move):
 		var offset : Vector2 = Vector2(step, 0)
-		offset = Global.curr_level.check_intersection(offset, edge_detection_enabled) 
+		offset = Global.curr_level.check_player_intersection(offset, edge_detection_enabled) 
 		if offset == Vector2.ZERO:
 			zero_remainder_x()
 			Events.player_colliding_x.emit(step)
@@ -35,7 +35,7 @@ func _move_y_exact(move: float, edge_detection_enabled: bool = false):
 	
 	while (move):
 		var offset: Vector2 = Vector2(0,step)
-		offset = Global.curr_level.check_intersection(offset, edge_detection_enabled) 
+		offset = Global.curr_level.check_player_intersection(offset, edge_detection_enabled) 
 		if offset == Vector2.ZERO:
 			zero_remainder_y()
 			Events.player_colliding_y.emit(step)

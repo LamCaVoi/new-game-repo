@@ -1,4 +1,3 @@
-@tool
 class_name Player
 extends CharacterBody2D
 
@@ -16,12 +15,6 @@ extends CharacterBody2D
 @export var y : int = 0
 @export var color : Color
 @onready var rect2 : Rect2 = Rect2(x,y,width,height)
-
-func _draw() -> void:
-	draw_rect(rect2, color)
-
-func _physics_process(delta: float) -> void:
-	queue_redraw()
 
 func _ready() -> void:
 	Events.player_colliding_x.connect(state_machine.set_colliding_x)

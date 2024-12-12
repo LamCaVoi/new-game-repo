@@ -18,7 +18,9 @@ func move_x(amount: float, x_key: float) -> void:
 
 func _move_x_exact(move: float, x_key: float):
 	var step : int = sign(move)
+	var offset: Vector2 = Vector2(step,0)
 	while(move and parent.global_position.x != x_key):
+		Global.curr_level.check_solid_intersection(parent, offset)
 		parent.global_position.x += step
 		move -= step
 		
@@ -33,10 +35,12 @@ func move_y(amount: float, y_key: float):
 
 func _move_y_exact(move: float, y_key: float):
 	var step : int = sign(move)
+	var offset: Vector2 = Vector2(0,step)
 	while(move and parent.global_position.y != y_key):
+		Global.curr_level.check_solid_intersection(parent, offset)
 		parent.global_position.y += step
 		move -= step
-
+	
 func zero_remainder_x():
 	remainder.x = 0
 
