@@ -53,7 +53,7 @@ func switch_state(direction):
 		else:
 			finished.emit("Run")
 	elif (parent.velocity.y > -100):
-		if(direction != 0 and direction == movement.find_wall(1)):
+		if(direction != 0 and direction == is_colliding_x):
 			wall_dir = direction
 			finished.emit("Wall Slide")
 

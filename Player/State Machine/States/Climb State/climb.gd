@@ -25,3 +25,5 @@ func switch_case(dir: float):
 			finished.emit("Run")
 		else:
 			finished.emit("Fall")
+func enter(previous_state_path: String) -> void:
+	pass

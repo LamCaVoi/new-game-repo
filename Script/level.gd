@@ -29,6 +29,7 @@ func update_player():
 	player_rect = Rect2(player.global_position + player.rect2.position,player.rect2.size)
 
 func check_player_intersection(offset: Vector2i = Vector2i.ZERO, edge_detection_enabled: bool = false) -> Vector2i:
+	update_player()
 	if (check_player_solids_intersection(offset)):
 		return Vector2.ZERO
 	if (not check_player_tiles_intersection(offset)):
@@ -38,7 +39,6 @@ func check_player_intersection(offset: Vector2i = Vector2i.ZERO, edge_detection_
 	return find_tile_edge_x(offset) if offset.x != 0 else find_tile_edge_y(offset)
 
 func check_player_tiles_intersection(offset: Vector2i = Vector2i.ZERO) -> bool:
-	update_player()
 	var res: bool = false
 	if (offset.x != 0):
 		res = check_horizontal_collision(offset)
@@ -78,7 +78,6 @@ func check_vertical_collision(offset: Vector2i, rect: Rect2 = player_rect, tile_
 	return false
 
 func check_player_solids_intersection(offset: Vector2i = Vector2i.ZERO)->bool:
-	update_player()
 	for solid in solids:
 		if intersect(player_rect,Rect2(solid.get_rect().position + solid.global_position, solid.get_rect().size),offset):
 			return true
@@ -88,29 +87,25 @@ func find_wall(x_offset_amount) -> int:
 	update_player()
 	player_rect.position += Vector2(0, player_rect.size.y * 0.5)
 	player_rect.size.y *= 0.5
-	for dir in range(-1, 1 + 1,2):
-		if check_player_solids_intersection(Vector2(dir * x_offset_amount, 0)):
-			return dir
-		var position : Vector2 
-		var size : Vector2
-		if (used_cell_dict.has(Vector2i(player_tile.x + dir, player_tile.y))):
-			position = level_layer.map_to_local(Vector2(player_tile.x + dir, player_tile.y)) + TILE_SIZE * -0.5
-			if (used_cell_dict.has(Vector2i(player_tile.x + dir, player_tile.y + 1))):
-				size = Vector2(TILE_SIZE.x,TILE_SIZE.y * 2)
-			else:
-				size = TILE_SIZE
-		elif(used_cell_dict.has(Vector2i(player_tile.x + dir, player_tile.y + 1))):
-			position = level_layer.map_to_local(Vector2(player_tile.x + dir, player_tile.y + 1)) + TILE_SIZE * -0.5
-			size = TILE_SIZE
-		else:
+	for direction in range(-1,2,2):
+		if check_player_solids_intersection(Vector2(direction * x_offset_amount, 0)):
+			return direction
+		var position : Vector2 = Vector2.ZERO
+		var size : Vector2 = Vector2.ZERO
+		for y in range (0,2):
+			if (used_cell_dict.has(Vector2i(player_tile.x + direction, y))):
+				if size == Vector2.ZERO:
+					position = level_layer.map_to_local(Vector2(player_tile.x + direction, player_tile.y + 1)) + TILE_SIZE * -0.5
+				size.y += TILE_SIZE.y
+		if size == Vector2.ZERO:
 			continue
+		size.x = TILE_SIZE.x
 		var tile_rect = Rect2(position, size)
-		if (intersect(player_rect,tile_rect,Vector2(dir * x_offset_amount, 0))):
-			return dir
+		if (intersect(player_rect,tile_rect,Vector2(direction * x_offset_amount, 0))):
+			return direction
 	return 0
 
 func find_tile_edge_x(offset: Vector2) -> Vector2:
-	update_player()
 	if curr_collided_tile_rect == Rect2(Vector2.ZERO, Vector2.ZERO):
 		return Vector2.ZERO
 	var tile_coord: Vector2i = level_layer.local_to_map(curr_collided_tile_rect.position + Vector2(4,4))
@@ -127,7 +122,6 @@ func find_tile_edge_x(offset: Vector2) -> Vector2:
 	return Vector2.ZERO
 
 func find_tile_edge_y(offset: Vector2) -> Vector2:
-	update_player()
 	if curr_collided_tile_rect == Rect2(Vector2.ZERO, Vector2.ZERO) or edge_detected:
 		edge_detected = false
 		return Vector2.ZERO
@@ -142,18 +136,19 @@ func find_tile_edge_y(offset: Vector2) -> Vector2:
 			return Vector2(dir * i, offset.y)
 	return Vector2.ZERO
 
-func check_solid_intersection(solid: Solid, offset: Vector2):
+func check_solid_intersection(solid: Solid, solid_offset: Vector2):
 	update_player()
 	var solid_rect = get_solid_rect(solid)
 	var has_collision: bool= false
-	if(intersect(solid_rect, player_rect, offset)):
-		if(check_player_tiles_intersection(offset)):
+	var player_offset: Vector2 = Vector2(player.get_current_climb_direction(), 0)
+	if(intersect(solid_rect, player_rect, solid_offset, player_offset)):
+		if(check_player_tiles_intersection(solid_offset)):
 			if(not player_rect.position.y + player.height - 1 == solid_rect.position.y):
 				player.die()
 			has_collision = true
 		if(has_collision):
 			return
-		player.global_position += offset
+		player.global_position += solid_offset
 
 func get_solid_rect(solid: Solid)-> Rect2:
 	var solid_rect = solid.get_rect()

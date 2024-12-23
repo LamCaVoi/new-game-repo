@@ -26,3 +26,9 @@ func _ready() -> void:
 
 func die():
 	state_machine._transition_to_next_state("Die")
+
+func get_current_climb_direction():
+	if(state_machine.state.name == "Climb"):
+		return state_machine.state.wall_dir
+	return 0
+	
