@@ -8,6 +8,7 @@ const TILE_SIZE = Vector2(8,8)
 @export var player: Player
 @export var level_layer: TileMapLayer
 @export var solids: Array[Solid]
+@export var camera: Camera2D
 
 var used_cell_dict: Dictionary
 var curr_collided_tile_rect: Rect2
@@ -23,6 +24,7 @@ func _ready() -> void:
 	for i in level_layer.get_used_cells():
 		used_cell_dict[i] = 1
 	Global.curr_level = self
+	camera.player = self.player
 
 func update_player():
 	player_tile = level_layer.local_to_map(to_local(player.global_position))
