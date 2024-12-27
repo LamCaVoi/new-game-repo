@@ -8,7 +8,8 @@ const TILE_SIZE = Vector2(8,8)
 @export var player: Player
 @export var level_layer: TileMapLayer
 @export var solids: Array[Solid]
-@export var camera: Camera2D
+@export var camera: PlayerCamera
+
 
 var used_cell_dict: Dictionary
 var curr_collided_tile_rect: Rect2

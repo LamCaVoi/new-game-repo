@@ -1,4 +1,5 @@
 extends Camera2D
+class_name PlayerCamera
 
 @export var smoothing: float = 0.8
 @export var zoom_view_size: Vector2
