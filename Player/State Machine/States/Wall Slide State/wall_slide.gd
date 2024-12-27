@@ -8,14 +8,14 @@ var timer:float = -1
 
 func handle_input(_event: InputEvent) -> void:
 	if (movement_input.wants_climb()):
-		wall_dir = movement.find_wall()
-		if wall_dir != 0:
+		wall_direction = movement.find_wall(1)
+		if wall_direction:
 			finished.emit("Climb")
 	elif (movement_input.wants_dash() and can_dash):
 		finished.emit("Dash")
 	elif (movement_input.wants_jump()):
-		wall_dir = movement.find_wall()
-		if wall_dir != 0:
+		wall_direction = movement.find_wall(1)
+		if wall_direction:
 			finished.emit("Wall Jump")
 	elif (movement_input.get_horizontal_input_released(is_colliding_x)):
 		timer = wait_time

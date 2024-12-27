@@ -1,9 +1,14 @@
-res://Prototype/Prototype5/Prototype5.tscn
-res://Player/Movement Data/DefaultDataMoveMent.tres
 res://Player/player.tscn
-res://Solids/solid.tscn
-res://Scene/camera_2d.tscn
-res://Scene/room_area.tscn
+res://Player/Movement Data/DefaultDataMoveMent.tres
+res://Player/State Machine/player_state.gd
+res://Player/State Machine/States/Wall Jump State/wall_jump.gd
+res://Player/State Machine/States/Fall State/fall.gd
+res://Player/State Machine/States/Wall Slide State/wall_slide.gd
+res://Player/State Machine/States/Climb State/climb.gd
+res://Script/level.gd
+res://Prototype/Prototype5/Prototype5.tscn
 res://Scene/camera_2d.gd
-res://room_area.gd
-res://Script/Global Script/Events.gd
+res://Scene/camera_2d.tscn
+res://Player/player.gd
+res://Solids/solid.tscn
+res://Player/Movement Input/player_movement_input.gd

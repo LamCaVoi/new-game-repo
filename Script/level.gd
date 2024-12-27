@@ -95,9 +95,9 @@ func find_wall(x_offset_amount) -> int:
 		var position : Vector2 = Vector2.ZERO
 		var size : Vector2 = Vector2.ZERO
 		for y in range (0,2):
-			if (used_cell_dict.has(Vector2i(player_tile.x + direction, y))):
+			if (used_cell_dict.has(Vector2i(player_tile.x + direction, player_tile.y + y))):
 				if size == Vector2.ZERO:
-					position = level_layer.map_to_local(Vector2(player_tile.x + direction, player_tile.y + 1)) + TILE_SIZE * -0.5
+					position = level_layer.map_to_local(Vector2(player_tile.x + direction, player_tile.y + y)) + TILE_SIZE * -0.5
 				size.y += TILE_SIZE.y
 		if size == Vector2.ZERO:
 			continue

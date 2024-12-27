@@ -12,7 +12,7 @@ func handle_input(_event: InputEvent) -> void:
 func physics_update(delta: float):
 	var dir = movement_input.get_vertical_input_pressed()
 	parent.velocity.y = dir * movement_data.climb_speed
-	parent.velocity.x = wall_dir * movement_data.max_x_speed
+	parent.velocity.x = wall_direction * movement_data.max_x_speed
 	movement.move_x(parent.velocity.x * delta)
 	movement.move_y(parent.velocity.y * delta)
 	switch_case(dir)

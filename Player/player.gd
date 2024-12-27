@@ -29,6 +29,11 @@ func die():
 
 func get_current_climb_direction():
 	if(state_machine.state.name == "Climb"):
-		return state_machine.state.wall_dir
+		return state_machine.state.wall_direction
 	return 0
 	
+func get_facing_direction() -> int:
+	return -1 if animated_sprite.flip_h else 1
+
+func is_grounded()->bool:
+	return state_machine.state.is_colliding_y == 1

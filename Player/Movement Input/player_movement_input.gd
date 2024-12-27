@@ -4,7 +4,7 @@ extends MovementInput
 func wants_jump()-> bool:
 	return Input.is_action_just_pressed("jump")
 func wants_climb()-> bool:
-	return Input.is_action_just_pressed("climb")
+	return Input.is_action_pressed("climb")
 func released_jump()-> bool:
 	return Input.is_action_just_released("jump")
 

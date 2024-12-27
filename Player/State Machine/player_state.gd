@@ -12,7 +12,7 @@ static var animated_sprite: AnimatedSprite2D
 static var can_dash = false
 static var is_colliding_x : int = 0
 static var is_colliding_y : int = 0
-static var wall_dir : int = 0
+static var wall_direction : int = 0
 
 
 ## Called by the state machine when receiving unhandled input events.
