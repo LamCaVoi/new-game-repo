@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyobaq8o2dfum"]
 
 [ext_resource type="Script" path="res://Solids/solid.gd" id="1_4cgye"]
-[ext_resource type="Texture2D" uid="uid://cgo7i3h5lp7d4" path="res://Prototype/Prototype Asset/TEXTURE_ATLAS.png" id="1_asooa"]
+[ext_resource type="Texture2D" uid="uid://cgo7i3h5lp7d4" path="res://Assets/TEXTURE_ATLAS.png" id="1_asooa"]
 [ext_resource type="Script" path="res://Solids/solid_pixel_perfect_movement.gd" id="3_qgjmv"]
+
 
 [node name="Solid" type="Sprite2D"]
 z_index = -1

@@ -6,6 +6,9 @@ class_name PlayerCamera
 @onready var view_size: Vector2 = get_viewport_rect().size
 @export var player : Player
 @export var look_ahead_distance: float = 30.0
+#The width and height of the death zone
+@export var deathzone: Vector2 = Vector2(20,20)
+@export_enum("Left:-1","Center:0", "Right:1") var player_anchor: int = -1
 
 var look_ahead_offset: float = 0
 var current_room_rect: Rect2
@@ -52,16 +55,20 @@ func change_room() -> Vector2:
 func _physics_process(delta: float) -> void:
 	if(tween and tween.is_running()):
 		return
-	var direction = player.get_facing_direction()
-	look_ahead_offset = round_toward(lerp(look_ahead_offset,look_ahead_distance * direction, 1 - pow(0.5,delta)), look_ahead_distance * direction)
+	var look_ahead_distance = (float(player_anchor) * zoom_view_size.x)/3
+	look_ahead_offset = round_toward(lerp(look_ahead_offset, look_ahead_distance, 1 - pow(0.5,delta)), look_ahead_distance)
 	var target_position = calculate_target_position(look_ahead_offset)
-	if target_position.distance_to(global_position) <=3:
-		return
+	if abs(target_position.x - global_position.x) <= deathzone.x:
+		target_position.x = global_position.x
+	if abs(target_position.y - global_position.y) <= deathzone.y:
+		target_position.y = global_position.y
 	if (not player.is_grounded()):
 		if(not abs(target_position.y - global_position.y) > 50):
 			target_position.y = global_position.y
-	global_position.x = round_toward(lerp(global_position.x,target_position.x, 1 - pow(0.01,delta)),target_position.x)
-	global_position.y = round_toward(lerp(global_position.y,target_position.y, 1 - pow(0.1,delta)),target_position.y)
+	if(not target_position.x == global_position.x):
+		global_position.x = round_toward(lerp(global_position.x,target_position.x, 1 - pow(0.1,delta)),target_position.x)
+	if(not target_position.y == global_position.y):
+		global_position.y = round_toward(lerp(global_position.y,target_position.y, 1 - pow(0.1,delta)),target_position.y)
 
 func round_toward(value: float, target: float):
 	if (value > target):

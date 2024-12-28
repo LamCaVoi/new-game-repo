@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://Script/level.gd" id="1_rrbkt"]
 [ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="2_4y12d"]
-[ext_resource type="Texture2D" uid="uid://dpdf0jkg6hfc6" path="res://Prototype/Prototype Asset/Touchgrass (1).png" id="3_1a8qc"]
+[ext_resource type="Texture2D" uid="uid://dpdf0jkg6hfc6" path="res://Assets/Touchgrass (1).png" id="3_1a8qc"]
+
 
 
 

@@ -2,3 +2,6 @@ res://Camera/player_camera.tscn
 res://Player/Movement Data/DefaultDataMoveMent.tres
 res://Room/room_area.tscn
 res://Prototype/Prototype5/Prototype5.tscn
+res://Room/room_area.gd
+res://Camera/player_camera.gd
+res://Script/level.gd

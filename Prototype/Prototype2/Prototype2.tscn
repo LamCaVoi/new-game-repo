@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="1_l00s7"]
 [ext_resource type="Script" path="res://Prototype/Prototype2/prototype_2.gd" id="1_qdpov"]
 [ext_resource type="PackedScene" uid="uid://bx40ec1qc8msu" path="res://Scene/kill_zone.tscn" id="2_wv7s6"]
-[ext_resource type="Texture2D" uid="uid://gfildddu5xg7" path="res://Prototype/Prototype Asset/Sprite-0001.png" id="4_vak3t"]
+[ext_resource type="Texture2D" uid="uid://gfildddu5xg7" path="res://Assets/Sprite-0001.png" id="4_vak3t"]
+
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k5bup"]
 

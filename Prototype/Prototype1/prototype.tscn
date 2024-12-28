@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://Prototype/Prototype1/prototype.gd" id="1_viymu"]
 [ext_resource type="PackedScene" uid="uid://cwt2ynums1yd6" path="res://Prototype/Prototype1/disappearing_platform/disappear_platform.tscn" id="2_xqvuo"]
 [ext_resource type="PackedScene" uid="uid://bx40ec1qc8msu" path="res://Scene/kill_zone.tscn" id="3_8dte1"]
-[ext_resource type="Texture2D" uid="uid://gfildddu5xg7" path="res://Prototype/Prototype Asset/Sprite-0001.png" id="4_w4iyh"]
+[ext_resource type="Texture2D" uid="uid://gfildddu5xg7" path="res://Assets/Sprite-0001.png" id="4_w4iyh"]
 [ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="5_88j6j"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w0p3"]
 size = Vector2(179, 15)

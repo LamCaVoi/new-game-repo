@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="1_3iedr"]
 [ext_resource type="Script" path="res://Prototype/Prototype3/prototype_3.gd" id="1_avp74"]
 [ext_resource type="PackedScene" uid="uid://bx40ec1qc8msu" path="res://Scene/kill_zone.tscn" id="3_o18w4"]
-[ext_resource type="Texture2D" uid="uid://gfildddu5xg7" path="res://Prototype/Prototype Asset/Sprite-0001.png" id="4_nuxnw"]
+[ext_resource type="Texture2D" uid="uid://gfildddu5xg7" path="res://Assets/Sprite-0001.png" id="4_nuxnw"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w0p3"]
 size = Vector2(64, 14)
