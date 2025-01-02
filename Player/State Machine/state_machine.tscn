@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://c0psm1iu3pgau"]
+
+[ext_resource type="Script" path="res://Player/State Machine/state_machine.gd" id="1_avkp2"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Idle State/idle.gd" id="2_ahk5q"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Run State/run.gd" id="3_n1cb1"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Fall State/fall.gd" id="4_mbtbx"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Jump State/jump.gd" id="5_5mhxb"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Die State/die.gd" id="6_g3viw"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Dash State/dash.gd" id="7_k6avd"]
+[ext_resource type="PackedScene" uid="uid://b8g7dpl0t6toa" path="res://Player/State Machine/States/Dash State/ghost.tscn" id="8_scud7"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Climb State/climb.gd" id="9_8sw2i"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Wall Jump State/wall_jump.gd" id="10_n3elw"]
+[ext_resource type="Script" path="res://Player/State Machine/States/Wall Slide State/wall_slide.gd" id="11_qbde6"]
+
+[node name="StateMachine" type="Node" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_avkp2")
+initial_state = NodePath("Fall")
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_ahk5q")
+animation_name = "idle"
+
+[node name="Run" type="Node" parent="."]
+script = ExtResource("3_n1cb1")
+animation_name = "run"
+
+[node name="Fall" type="Node" parent="."]
+script = ExtResource("4_mbtbx")
+animation_name = "fall"
+
+[node name="Jump" type="Node" parent="."]
+script = ExtResource("5_5mhxb")
+animation_name = "jump"
+
+[node name="Die" type="Node" parent="."]
+script = ExtResource("6_g3viw")
+animation_name = "die"
+
+[node name="Dash" type="Node" parent="."]
+script = ExtResource("7_k6avd")
+animation_name = "dash"
+
+[node name="Timer" type="Timer" parent="Dash"]
+wait_time = 0.15
+
+[node name="Ghost" parent="Dash" instance=ExtResource("8_scud7")]
+visible = false
+z_index = -10
+
+[node name="Climb" type="Node" parent="."]
+script = ExtResource("9_8sw2i")
+animation_name = "climb"
+
+[node name="Wall Jump" type="Node" parent="."]
+script = ExtResource("10_n3elw")
+
+[node name="Wall Slide" type="Node" parent="."]
+script = ExtResource("11_qbde6")
+
+[connection signal="timeout" from="Dash/Timer" to="Dash" method="add_ghost"]

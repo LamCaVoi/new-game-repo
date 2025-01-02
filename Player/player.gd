@@ -16,6 +16,8 @@ extends CharacterBody2D
 @export var color : Color
 @onready var rect2 : Rect2 = Rect2(x,y,width,height)
 
+const STATE_MACHINE = preload("res://Player/State Machine/state_machine.tscn")
+
 func _ready() -> void:
 	Events.player_colliding_x.connect(state_machine.set_colliding_x)
 	Events.player_colliding_y.connect(state_machine.set_colliding_y)
@@ -25,7 +27,20 @@ func _ready() -> void:
 	state_machine.init(self, animated_sprite, movement_data, movement_input, movement)
 
 func die():
+	velocity = Vector2.ZERO
 	state_machine._transition_to_next_state("Die")
+	Engine.time_scale = 0.5
+	await animated_sprite.animation_finished
+	Engine.time_scale = 1
+	if not Global.curr_spawn_point:
+		get_tree().call_deferred("reload_current_scene")
+		return
+	self.global_position = Global.curr_spawn_point
+	remove_child(state_machine)
+	state_machine = STATE_MACHINE.instantiate()
+	add_child(state_machine)
+	state_machine.init(self, animated_sprite, movement_data, movement_input, movement)
+
 
 func get_current_climb_direction():
 	if(state_machine.state.name == "Climb"):

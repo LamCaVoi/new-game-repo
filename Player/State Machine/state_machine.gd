@@ -26,7 +26,7 @@ func _transition_to_next_state(target_state_path: String) -> void:
 	var previous_state_path := state.name
 	state = get_node(target_state_path)
 	state.enter(previous_state_path)
-	
+
 func _unhandled_input(event: InputEvent) -> void:
 	state.handle_input(event)
 

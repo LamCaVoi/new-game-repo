@@ -1,7 +1,15 @@
-res://Camera/player_camera.tscn
+res://spawn_point.gd
+res://Script/Global Script/Global.gd
+res://Script/spawn_point.tscn
+res://Player/State Machine/States/Die State/die.gd
 res://Player/Movement Data/DefaultDataMoveMent.tres
-res://Room/room_area.tscn
-res://Prototype/Prototype5/Prototype5.tscn
-res://Room/room_area.gd
-res://Camera/player_camera.gd
-res://Script/level.gd
+res://Prototype/Prototype4/Prototype4.tscn
+res://Player/State Machine/state_machine.gd
+res://Camera/player_camera.tscn
+res://Player/player.tscn
+res://Player/player.gd
+res://Player/State Machine/state_machine.tscn
+res://Spawn point/spawn_point.tscn
+res://Prototype/Prototype1/Spikes/spikes.tscn
+res://Solids/solid.tscn
+res://Player/State Machine/States/Wall Jump State/wall_jump.gd

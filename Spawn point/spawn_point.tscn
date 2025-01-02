@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://734cm2vprt34"]
+
+[ext_resource type="Script" path="res://Spawn point/spawn_point.gd" id="1_rcsq7"]
+
+[node name="Spawn Point" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_rcsq7")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

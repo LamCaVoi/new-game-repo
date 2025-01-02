@@ -1,5 +1,5 @@
 extends Player_State
-var input_block_time: float = 0.1
+var input_block_time: float = 0.15
 var buffer_jump_timer: float = -1
 var initil_x_velocity: float = 100
 #Cut the jump velocity in wall jump state plus buffing the lateral movement in this state
@@ -12,6 +12,8 @@ var jump_direction: float
 func handle_input(_event: InputEvent) -> void:
 	if movement_input.wants_jump():
 		wall_direction = movement.find_wall(3)
+		if(input_block_timer > 0 and wall_direction!=jump_direction):
+			return
 		if(wall_direction):
 			finished.emit("Wall Jump")
 		else:
@@ -63,6 +65,6 @@ func switch_case(direction):
 
 func enter(_previous_state_path: String) -> void:
 	jump_direction = wall_direction * -1
-	parent.velocity.x = 30 * jump_direction
+	parent.velocity.x = 50 * jump_direction
 	parent.velocity.y = movement_data.high_jump_velocity * 0.8
 	input_block_timer = input_block_time

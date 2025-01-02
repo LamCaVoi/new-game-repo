@@ -1,6 +1,6 @@
 CollisionShape2D
-Camera2D
 Area2D
+Camera2D
 Polygon2D
 Node
 Movement
