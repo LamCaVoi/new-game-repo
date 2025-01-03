@@ -6,10 +6,6 @@ var buffer_jump_timer: float = 0
 func handle_input(_event: InputEvent) -> void:
 	if movement_input.released_jump() and parent.velocity.y < -100:
 		parent.velocity.y *= movement_data.short_jump_cut
-	elif movement_input.wants_climb():
-		wall_direction = movement.find_wall(1)
-		if wall_direction:
-			finished.emit("Climb")
 	elif movement_input.wants_jump():
 		wall_direction = movement.find_wall()
 		if wall_direction:
@@ -52,13 +48,17 @@ func switch_state(direction):
 			finished.emit("Idle")
 		else:
 			finished.emit("Run")
+	elif movement_input.wants_climb():
+		wall_direction = movement.find_wall(2)
+		if wall_direction and parent.velocity.y > -150:
+			finished.emit("Climb")
 	elif (parent.velocity.y > -100):
 		wall_direction = movement.find_wall(1)
 		if(wall_direction and wall_direction == direction):
 			finished.emit("Wall Slide")
 
 func enter(previous_state_path: String) -> void:
-	super(previous_state_path)
+	animated_sprite.play("jump")
 	if (previous_state_path != "Jump") and (previous_state_path != "Wall Jump"):
 		coyote_timer = movement_data.coyote_time
 	else: 

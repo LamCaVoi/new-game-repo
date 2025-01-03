@@ -17,6 +17,12 @@ extends CharacterBody2D
 @onready var rect2 : Rect2 = Rect2(x,y,width,height)
 
 const STATE_MACHINE = preload("res://Player/State Machine/state_machine.tscn")
+#
+#func _draw() -> void:
+	#draw_rect(rect2,color)
+##
+##func _physics_process(delta: float) -> void:
+	##queue_redraw()
 
 func _ready() -> void:
 	Events.player_colliding_x.connect(state_machine.set_colliding_x)
@@ -35,11 +41,14 @@ func die():
 	if not Global.curr_spawn_point:
 		get_tree().call_deferred("reload_current_scene")
 		return
-	self.global_position = Global.curr_spawn_point
 	remove_child(state_machine)
+	#state_machine.queue_free()
 	state_machine = STATE_MACHINE.instantiate()
 	add_child(state_machine)
 	state_machine.init(self, animated_sprite, movement_data, movement_input, movement)
+	self.global_position = Global.curr_spawn_point.round()
+	await Events.player_enter_room
+	Events.player_respawned.emit()
 
 
 func get_current_climb_direction():

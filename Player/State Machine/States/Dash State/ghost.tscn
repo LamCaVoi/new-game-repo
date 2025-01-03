@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8g7dpl0t6toa"]
 
-[ext_resource type="Texture2D" uid="uid://cpem1qlnborl7" path="res://Assets/knight.png" id="1_30vev"]
+[ext_resource type="Texture2D" uid="uid://3xqpobtfxqug" path="res://madeline (1).png" id="1_rllor"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Dash State/ghost.gd" id="2_nijni"]
-
 
 [node name="Ghost" type="Sprite2D"]
 self_modulate = Color(0.29219, 0.29219, 0.29219, 1)
 show_behind_parent = true
+z_index = -5
 position = Vector2(254, 130)
-texture = ExtResource("1_30vev")
+texture = ExtResource("1_rllor")
 region_enabled = true
-region_rect = Rect2(105, 74, 13, 18)
+region_rect = Rect2(217, 5, 15, 15)
 script = ExtResource("2_nijni")

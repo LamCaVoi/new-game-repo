@@ -1,15 +1,16 @@
-res://spawn_point.gd
-res://Script/Global Script/Global.gd
-res://Script/spawn_point.tscn
-res://Player/State Machine/States/Die State/die.gd
-res://Player/Movement Data/DefaultDataMoveMent.tres
-res://Prototype/Prototype4/Prototype4.tscn
-res://Player/State Machine/state_machine.gd
-res://Camera/player_camera.tscn
 res://Player/player.tscn
-res://Player/player.gd
-res://Player/State Machine/state_machine.tscn
-res://Spawn point/spawn_point.tscn
-res://Prototype/Prototype1/Spikes/spikes.tscn
-res://Solids/solid.tscn
+res://Player/Movement Data/DefaultDataMoveMent.tres
 res://Player/State Machine/States/Wall Jump State/wall_jump.gd
+res://Player/State Machine/state_machine.tscn
+res://Player/State Machine/States/Wall Slide State/wall_slide.gd
+res://Player/player.gd
+res://Player/State Machine/States/Climb State/climb.gd
+res://Player/State Machine/States/Fall State/fall.gd
+res://Player/State Machine/States/Jump State/jump.gd
+res://Player/Movement Input/player_movement_input.gd
+res://Prototype/Prototype5/Prototype5.tscn
+res://Script/Global Script/Events.gd
+res://Camera/player_camera.gd
+res://Camera/player_camera.tscn
+res://Player/State Machine/States/Dash State/ghost.tscn
+res://Player/State Machine/state_machine.gd

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_mkdhu")
-max_x_speed = 110.0
+max_x_speed = 90.0
 acceleration = 900.0
 friction = 1200.0
 max_air_x_speed = 100.0

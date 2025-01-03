@@ -16,6 +16,10 @@
 script = ExtResource("1_avkp2")
 initial_state = NodePath("Fall")
 
+[node name="Fall" type="Node" parent="."]
+script = ExtResource("4_mbtbx")
+animation_name = "fall"
+
 [node name="Idle" type="Node" parent="."]
 script = ExtResource("2_ahk5q")
 animation_name = "idle"
@@ -23,10 +27,6 @@ animation_name = "idle"
 [node name="Run" type="Node" parent="."]
 script = ExtResource("3_n1cb1")
 animation_name = "run"
-
-[node name="Fall" type="Node" parent="."]
-script = ExtResource("4_mbtbx")
-animation_name = "fall"
 
 [node name="Jump" type="Node" parent="."]
 script = ExtResource("5_5mhxb")

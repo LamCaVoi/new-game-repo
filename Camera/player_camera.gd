@@ -30,6 +30,7 @@ func set_camera_zoom(value: Vector2):
 func _ready():
 	Events.player_enter_room.connect(on_player_enter_new_room)
 	Events.player_exit_room.connect(on_player_exit_room)
+	Events.player_respawned.connect(on_player_exit_room)
 	zoom_view_size = view_size * zoom
 	await get_tree().create_timer(0.1).timeout
 
@@ -39,7 +40,7 @@ func on_player_enter_new_room(room_rect: Rect2):
 		is_first_time = false
 		change_room()
 
-func on_player_exit_room(room_center: Vector2):
+func on_player_exit_room(room_center: Vector2 = current_room_rect.position):
 	if(room_center != current_room_rect.position):
 		return
 	if(next_room_rect.position == current_room_rect.position):
