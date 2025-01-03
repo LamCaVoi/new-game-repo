@@ -28,6 +28,7 @@ func timer_update(delta:float):
 func physics_update(delta: float) -> void:
 	timer_update(delta)
 	if timer <= 0 and timer != -1:
+		timer = -1
 		finished.emit("Fall")
 	var dir = movement_input.get_horizontal_input_pressed()
 	apply_gravity(delta, gravity_decrease_by)

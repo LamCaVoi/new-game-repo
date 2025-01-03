@@ -34,10 +34,8 @@ func switch_case(dir: float):
 	if is_colliding_y == 1:
 		finished.emit("Idle")
 	if is_colliding_x == 0:
-		if dir > 0:
-			finished.emit("Run")
-		else:
-			finished.emit("Fall")
+		finished.emit("Fall")
+
 func enter(previous_state_path: String) -> void:
 	if(previous_state_path == "Wall Jump"):
 		jump_block_timer = jump_block_time

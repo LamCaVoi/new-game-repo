@@ -10,19 +10,8 @@ func physics_update(delta: float) -> void:
 	movement.move_x(parent.velocity.x *delta, true)
 	movement.move_y(parent.velocity.y *delta, parent.velocity.y < 0)
 	if dash_duration_timer <=0:
-		switch_state()
-		return
-	
-
-func switch_state():
-	if(is_colliding_y == 1):
-		can_dash = true
-		if(movement_input.get_horizontal_input_pressed() != 0):
-			finished.emit("Run")
-		else:
-			finished.emit("Idle")
-	else:
 		finished.emit("Fall")
+		return
 
 func get_dir():
 	dir = movement_input.get_8_directional_input()
@@ -49,7 +38,6 @@ func add_ghost():
 
 func exit():
 	parent.velocity *= 0.5
-	
 	ghost_timer.stop()
 	
 	

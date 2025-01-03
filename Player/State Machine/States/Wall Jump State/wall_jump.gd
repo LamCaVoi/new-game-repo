@@ -58,6 +58,7 @@ func switch_case(direction):
 func enter(_previous_state_path: String) -> void:
 	animated_sprite.play("jump")
 	jump_direction = wall_direction * -1
+	run(jump_direction)
 	parent.velocity.x = 50 * jump_direction
 	parent.velocity.y = movement_data.high_jump_velocity * 0.8
 	direction_block_timer = direction_block_time

@@ -14,3 +14,5 @@ res://Camera/player_camera.gd
 res://Camera/player_camera.tscn
 res://Player/State Machine/States/Dash State/ghost.tscn
 res://Player/State Machine/state_machine.gd
+res://Prototype/Prototype4/Prototype4.tscn
+res://Player/State Machine/States/Dash State/dash.gd

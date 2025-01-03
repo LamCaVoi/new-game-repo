@@ -10,11 +10,10 @@ func handle_input(_event: InputEvent) -> void:
 		wall_direction = movement.find_wall()
 		if wall_direction:
 			finished.emit("Wall Jump")
-		elif not is_colliding_y == 1:
-			if coyote_timer >= 0:
-				finished.emit("Jump")
-			else:
-				buffer_jump_timer = movement_data.buffer_jump_time
+		elif coyote_timer >= 0:
+			finished.emit("Jump")
+		else:
+			buffer_jump_timer = movement_data.buffer_jump_time
 	elif movement_input.wants_dash() and can_dash:
 		can_dash = false
 		finished.emit("Dash")
@@ -59,7 +58,7 @@ func switch_state(direction):
 
 func enter(previous_state_path: String) -> void:
 	animated_sprite.play("jump")
-	if (previous_state_path != "Jump") and (previous_state_path != "Wall Jump"):
+	if (previous_state_path == "Idle") or (previous_state_path == "Run"):
 		coyote_timer = movement_data.coyote_time
 	else: 
 		coyote_timer = -1
