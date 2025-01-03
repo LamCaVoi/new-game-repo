@@ -1,18 +1,8 @@
-res://Player/player.tscn
-res://Player/Movement Data/DefaultDataMoveMent.tres
-res://Player/State Machine/States/Wall Jump State/wall_jump.gd
-res://Player/State Machine/state_machine.tscn
-res://Player/State Machine/States/Wall Slide State/wall_slide.gd
-res://Player/player.gd
-res://Player/State Machine/States/Climb State/climb.gd
-res://Player/State Machine/States/Fall State/fall.gd
-res://Player/State Machine/States/Jump State/jump.gd
-res://Player/Movement Input/player_movement_input.gd
 res://Prototype/Prototype5/Prototype5.tscn
-res://Script/Global Script/Events.gd
-res://Camera/player_camera.gd
+res://Player/Movement Data/DefaultDataMoveMent.tres
+res://Player/player.tscn
+res://Player/State Machine/state_machine.tscn
 res://Camera/player_camera.tscn
 res://Player/State Machine/States/Dash State/ghost.tscn
-res://Player/State Machine/state_machine.gd
 res://Prototype/Prototype4/Prototype4.tscn
-res://Player/State Machine/States/Dash State/dash.gd
+res://Script/level.gd

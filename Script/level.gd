@@ -54,9 +54,13 @@ func check_horizontal_collision(offset: Vector2i, rect: Rect2 = player_rect, til
 	var dir = sign(offset.x)
 	for y in range(tile_coord.y - vertical_range, tile_coord.y + vertical_range + 1):
 		for x in range (1,horizontal_range + 1):
-			if (not used_cell_dict.has(Vector2i(tile_coord.x + x * dir,y))):
+			var curr_tile_coord: Vector2i = Vector2i(tile_coord.x + x * dir,y)
+			if (not used_cell_dict.has(curr_tile_coord)):
 				continue
-			var tile_rect = Rect2(level_layer.map_to_local(Vector2(tile_coord.x + x * dir,y)) + TILE_SIZE * -0.5, TILE_SIZE)
+			var tile_data :TileData = level_layer.get_cell_tile_data(curr_tile_coord)
+			if (tile_data and tile_data.get_custom_data("can_go_through")):
+				continue
+			var tile_rect = Rect2(level_layer.map_to_local(curr_tile_coord) + TILE_SIZE * -0.5, TILE_SIZE)
 			if intersect(rect,tile_rect,offset):
 				if(is_player):
 					curr_collided_tile_rect = tile_rect
@@ -69,9 +73,13 @@ func check_vertical_collision(offset: Vector2i, rect: Rect2 = player_rect, tile_
 	var dir = sign(offset.y)
 	for x in range(tile_coord.x - horizontal_range, tile_coord.x + horizontal_range + 1):
 		for y in range (1,vertical_range + 1):
-			if (not used_cell_dict.has(Vector2i(x, tile_coord.y + y * dir))):
+			var curr_tile_coord: Vector2i = Vector2i(x, tile_coord.y + y * dir)
+			if (not used_cell_dict.has(curr_tile_coord)):
 				continue
-			var tile_rect = Rect2(level_layer.map_to_local(Vector2(x, tile_coord.y + y * dir)) + TILE_SIZE * -0.5, TILE_SIZE)
+			var tile_data :TileData = level_layer.get_cell_tile_data(curr_tile_coord)
+			if (tile_data and tile_data.get_custom_data("can_go_through").y == sign(offset.y)):
+				continue
+			var tile_rect = Rect2(level_layer.map_to_local(curr_tile_coord) + TILE_SIZE * -0.5, TILE_SIZE)
 			if intersect(rect,tile_rect,offset):
 				if(is_player):
 					curr_collided_tile_rect = tile_rect
