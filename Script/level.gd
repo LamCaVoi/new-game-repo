@@ -4,12 +4,12 @@ class_name Level
 const PLAYER_HORIZONTAL_RANGE = 1
 const PLAYER_VERTICAL_RANGE = 2
 const TILE_SIZE = Vector2(8,8)
+const PLAYER_CAMERA = preload("res://Camera/player_camera.tscn")
 
 @export var player: Player
 @export var level_layer: TileMapLayer
 @export var solids: Array[Solid]
 @export var camera: PlayerCamera
-
 
 var used_cell_dict: Dictionary
 var curr_collided_tile_rect: Rect2
@@ -26,6 +26,15 @@ func _ready() -> void:
 		used_cell_dict[i] = 1
 	Global.curr_level = self
 	camera.player = self.player
+	Events.player_entered_kill_zone.connect(player_respawn)
+
+func player_respawn():
+	player.die()
+	var spawn_point :Vector2 = Global.curr_spawn_point.round()
+	if(not intersect(Rect2(spawn_point,Vector2.ZERO),camera.current_room_rect)):
+		camera.is_first_time = true
+		camera.skip_exit = true
+	player.global_position = spawn_point
 
 func update_player():
 	player_tile = level_layer.local_to_map(to_local(player.global_position))
@@ -55,12 +64,9 @@ func check_horizontal_collision(offset: Vector2i, rect: Rect2 = player_rect, til
 	for y in range(tile_coord.y - vertical_range, tile_coord.y + vertical_range + 1):
 		for x in range (1,horizontal_range + 1):
 			var curr_tile_coord: Vector2i = Vector2i(tile_coord.x + x * dir,y)
-			if (not used_cell_dict.has(curr_tile_coord)):
+			var tile_rect: Rect2 = is_tile_collidable(curr_tile_coord)
+			if not tile_rect:
 				continue
-			var tile_data :TileData = level_layer.get_cell_tile_data(curr_tile_coord)
-			if (tile_data and tile_data.get_custom_data("can_go_through")):
-				continue
-			var tile_rect = Rect2(level_layer.map_to_local(curr_tile_coord) + TILE_SIZE * -0.5, TILE_SIZE)
 			if intersect(rect,tile_rect,offset):
 				if(is_player):
 					curr_collided_tile_rect = tile_rect
@@ -74,12 +80,9 @@ func check_vertical_collision(offset: Vector2i, rect: Rect2 = player_rect, tile_
 	for x in range(tile_coord.x - horizontal_range, tile_coord.x + horizontal_range + 1):
 		for y in range (1,vertical_range + 1):
 			var curr_tile_coord: Vector2i = Vector2i(x, tile_coord.y + y * dir)
-			if (not used_cell_dict.has(curr_tile_coord)):
+			var tile_rect: Rect2 = is_tile_collidable(curr_tile_coord)
+			if not tile_rect:
 				continue
-			var tile_data :TileData = level_layer.get_cell_tile_data(curr_tile_coord)
-			if (tile_data and tile_data.get_custom_data("can_go_through").y == sign(offset.y)):
-				continue
-			var tile_rect = Rect2(level_layer.map_to_local(curr_tile_coord) + TILE_SIZE * -0.5, TILE_SIZE)
 			if intersect(rect,tile_rect,offset):
 				if(is_player):
 					curr_collided_tile_rect = tile_rect
@@ -87,6 +90,16 @@ func check_vertical_collision(offset: Vector2i, rect: Rect2 = player_rect, tile_
 	if(is_player):
 		curr_collided_tile_rect = Rect2(Vector2.ZERO, Vector2.ZERO)
 	return false
+
+func is_tile_collidable(tile_coord:Vector2i,rect: Rect2 = player_rect) -> Rect2:
+	if (not used_cell_dict.has(tile_coord)):
+		return Rect2()
+	var tile_rect = Rect2(level_layer.map_to_local(tile_coord) + TILE_SIZE * -0.5, TILE_SIZE)
+	var tile_data :TileData = level_layer.get_cell_tile_data(tile_coord)
+	if (tile_data and tile_data.get_custom_data("can_go_through")):
+		if ((rect.position.y + rect.size.y) > tile_rect.position.y):
+			return Rect2()
+	return tile_rect
 
 func check_player_solids_intersection(offset: Vector2i = Vector2i.ZERO)->bool:
 	for solid in solids:
@@ -99,20 +112,22 @@ func find_wall(x_offset_amount) -> int:
 	player_rect.position += Vector2(0, player_rect.size.y * 0.5)
 	player_rect.size.y *= 0.5
 	for direction in range(-1,2,2):
-		if check_player_solids_intersection(Vector2(direction * x_offset_amount, 0)):
+		var offset = Vector2(direction * x_offset_amount, 0)
+		if check_player_solids_intersection(offset):
 			return direction
 		var position : Vector2 = Vector2.ZERO
 		var size : Vector2 = Vector2.ZERO
 		for y in range (0,2):
-			if (used_cell_dict.has(Vector2i(player_tile.x + direction, player_tile.y + y))):
+			var curr_coord = Vector2i(player_tile.x + direction, player_tile.y + y)
+			if (is_tile_collidable(curr_coord)):
 				if size == Vector2.ZERO:
-					position = level_layer.map_to_local(Vector2(player_tile.x + direction, player_tile.y + y)) + TILE_SIZE * -0.5
+					position = level_layer.map_to_local(curr_coord) + TILE_SIZE * -0.5
 				size.y += TILE_SIZE.y
 		if size == Vector2.ZERO:
 			continue
 		size.x = TILE_SIZE.x
 		var tile_rect = Rect2(position, size)
-		if (intersect(player_rect,tile_rect,Vector2(direction * x_offset_amount, 0))):
+		if (intersect(player_rect,tile_rect,offset)):
 			return direction
 	return 0
 
@@ -173,3 +188,4 @@ func intersect(rect1: Rect2, rect2: Rect2, offset_rect1: Vector2i = Vector2i.ZER
 	and rect1.position.x + rect1.size.x  + offset_rect1.x > rect2.position.x + offset_rect2.x
 	and rect1.position.y  + offset_rect1.y < rect2.position.y + rect2.size.y + offset_rect2.y
 	and rect1.position.y + rect1.size.y  + offset_rect1.y > rect2.position.y + offset_rect2.y)
+	

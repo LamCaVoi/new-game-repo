@@ -1,8 +1,17 @@
-res://Prototype/Prototype5/Prototype5.tscn
-res://Player/Movement Data/DefaultDataMoveMent.tres
 res://Player/player.tscn
+res://Player/Movement Data/DefaultDataMoveMent.tres
+res://Script/level.gd
 res://Player/State Machine/state_machine.tscn
+res://Prototype/Prototype5/Prototype5.tscn
 res://Camera/player_camera.tscn
 res://Player/State Machine/States/Dash State/ghost.tscn
 res://Prototype/Prototype4/Prototype4.tscn
-res://Script/level.gd
+res://Script/Movement Script/pixel_perfect_movement.gd
+res://Script/Global Script/Events.gd
+res://Player/player.gd
+res://Camera/player_camera.gd
+res://Player/State Machine/player_state.gd
+res://Player/State Machine/state_machine.gd
+res://Player/State Machine/States/Die State/die.gd
+res://Room/room_area.gd
+res://Player/State Machine/States/Wall Slide State/wall_slide.gd

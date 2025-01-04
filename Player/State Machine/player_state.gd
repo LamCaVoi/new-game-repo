@@ -14,7 +14,6 @@ static var is_colliding_x : int = 0
 static var is_colliding_y : int = 0
 static var wall_direction : int = 0
 
-
 ## Called by the state machine when receiving unhandled input events.
 func handle_input(_event: InputEvent) -> void:
 	pass
@@ -31,6 +30,7 @@ func physics_update(_delta: float) -> void:
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(previous_state_path: String) -> void:
 	animated_sprite.play(animation_name)
+	await animated_sprite.animation_finished
 
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.
@@ -49,3 +49,9 @@ func apply_gravity(delta: float, decrease_by : float = 1.0):
 func run(direction):
 	if not direction == 0:
 		animated_sprite.flip_h = direction < 0
+
+func reset():
+	can_dash = false
+	is_colliding_x = 0
+	is_colliding_y = 0
+	wall_direction = 0

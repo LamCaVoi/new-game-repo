@@ -15,6 +15,7 @@ var current_room_rect: Rect2
 var next_room_rect: Rect2
 var tween: Tween
 var is_first_time: bool = true
+var skip_exit: bool = false
 var left: float
 var right: float
 var top: float
@@ -30,7 +31,6 @@ func set_camera_zoom(value: Vector2):
 func _ready():
 	Events.player_enter_room.connect(on_player_enter_new_room)
 	Events.player_exit_room.connect(on_player_exit_room)
-	Events.player_respawned.connect(on_player_exit_room)
 	zoom_view_size = view_size * zoom
 	await get_tree().create_timer(0.1).timeout
 
@@ -38,10 +38,14 @@ func on_player_enter_new_room(room_rect: Rect2):
 	next_room_rect = room_rect
 	if (is_first_time):
 		is_first_time = false
-		change_room()
+		var target_position = change_room()
+		start_camera_transition(target_position)
 
-func on_player_exit_room(room_center: Vector2 = current_room_rect.position):
-	if(room_center != current_room_rect.position):
+func on_player_exit_room(room_top_left: Vector2 = current_room_rect.position):
+	if(skip_exit):
+		skip_exit = false
+		return
+	if(room_top_left != current_room_rect.position):
 		return
 	if(next_room_rect.position == current_room_rect.position):
 		return
@@ -85,20 +89,25 @@ func calculate_target_position(offset: int = 0):
 	return target_position
 
 func change_camera_margin(room_rect: Rect2):
-	var x_margin = (room_rect.size.x - zoom_view_size.x)/2
-	var y_margin = (room_rect.size.y - zoom_view_size.y)/2
+	var rect : Rect2 = change_rect_position_to_center(room_rect)
+	var x_margin = (rect.size.x - zoom_view_size.x)/2
+	var y_margin = (rect.size.y - zoom_view_size.y)/2
 	if(x_margin <= 0):
-		left = room_rect.position.x
-		right = room_rect.position.x
+		left = rect.position.x
+		right = rect.position.x
 	else:
-		left = room_rect.position.x - x_margin
-		right = room_rect.position.x + x_margin
+		left = rect.position.x - x_margin
+		right = rect.position.x + x_margin
 	if (y_margin <= 0):
-		top = room_rect.position.y
-		bottom = room_rect.position.y
+		top = rect.position.y
+		bottom = rect.position.y
 	else: 
-		top = room_rect.position.y - y_margin
-		bottom = room_rect.position.y + y_margin
+		top = rect.position.y - y_margin
+		bottom = rect.position.y + y_margin
+
+func change_rect_position_to_center(rect: Rect2):
+	rect.position += Vector2(rect.size.x * 0.5, rect.size.y * 0.5)
+	return rect
 
 func start_camera_transition(target_position: Vector2):
 	if(tween):

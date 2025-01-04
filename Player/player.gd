@@ -15,9 +15,10 @@ extends CharacterBody2D
 @export var y : int = 0
 @export var color : Color
 @onready var rect2 : Rect2 = Rect2(x,y,width,height)
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 const STATE_MACHINE = preload("res://Player/State Machine/state_machine.tscn")
-#
+
 #func _draw() -> void:
 	#draw_rect(rect2,color)
 ##
@@ -27,7 +28,6 @@ const STATE_MACHINE = preload("res://Player/State Machine/state_machine.tscn")
 func _ready() -> void:
 	Events.player_colliding_x.connect(state_machine.set_colliding_x)
 	Events.player_colliding_y.connect(state_machine.set_colliding_y)
-	Events.player_entered_kill_zone.connect(die)
 	movement_data.init()
 	movement.init(self)
 	state_machine.init(self, animated_sprite, movement_data, movement_input, movement)
@@ -35,24 +35,13 @@ func _ready() -> void:
 func die():
 	velocity = Vector2.ZERO
 	state_machine._transition_to_next_state("Die")
-	Engine.time_scale = 0.5
-	await animated_sprite.animation_finished
-	Engine.time_scale = 1
 	if not Global.curr_spawn_point:
 		get_tree().call_deferred("reload_current_scene")
 		return
-	remove_child(state_machine)
-	#state_machine.queue_free()
-	state_machine = STATE_MACHINE.instantiate()
-	add_child(state_machine)
-	state_machine.init(self, animated_sprite, movement_data, movement_input, movement)
-	self.global_position = Global.curr_spawn_point.round()
-	await Events.player_enter_room
-	Events.player_respawned.emit()
-
+	state_machine._transition_to_next_state(state_machine.initial_state.name)
 
 func get_current_climb_direction():
-	if(state_machine.state.name == "Climb"):
+	if(state_machine.state.name == "Climb" or state_machine.state.name == "Wall Jump"):
 		return state_machine.state.wall_direction
 	return 0
 	

@@ -51,11 +51,10 @@ size = Vector2(1184, 200)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vkstf"]
 size = Vector2(135.5, 10)
 
-[node name="Prototype5" type="Node2D" node_paths=PackedStringArray("player", "level_layer", "solids", "camera")]
+[node name="Prototype5" type="Node2D" node_paths=PackedStringArray("player", "level_layer", "camera")]
 script = ExtResource("1_jrftt")
 player = NodePath("Player")
 level_layer = NodePath("LevelTileMapLayer")
-solids = [NodePath("Solids/Solid")]
 camera = NodePath("Camera2D")
 
 [node name="LevelTileMapLayer" type="TileMapLayer" parent="."]

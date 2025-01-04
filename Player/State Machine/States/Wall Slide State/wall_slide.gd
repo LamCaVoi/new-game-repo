@@ -4,7 +4,7 @@ extends Player_State
 @export_range(0,1) var gravity_decrease_by: float = 0.5
 @export_range(0,1) var max_velocity_y_decrease_by: float = 0.5
 @export_range(0,1) var wait_time: float = 0.1
-@export var jump_block_time: float = 0.1
+@export var jump_block_time: float = 0
 var jump_block_timer: float
 var timer:float = -1
 

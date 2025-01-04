@@ -17,7 +17,8 @@ func move_x(amount: float) -> void:
 
 func _move_x_exact(move: float):
 	var step : int = sign(move)
-	pass
+	while(step):
+		step-=1
 
 func move_y(amount: float):
 	remainder.y += amount
@@ -29,7 +30,8 @@ func move_y(amount: float):
 
 func _move_y_exact(move: float):
 	var step : int = sign(move)
-	pass
+	while(step):
+		step-=1
 
 func zero_remainder_x():
 	remainder.x = 0
