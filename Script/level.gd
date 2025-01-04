@@ -8,9 +8,9 @@ const PLAYER_CAMERA = preload("res://Camera/player_camera.tscn")
 
 @export var player: Player
 @export var level_layer: TileMapLayer
-@export var solids: Array[Solid]
 @export var camera: PlayerCamera
 
+var solids: Array[Node]
 var used_cell_dict: Dictionary
 var curr_collided_tile_rect: Rect2
 var edge_detected : bool = false
@@ -27,9 +27,12 @@ func _ready() -> void:
 	Global.curr_level = self
 	camera.player = self.player
 	Events.player_entered_kill_zone.connect(player_respawn)
+	solids = find_children("*", "Solid")
 
 func player_respawn():
-	player.die()
+	Engine.time_scale = 0.5
+	await player.die()
+	Engine.time_scale = 1
 	var spawn_point :Vector2 = Global.curr_spawn_point.round()
 	if(not intersect(Rect2(spawn_point,Vector2.ZERO),camera.current_room_rect)):
 		camera.is_first_time = true
@@ -102,15 +105,17 @@ func is_tile_collidable(tile_coord:Vector2i,rect: Rect2 = player_rect) -> Rect2:
 	return tile_rect
 
 func check_player_solids_intersection(offset: Vector2i = Vector2i.ZERO)->bool:
-	for solid in solids:
-		if intersect(player_rect,Rect2(solid.get_rect().position + solid.global_position, solid.get_rect().size),offset):
+	for solid: Solid in solids:
+		var rect : Rect2 = solid.get_rect()
+		rect.position += solid.global_position
+		if intersect(player_rect,rect,offset):
 			return true
 	return false
 
-func find_wall(x_offset_amount) -> int:
+func find_wall(x_offset_amount, time_player_rect_area_by) -> int:
 	update_player()
-	player_rect.position += Vector2(0, player_rect.size.y * 0.5)
-	player_rect.size.y *= 0.5
+	player_rect.position += Vector2(0, player_rect.size.y * (1 - time_player_rect_area_by))
+	player_rect.size.y *= time_player_rect_area_by
 	for direction in range(-1,2,2):
 		var offset = Vector2(direction * x_offset_amount, 0)
 		if check_player_solids_intersection(offset):
@@ -170,7 +175,7 @@ func check_solid_intersection(solid: Solid, solid_offset: Vector2):
 	if(intersect(solid_rect, player_rect, solid_offset, player_offset)):
 		if(check_player_tiles_intersection(solid_offset)):
 			if(not player_rect.position.y + player.height - 1 == solid_rect.position.y):
-				player.die()
+				Events.emit_signal("player_entered_kill_zone")
 			has_collision = true
 		if(has_collision):
 			return

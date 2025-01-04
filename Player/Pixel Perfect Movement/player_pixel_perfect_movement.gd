@@ -50,7 +50,7 @@ func zero_remainder_x():
 func zero_remainder_y():
 	remainder.y = 0
 
-func find_wall(x_offset_amount: int = 3) -> int:
+func find_wall(x_offset_amount: int = 3, time_player_rect_area_by: float = 0.5) -> int:
 	if(x_offset_amount == 0):
 		printerr("you fucking stupid!!")
-	return Global.curr_level.find_wall(x_offset_amount)
+	return Global.curr_level.find_wall(x_offset_amount, time_player_rect_area_by)

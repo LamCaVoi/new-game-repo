@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bx40ec1qc8msu" path="res://Scene/kill_zone.tscn" id="3_od22t"]
 [ext_resource type="Texture2D" uid="uid://dyqotk7g4oqu1" path="res://Assets/Sprite-0002.png" id="4_b3dam"]
 [ext_resource type="PackedScene" uid="uid://clkj7d8rxfflj" path="res://Camera/player_camera.tscn" id="6_ctdy4"]
-[ext_resource type="PackedScene" uid="uid://cpo678hx8k7ka" path="res://Prototype/Prototype1/Spikes/spikes.tscn" id="6_m2j06"]
 [ext_resource type="PackedScene" uid="uid://734cm2vprt34" path="res://Spawn point/spawn_point.tscn" id="7_ebikg"]
 [ext_resource type="PackedScene" uid="uid://bfs3o71djarrt" path="res://Room/room_area.tscn" id="8_7w3hb"]
+[ext_resource type="PackedScene" uid="uid://cyobaq8o2dfum" path="res://Solids/solid.tscn" id="10_w2smy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hiqc8"]
 texture = ExtResource("1_wnrm4")
@@ -74,7 +74,7 @@ size = Vector2(32, 15)
 size = Vector2(320, 184)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7n42"]
-size = Vector2(320, 176)
+size = Vector2(336, 176)
 
 [node name="Prototype4" type="Node2D" node_paths=PackedStringArray("player", "level_layer", "camera")]
 script = ExtResource("1_hs0dq")
@@ -118,7 +118,7 @@ shape = SubResource("RectangleShape2D_5w0p3")
 debug_color = Color(0.998407, 0, 0.142817, 0.42)
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(101, -176.5)
+position = Vector2(121, -152.5)
 shape = SubResource("RectangleShape2D_5w0p3")
 debug_color = Color(0.998407, 0, 0.142817, 0.42)
 
@@ -151,8 +151,6 @@ region_rect = Rect2(1, 0, 48, 8)
 position = Vector2(-11, 2.5)
 shape = SubResource("RectangleShape2D_y744a")
 
-[node name="Spikes" parent="Spikes5/Spikes2" instance=ExtResource("6_m2j06")]
-
 [node name="Spikes3" type="StaticBody2D" parent="Spikes5"]
 position = Vector2(83, 44)
 
@@ -182,7 +180,7 @@ position = Vector2(-23, 2.5)
 shape = SubResource("RectangleShape2D_gdcst")
 
 [node name="Spikes5" type="StaticBody2D" parent="Spikes5"]
-position = Vector2(224, -100)
+position = Vector2(244, -76)
 
 [node name="Sprite2D" type="Sprite2D" parent="Spikes5/Spikes5"]
 position = Vector2(-23, 1)
@@ -196,6 +194,7 @@ position = Vector2(-23, 2.5)
 shape = SubResource("RectangleShape2D_gdcst")
 
 [node name="Camera2D" parent="." instance=ExtResource("6_ctdy4")]
+player_anchor = 0
 
 [node name="Spawn Point" parent="." instance=ExtResource("7_ebikg")]
 
@@ -220,3 +219,8 @@ shape = SubResource("RectangleShape2D_6yufb")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Room area"]
 position = Vector2(248, -176)
 shape = SubResource("RectangleShape2D_c7n42")
+
+[node name="Solid" parent="." instance=ExtResource("10_w2smy")]
+position = Vector2(394, -132)
+time = Array[float]([2.0])
+keyframes = Array[Vector2]([Vector2(136, -132), Vector2(394, -132)])

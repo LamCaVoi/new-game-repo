@@ -30,7 +30,6 @@ func physics_update(_delta: float) -> void:
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(previous_state_path: String) -> void:
 	animated_sprite.play(animation_name)
-	await animated_sprite.animation_finished
 
 ## Called by the state machine before changing the active state. Use this function
 ## to clean up the state.

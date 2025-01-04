@@ -34,7 +34,7 @@ func _ready() -> void:
 
 func die():
 	velocity = Vector2.ZERO
-	state_machine._transition_to_next_state("Die")
+	await state_machine._transition_to_next_state("Die")
 	if not Global.curr_spawn_point:
 		get_tree().call_deferred("reload_current_scene")
 		return

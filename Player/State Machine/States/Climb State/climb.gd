@@ -26,7 +26,7 @@ func physics_update(delta: float):
 	else:
 		animated_sprite.play("hold")
 	parent.velocity.y = dir * movement_data.climb_speed
-	movement.move_x(wall_direction)
+	movement.move_x(wall_direction * 2)
 	movement.move_y(parent.velocity.y * delta)
 	switch_case(dir)
 

@@ -1,12 +1,11 @@
-extends Sprite2D
+extends Node2D
 class_name Solid
 
-@export var color :Color
 ## the time it takes in second to reach the next keyframe
 @export var time: Array[float] = [1]
 @export var keyframes: Array[Vector2]
-@onready var movement: SolidMovement = $PixelPerfectMovement
-
+@onready var movement: SolidMovement = $Movement
+@onready var solid: Sprite2D = $Solid
 
 var rect: Rect2
 var curr_keyframe : int
@@ -40,3 +39,6 @@ func _physics_process(delta: float) -> void:
 		curr_keyframe = next_keyframe
 		next_keyframe = (curr_keyframe + 1)%keyframes.size()
 		update_speed()
+
+func get_rect():
+	return solid.get_rect()
