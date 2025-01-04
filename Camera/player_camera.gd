@@ -1,6 +1,8 @@
 extends Camera2D
 class_name PlayerCamera
 
+enum CAMERA_ANCHOR{LEFT = -1, CENTER, RIGHT}
+
 @export var smoothing: float = 0.8
 @export var zoom_view_size: Vector2
 @onready var view_size: Vector2 = get_viewport_rect().size
@@ -8,7 +10,8 @@ class_name PlayerCamera
 @export var look_ahead_distance: float = 30.0
 #The width and height of the death zone
 @export var deathzone: Vector2 = Vector2(20,20)
-@export_enum("Left:-1","Center:0", "Right:1") var player_anchor: int = -1
+
+@export var player_anchor: CAMERA_ANCHOR = CAMERA_ANCHOR.CENTER
 
 var look_ahead_offset: float = 0
 var current_room_rect: Rect2

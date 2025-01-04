@@ -11,3 +11,6 @@ res://Player/player.gd
 res://Player/State Machine/state_machine.gd
 res://Player/State Machine/States/Climb State/climb.gd
 res://Player/Pixel Perfect Movement/player_pixel_perfect_movement.gd
+res://Camera/player_camera.gd
+res://Solids/solid_pixel_perfect_movement.gd
+res://Player/State Machine/States/Wall Slide State/wall_slide.gd

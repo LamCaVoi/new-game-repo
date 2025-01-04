@@ -109,6 +109,8 @@ func check_player_solids_intersection(offset: Vector2i = Vector2i.ZERO)->bool:
 		var rect : Rect2 = solid.get_rect()
 		rect.position += solid.global_position
 		if intersect(player_rect,rect,offset):
+			if (player_rect.position.y + player_rect.size.y == rect.position.y or player.get_current_climb_direction()):
+				solid.player_collide.emit()
 			return true
 	return false
 
@@ -167,7 +169,7 @@ func find_tile_edge_y(offset: Vector2) -> Vector2:
 			return Vector2(dir * i, offset.y)
 	return Vector2.ZERO
 
-func check_solid_intersection(solid: Solid, solid_offset: Vector2):
+func solid_interact_player(solid: Solid, solid_offset: Vector2):
 	update_player()
 	var solid_rect = get_solid_rect(solid)
 	var has_collision: bool= false

@@ -74,7 +74,7 @@ size = Vector2(32, 15)
 size = Vector2(320, 184)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7n42"]
-size = Vector2(336, 176)
+size = Vector2(320, 176)
 
 [node name="Prototype4" type="Node2D" node_paths=PackedStringArray("player", "level_layer", "camera")]
 script = ExtResource("1_hs0dq")
@@ -87,7 +87,7 @@ tile_map_data = PackedByteArray("AADw/wcAAQAEAAcAAAD3/woAAQAEAAQAAAD4/woAAQACAAQ
 tile_set = SubResource("TileSet_1o0ei")
 
 [node name="Player" parent="." instance=ExtResource("2_ws023")]
-position = Vector2(-137, 49)
+position = Vector2(104, -112)
 
 [node name="KillZone" parent="." instance=ExtResource("3_od22t")]
 position = Vector2(100, 78.5)
@@ -194,7 +194,6 @@ position = Vector2(-23, 2.5)
 shape = SubResource("RectangleShape2D_gdcst")
 
 [node name="Camera2D" parent="." instance=ExtResource("6_ctdy4")]
-player_anchor = 0
 
 [node name="Spawn Point" parent="." instance=ExtResource("7_ebikg")]
 
@@ -221,6 +220,5 @@ position = Vector2(248, -176)
 shape = SubResource("RectangleShape2D_c7n42")
 
 [node name="Solid" parent="." instance=ExtResource("10_w2smy")]
-position = Vector2(394, -132)
-time = Array[float]([2.0])
-keyframes = Array[Vector2]([Vector2(136, -132), Vector2(394, -132)])
+position = Vector2(378, -126)
+target = Vector2(128, -126)
