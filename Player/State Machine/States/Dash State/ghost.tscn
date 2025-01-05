@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8g7dpl0t6toa"]
 
-[ext_resource type="Texture2D" uid="uid://3xqpobtfxqug" path="res://madeline (1).png" id="1_rllor"]
+[ext_resource type="Texture2D" uid="uid://3xqpobtfxqug" path="res://Assets/Madeline/madeline (1).png" id="1_rllor"]
 [ext_resource type="Script" path="res://Player/State Machine/States/Dash State/ghost.gd" id="2_nijni"]
+
 
 [node name="Ghost" type="Sprite2D"]
 self_modulate = Color(0.29219, 0.29219, 0.29219, 1)

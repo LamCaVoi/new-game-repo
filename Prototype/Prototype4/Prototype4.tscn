@@ -87,7 +87,7 @@ tile_map_data = PackedByteArray("AADw/wcAAQAEAAcAAAD3/woAAQAEAAQAAAD4/woAAQACAAQ
 tile_set = SubResource("TileSet_1o0ei")
 
 [node name="Player" parent="." instance=ExtResource("2_ws023")]
-position = Vector2(104, -112)
+position = Vector2(-136, 16)
 
 [node name="KillZone" parent="." instance=ExtResource("3_od22t")]
 position = Vector2(100, 78.5)
@@ -222,3 +222,7 @@ shape = SubResource("RectangleShape2D_c7n42")
 [node name="Solid" parent="." instance=ExtResource("10_w2smy")]
 position = Vector2(378, -126)
 target = Vector2(128, -126)
+
+[node name="Solid2" parent="." instance=ExtResource("10_w2smy")]
+position = Vector2(105, -112)
+target = Vector2(105, -248)

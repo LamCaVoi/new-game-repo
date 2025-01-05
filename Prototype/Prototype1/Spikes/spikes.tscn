@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpo678hx8k7ka"]
-
-[ext_resource type="Texture2D" uid="uid://dyqotk7g4oqu1" path="res://Assets/Sprite-0002.png" id="2_p5xcq"]
-
-[node name="Spikes" type="StaticBody2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1, 0.75)
-texture = ExtResource("2_p5xcq")

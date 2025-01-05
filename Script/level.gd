@@ -18,8 +18,9 @@ var player_tile : Vector2i
 var player_rect : Rect2 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Reset"):
-		get_tree().reload_current_scene()
+	if event is InputEventKey:
+		if event.is_action_pressed("Reset"):
+			get_tree().reload_current_scene()
 
 func _ready() -> void:
 	for i in level_layer.get_used_cells():
@@ -109,7 +110,7 @@ func check_player_solids_intersection(offset: Vector2i = Vector2i.ZERO)->bool:
 		var rect : Rect2 = solid.get_rect()
 		rect.position += solid.global_position
 		if intersect(player_rect,rect,offset):
-			if (player_rect.position.y + player_rect.size.y == rect.position.y or player.get_current_climb_direction()):
+			if (player_rect.position.y + player_rect.size.y == rect.position.y or player.is_climbing()):
 				solid.player_collide.emit()
 			return true
 	return false
@@ -173,15 +174,20 @@ func solid_interact_player(solid: Solid, solid_offset: Vector2):
 	update_player()
 	var solid_rect = get_solid_rect(solid)
 	var has_collision: bool= false
-	var player_offset: Vector2 = Vector2(player.get_current_climb_direction(), 0)
+	var player_offset: Vector2 = Vector2(player.get_current_climb_direction() * 3, 0)
+	var extra :Vector2 = Vector2.ZERO
+	if(solid_offset.y > 0):
+		solid_rect.size.y += solid_offset.y
+		extra.y = solid_offset.y
+		solid_offset.y = 0
 	if(intersect(solid_rect, player_rect, solid_offset, player_offset)):
-		if(check_player_tiles_intersection(solid_offset)):
+		if(check_player_tiles_intersection(solid_offset + extra)):
 			if(not player_rect.position.y + player.height - 1 == solid_rect.position.y):
 				Events.emit_signal("player_entered_kill_zone")
 			has_collision = true
 		if(has_collision):
 			return
-		player.global_position += solid_offset
+		player.global_position += solid_offset + extra
 
 func get_solid_rect(solid: Solid)-> Rect2:
 	var solid_rect = solid.get_rect()

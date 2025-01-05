@@ -3,11 +3,12 @@
 [ext_resource type="Script" path="res://Script/level.gd" id="1_6i4es"]
 [ext_resource type="PackedScene" uid="uid://wmdmlqp0lxn4" path="res://Player/player.tscn" id="2_wdydy"]
 [ext_resource type="PackedScene" uid="uid://clkj7d8rxfflj" path="res://Camera/player_camera.tscn" id="3_x2x17"]
-[ext_resource type="Texture2D" uid="uid://cuxcao1qa15f3" path="res://Assets/tilesets/snow.png" id="4_0vm53"]
+[ext_resource type="Texture2D" uid="uid://cuxcao1qa15f3" path="res://Assets/Tilesets/snow.png" id="4_0vm53"]
 [ext_resource type="PackedScene" uid="uid://734cm2vprt34" path="res://Spawn point/spawn_point.tscn" id="5_o1c0c"]
 [ext_resource type="PackedScene" uid="uid://bfs3o71djarrt" path="res://Room/room_area.tscn" id="6_68xwq"]
 [ext_resource type="PackedScene" uid="uid://cyobaq8o2dfum" path="res://Solids/solid.tscn" id="7_gjurd"]
 [ext_resource type="PackedScene" uid="uid://cpo678hx8k7ka" path="res://Prototype/Prototype1/Spikes/spikes.tscn" id="8_h07sw"]
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n14nv"]
 texture = ExtResource("4_0vm53")

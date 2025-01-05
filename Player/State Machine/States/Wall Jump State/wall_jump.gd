@@ -1,11 +1,10 @@
 extends Player_State
-var direction_block_time: float = 0.15
-var buffer_jump_timer: float = -1
-var initil_x_velocity: float = 100
+@export var direction_block_time: float = 0.15
+@export var buffer_jump_timer: float = -1
+@export var init_x_velocity: int = 20
 #Cut the jump velocity in wall jump state plus buffing the lateral movement in this state
-var jump_cut: float = 0.8
+@export var jump_cut: float = 0.8
 var direction_block_timer: float
-var wall_jump_gravity: float
 var jump_direction: float
 
 
@@ -21,7 +20,7 @@ func timer_update(delta):
 		
 func apply_wall_jump_speed(direction: int, delta: float):
 	apply_gravity(delta)
-	parent.velocity.x = lerp(parent.velocity.x, direction * (movement_data.max_air_x_speed + 30), 1 - exp(-movement_data.velocity_x_lerp_speed * delta))
+	parent.velocity.x = lerp(parent.velocity.x, direction * (movement_data.max_air_x_speed + init_x_velocity), 1 - exp(-movement_data.velocity_x_lerp_speed * delta))
 
 func physics_update(delta: float) -> void:
 	timer_update(delta)
@@ -38,6 +37,8 @@ func physics_update(delta: float) -> void:
 	switch_case(direction)
 
 func switch_case(direction):
+	if(direction_block_timer > 0):
+		return
 	if (is_colliding_y == 1):
 		if buffer_jump_timer > 0:
 			buffer_jump_timer = -1 
@@ -59,6 +60,6 @@ func enter(_previous_state_path: String) -> void:
 	animated_sprite.play("jump")
 	jump_direction = wall_direction * -1
 	run(jump_direction)
-	parent.velocity.x = 50 * jump_direction
+	parent.velocity.x = init_x_velocity * jump_direction
 	parent.velocity.y = movement_data.high_jump_velocity * 0.8
 	direction_block_timer = direction_block_time

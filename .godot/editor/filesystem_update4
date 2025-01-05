@@ -1,16 +1,12 @@
 res://Player/player.tscn
 res://Player/Movement Data/DefaultDataMoveMent.tres
-res://Player/State Machine/state_machine.tscn
-res://Prototype/Prototype4/Prototype4.tscn
 res://Solids/solid.tscn
-res://Solids/solid.gd
+res://Prototype/Prototype4/Prototype4.tscn
+res://Player/State Machine/state_machine.tscn
 res://Script/level.gd
-res://Player/State Machine/States/Die State/die.gd
-res://Player/State Machine/player_state.gd
-res://Player/player.gd
-res://Player/State Machine/state_machine.gd
 res://Player/State Machine/States/Climb State/climb.gd
-res://Player/Pixel Perfect Movement/player_pixel_perfect_movement.gd
-res://Camera/player_camera.gd
-res://Solids/solid_pixel_perfect_movement.gd
 res://Player/State Machine/States/Wall Slide State/wall_slide.gd
+res://Tilemap/Tilemap.tscn
+res://Camera/player_camera.tscn
+res://Player/State Machine/state_machine.gd
+res://Player/State Machine/States/Wall Jump State/wall_jump.gd

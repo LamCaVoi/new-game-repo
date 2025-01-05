@@ -1,9 +1,10 @@
+res://Player
+res://Assets/Tilesets/Chapter 1
 res://
 res://Solids
 res://Scene
 res://Script
 res://Prototype/Prototype5
-res://Player
 res://Prototype/Prototype6
 res://Player/State Machine/States
 res://Player/Movement Data
