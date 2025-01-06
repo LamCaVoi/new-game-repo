@@ -220,7 +220,7 @@ position = Vector2(248, -176)
 shape = SubResource("RectangleShape2D_c7n42")
 
 [node name="Solid" parent="." instance=ExtResource("10_w2smy")]
-position = Vector2(378, -126)
+position = Vector2(390, -126)
 target = Vector2(128, -126)
 
 [node name="Solid2" parent="." instance=ExtResource("10_w2smy")]

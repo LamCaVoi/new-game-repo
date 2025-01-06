@@ -41,7 +41,7 @@ func die():
 	state_machine._transition_to_next_state(state_machine.initial_state.name)
 
 func get_current_climb_direction():
-	if(state_machine.state.name == "Climb" or state_machine.state.name == "Wall Jump"):
+	if(state_machine.state.name == "Climb" or state_machine.state.name == "Wall Slide"):
 		return state_machine.state.wall_direction
 	return 0
 

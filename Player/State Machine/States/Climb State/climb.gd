@@ -21,7 +21,7 @@ func physics_update(delta: float):
 	switch_case(dir)
 
 func exit():
-	movement.move_x(3 * wall_direction)
+	movement.move_x(2 * wall_direction)
 
 func switch_case(dir: float):
 	if is_colliding_y == 1:
