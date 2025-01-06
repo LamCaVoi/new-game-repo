@@ -3,6 +3,7 @@ res://Player/Movement Data/DefaultDataMoveMent.tres
 res://Prototype/Prototype4/Prototype4.tscn
 res://Player/player.tscn
 res://Player/State Machine/state_machine.tscn
-res://Player/State Machine/States/Climb State/climb.gd
 res://Player/State Machine/States/Fall State/fall.gd
-res://Player/player.gd
+res://Player/State Machine/States/Wall Slide State/wall_slide.gd
+res://Player/State Machine/player_state.gd
+res://Player/State Machine/States/Wall Jump State/wall_jump.gd

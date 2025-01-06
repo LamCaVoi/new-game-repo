@@ -52,7 +52,7 @@ func switch_state(direction):
 		if wall_direction and parent.velocity.y > -150:
 			finished.emit("Climb")
 	elif (parent.velocity.y > -100):
-		wall_direction = movement.find_wall(2)
+		wall_direction = movement.find_wall(2,1.0)
 		if(wall_direction and wall_direction == direction):
 			finished.emit("Wall Slide")
 
