@@ -57,6 +57,7 @@ func switch_state(direction):
 			finished.emit("Wall Slide")
 
 func enter(previous_state_path: String) -> void:
+	momentum = Vector2.ZERO
 	animated_sprite.play("jump")
 	if (previous_state_path == "Idle") or (previous_state_path == "Run"):
 		coyote_timer = movement_data.coyote_time

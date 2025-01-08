@@ -13,6 +13,7 @@ static var can_dash = false
 static var is_colliding_x : int = 0
 static var is_colliding_y : int = 0
 static var wall_direction : int = 0
+static var momentum: Vector2 = Vector2.ZERO
 
 ## Called by the state machine when receiving unhandled input events.
 func handle_input(_event: InputEvent) -> void:

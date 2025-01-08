@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://c67ngaaftwhcu"]
+
+[ext_resource type="Script" path="res://UI/Main menu/main_menu.gd" id="1_fbra6"]
+[ext_resource type="Texture2D" uid="uid://cm6jiib067lw4" path="res://Background.jpg" id="1_t2bn3"]
+[ext_resource type="FontFile" uid="uid://co4h5s8iw2b8h" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_kbl6v"]
+[ext_resource type="PackedScene" uid="uid://bu6kuuamie4a5" path="res://UI/Setting menu/setting.tscn" id="5_c25e3"]
+[ext_resource type="PackedScene" uid="uid://cegefpn5j7sbx" path="res://UI/Select chapter menu/select_chapter.tscn" id="6_v2ajk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kv1xg"]
+texture = ExtResource("1_t2bn3")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_116t4"]
+bg_color = Color(0, 0, 0, 0.662745)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dt5br"]
+bg_color = Color(0.147672, 0.147672, 0.147672, 0.756863)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+shadow_size = 2
+
+[node name="Main menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fbra6")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_kv1xg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 24.0
+offset_right = 112.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.99558, 0.99558, 0.99558, 1)
+theme_override_fonts/font = ExtResource("2_kbl6v")
+theme_override_styles/normal = SubResource("StyleBoxFlat_116t4")
+text = "Final Project"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -104.0
+offset_right = 52.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="New Game button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kbl6v")
+theme_override_font_sizes/font_size = 8
+text = "New Game"
+
+[node name="Select Chapter" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kbl6v")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_dt5br")
+text = "Chapters
+"
+
+[node name="Option button3" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kbl6v")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_dt5br")
+text = "Option"
+
+[node name="Exit button4" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kbl6v")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_dt5br")
+text = "Exit"
+
+[node name="Setting" parent="." instance=ExtResource("5_c25e3")]
+visible = false
+layout_mode = 1
+
+[node name="Select Chapter" parent="." instance=ExtResource("6_v2ajk")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="VBoxContainer/New Game button" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Select Chapter" to="." method="_on_select_chapter_pressed"]
+[connection signal="pressed" from="VBoxContainer/Option button3" to="." method="_on_option_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit button4" to="." method="_on_exit_button_4_pressed"]
+[connection signal="close_option_menu" from="Setting" to="." method="_on_setting_close_option_menu"]
+[connection signal="back_option_menu" from="Select Chapter" to="." method="_on_select_chapter_back_option_menu"]

@@ -1,3 +1,7 @@
+Control
+CanvasLayer
+ColorRect
+AnimationPlayer
 CollisionShape2D
 TileMapLayer
 Node
@@ -8,7 +12,3 @@ AnimatedSprite2D
 Area2D
 Camera2D
 Polygon2D
-Sprite2D
-Level
-StaticBody2D
-TileMap

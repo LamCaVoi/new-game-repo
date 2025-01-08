@@ -4,7 +4,6 @@ class_name Level
 const PLAYER_HORIZONTAL_RANGE = 1
 const PLAYER_VERTICAL_RANGE = 2
 const TILE_SIZE = Vector2(8,8)
-const PLAYER_CAMERA = preload("res://Camera/player_camera.tscn")
 
 @export var player: Player
 @export var level_layer: TileMapLayer
@@ -37,7 +36,11 @@ func player_respawn():
 	var spawn_point :Vector2 = Global.curr_spawn_point.round()
 	if(not intersect(Rect2(spawn_point,Vector2.ZERO),camera.current_room_rect)):
 		camera.is_first_time = true
-		camera.skip_exit = true
+		#camera.skip_exit = true
+	else: 
+		camera.is_first_time = false
+		#camera.skip_exit = false
+	reset_physics_interpolation()
 	player.global_position = spawn_point
 
 func update_player():
@@ -172,29 +175,26 @@ func find_tile_edge_y(offset: Vector2) -> Vector2:
 
 func solid_interact_player(solid: Solid, solid_offset: Vector2):
 	update_player()
-	var solid_rect = get_solid_rect(solid)
+	var solid_rect = solid.get_extended_rect()
 	var has_collision: bool= false
 	var player_offset: Vector2 = Vector2(player.get_current_climb_direction() * 3, 0)
-	var extra :Vector2 = Vector2.ZERO
+	var temp :Vector2 = solid_offset
 	if(solid_offset.y > 0):
 		solid_rect.size.y += solid_offset.y
-		extra.y = solid_offset.y
 		solid_offset.y = 0
-	if(intersect(solid_rect, player_rect, solid_offset, player_offset)):
-		if(check_player_tiles_intersection(solid_offset + extra)):
+	if(intersect_with_player(solid_rect, solid_offset, player_offset)):
+		solid_offset = temp
+		if(check_player_tiles_intersection(solid_offset)):
 			if(not player_rect.position.y + player.height - 1 == solid_rect.position.y):
 				Events.emit_signal("player_entered_kill_zone")
 			has_collision = true
 		if(has_collision):
 			return
-		player.global_position += solid_offset + extra
+		player.global_position += solid_offset
 
-func get_solid_rect(solid: Solid)-> Rect2:
-	var solid_rect = solid.get_rect()
-	solid_rect.position += Vector2(-1,-1)
-	solid_rect.size += Vector2(2,1)
-	solid_rect.position += solid.global_position
-	return solid_rect
+func intersect_with_player(rect: Rect2, rect_offset: Vector2i = Vector2i.ZERO, player_offset: Vector2i = Vector2i.ZERO) -> bool:
+	update_player()
+	return intersect(rect,player_rect, rect_offset, player_offset)
 
 func intersect(rect1: Rect2, rect2: Rect2, offset_rect1: Vector2i = Vector2i.ZERO, offset_rect2: Vector2i = Vector2i.ZERO) -> bool:
 	return (rect1.position.x + offset_rect1.x < rect2.position.x + rect2.size.x + offset_rect2.x

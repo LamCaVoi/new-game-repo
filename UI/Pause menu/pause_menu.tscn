@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=3 uid="uid://bssln01afnsr8"]
+
+[ext_resource type="Script" path="res://UI/Pause menu/pause_menu.gd" id="1_esykc"]
+[ext_resource type="FontFile" uid="uid://co4h5s8iw2b8h" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_44o5m"]
+[ext_resource type="PackedScene" uid="uid://c67ngaaftwhcu" path="res://UI/Main menu/main_menu.tscn" id="2_aef6p"]
+[ext_resource type="PackedScene" uid="uid://bu6kuuamie4a5" path="res://UI/Setting menu/setting.tscn" id="3_qlno1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmxf7"]
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 10
+
+[node name="Pause menu" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_esykc")
+main_menu = ExtResource("2_aef6p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(0, 0, 0, 0.607843)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -51.5
+offset_right = 60.5
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_44o5m")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxFlat_gmxf7")
+text = "Resume"
+icon_alignment = 1
+
+[node name="Option" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_44o5m")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxFlat_gmxf7")
+text = "Option"
+icon_alignment = 1
+
+[node name="Exit" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_fonts/font = ExtResource("2_44o5m")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxFlat_gmxf7")
+text = "Quit"
+icon_alignment = 1
+
+[node name="Setting" parent="PanelContainer" instance=ExtResource("3_qlno1")]
+visible = false
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Option" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="close_option_menu" from="PanelContainer/Setting" to="." method="_on_setting_close_option_menu"]

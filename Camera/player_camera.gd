@@ -18,7 +18,6 @@ var current_room_rect: Rect2
 var next_room_rect: Rect2
 var tween: Tween
 var is_first_time: bool = true
-var skip_exit: bool = false
 var left: float
 var right: float
 var top: float
@@ -45,9 +44,6 @@ func on_player_enter_new_room(room_rect: Rect2):
 		start_camera_transition(target_position)
 
 func on_player_exit_room(room_top_left: Vector2 = current_room_rect.position):
-	if(skip_exit):
-		skip_exit = false
-		return
 	if(room_top_left != current_room_rect.position):
 		return
 	if(next_room_rect.position == current_room_rect.position):

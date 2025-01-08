@@ -45,3 +45,6 @@ func set_colliding_y(val : int):
 	state.is_colliding_y = val
 func set_wall_dir(val : int):
 	state.wall_dir = val
+
+func give_momentum(velocity: Vector2):
+	state.momentum = velocity

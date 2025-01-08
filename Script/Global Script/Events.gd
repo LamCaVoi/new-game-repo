@@ -5,3 +5,4 @@ signal player_colliding_y
 signal player_colliding_x
 signal player_enter_room
 signal player_exit_room
+signal player_get_momentum

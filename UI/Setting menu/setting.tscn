@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu6kuuamie4a5"]
+
+[ext_resource type="Script" path="res://UI/Setting menu/setting.gd" id="1_38lbx"]
+[ext_resource type="FontFile" uid="uid://cjeu0hxviapqu" path="res://Assets/fonts/PixelOperator8.ttf" id="2_rlq0i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drtp3"]
+bg_color = Color(0.255143, 0.252841, 0.275664, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Setting" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_38lbx")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -131.0
+offset_right = 42.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_drtp3")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VolumnLb" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_rlq0i")
+theme_override_font_sizes/font_size = 8
+text = "Volumn"
+
+[node name="Volumn" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MuteLb" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_rlq0i")
+theme_override_font_sizes/font_size = 8
+text = "Mute"
+
+[node name="Mute" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "
+"
+
+[node name="ResolutionLb" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_rlq0i")
+theme_override_font_sizes/font_size = 8
+text = "Resolution"
+
+[node name="Resolution" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_rlq0i")
+theme_override_font_sizes/font_size = 6
+item_count = 4
+popup/item_0/text = "320x180"
+popup/item_1/text = "960x540"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+popup/item_3/text = "1920x1080"
+popup/item_3/id = 3
+
+[node name="Close" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_rlq0i")
+theme_override_font_sizes/font_size = 8
+text = "Close"
+
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Volumn" to="." method="_on_volumn_value_changed"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]
+[connection signal="item_selected" from="PanelContainer/MarginContainer/VBoxContainer/Resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Close" to="." method="_on_close_pressed"]
