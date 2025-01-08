@@ -50,3 +50,6 @@ func set_colliding_y(val : int):
 
 func set_wall_dir(val : int):
 	state.wall_dir = val
+
+func give_dash():
+	state.can_dash = true

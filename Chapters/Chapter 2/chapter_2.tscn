@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bhbhf6pkfs2ep"]
+[gd_scene load_steps=16 format=4 uid="uid://bhbhf6pkfs2ep"]
 
 [ext_resource type="Script" path="res://Script/level.gd" id="1_vrk75"]
 [ext_resource type="PackedScene" uid="uid://dfiqrp7ri8urv" path="res://Tilemap/Tilemap.tscn" id="2_jxs0v"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bfs3o71djarrt" path="res://Room/room_area.tscn" id="8_aoqf1"]
 [ext_resource type="PackedScene" uid="uid://cyobaq8o2dfum" path="res://Solids/solid.tscn" id="9_o2rto"]
 [ext_resource type="PackedScene" uid="uid://bssln01afnsr8" path="res://UI/Pause menu/pause_menu.tscn" id="9_pyixh"]
+[ext_resource type="PackedScene" uid="uid://crfa71m4557rv" path="res://Scene/dash_refill.tscn" id="10_4fo1e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14fhi"]
 size = Vector2(135, 4)
@@ -84,3 +85,6 @@ advance_time = 0.5
 retract_time = 1.0
 target = Vector2(223, 60)
 player_speed = Vector2(120, 0)
+
+[node name="Dash Refill" parent="." instance=ExtResource("10_4fo1e")]
+position = Vector2(420, -11)

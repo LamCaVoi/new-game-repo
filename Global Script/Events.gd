@@ -7,3 +7,4 @@ signal player_enter_room
 signal player_exit_room
 signal player_get_momentum
 signal save_game
+signal player_refill_dash

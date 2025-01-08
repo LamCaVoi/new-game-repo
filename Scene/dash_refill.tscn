@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://crfa71m4557rv"]
+
+[ext_resource type="Script" path="res://Dash_refill.gd" id="1_c50eb"]
+[ext_resource type="Texture2D" uid="uid://dee4x7txnesar" path="res://Assets/Objects/strawberry/normal00.png" id="2_0dvfi"]
+[ext_resource type="Texture2D" uid="uid://dosceudidv1f6" path="res://Assets/Objects/strawberry/normal01.png" id="3_fpup7"]
+[ext_resource type="Texture2D" uid="uid://duqt5qwadavmn" path="res://Assets/Objects/strawberry/normal02.png" id="4_8y60c"]
+[ext_resource type="Texture2D" uid="uid://2crxe43ki3ab" path="res://Assets/Objects/strawberry/normal03.png" id="5_mporr"]
+[ext_resource type="Texture2D" uid="uid://clfutk3wkx1du" path="res://Assets/Objects/strawberry/normal04.png" id="6_thcaq"]
+[ext_resource type="Texture2D" uid="uid://na0m1ojwcds4" path="res://Assets/Objects/strawberry/normal05.png" id="7_0v1rx"]
+[ext_resource type="Texture2D" uid="uid://brccahi0srssx" path="res://Assets/Objects/strawberry/normal06.png" id="8_8pwv8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_naowe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0dvfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fpup7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8y60c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mporr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_thcaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0v1rx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8pwv8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pb78j"]
+radius = 8.0
+height = 16.0
+
+[node name="Dash Refill" type="Node2D"]
+script = ExtResource("1_c50eb")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_naowe")
+autoplay = "default"
+frame_progress = 0.488491
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_pb78j")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

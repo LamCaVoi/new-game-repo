@@ -24,6 +24,7 @@ func _ready() -> void:
 	Events.player_colliding_x.connect(state_machine.set_colliding_x)
 	Events.player_colliding_y.connect(state_machine.set_colliding_y)
 	Events.player_get_momentum.connect(state_machine.give_momentum)
+	Events.player_refill_dash.connect(state_machine.give_dash)
 	movement_data.init()
 	movement.init(self)
 	state_machine.init(self, animated_sprite, movement_data, movement_input, movement)
