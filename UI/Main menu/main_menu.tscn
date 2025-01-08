@@ -73,6 +73,14 @@ grow_vertical = 0
 theme_override_constants/separation = 8
 alignment = 1
 
+[node name="Resume button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kbl6v")
+theme_override_font_sizes/font_size = 8
+text = "Resume
+"
+
 [node name="New Game button" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
@@ -113,6 +121,7 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[connection signal="pressed" from="VBoxContainer/Resume button" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/New Game button" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Select Chapter" to="." method="_on_select_chapter_pressed"]
 [connection signal="pressed" from="VBoxContainer/Option button3" to="." method="_on_option_button_3_pressed"]

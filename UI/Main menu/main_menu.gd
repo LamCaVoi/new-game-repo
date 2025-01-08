@@ -27,3 +27,7 @@ func _on_select_chapter_pressed() -> void:
 func _on_select_chapter_back_option_menu() -> void:
 	chapter_menu.hide()
 	vbcontainer.show()
+
+
+func _on_resume_button_pressed() -> void:
+	pass # Replace with function body.

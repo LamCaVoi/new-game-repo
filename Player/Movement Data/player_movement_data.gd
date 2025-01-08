@@ -7,11 +7,9 @@ extends Resource
 @export var acceleration: float= 1200
 @export var friction: float= 1200
 @export_group("On Air States") 
-##The max x axis speed while on air
-@export var max_air_x_speed: float = 100
 ##The max y axis speed while on air
 @export var max_y_speed: float = 250
-@export var jump_height: float = 50
+@export var jump_height: float = 15.75
 @export var jump_time_to_peak:float = 0.4
 @export var jump_time_to_descent:float = 0.3
 ##Coyote time and buffer jump time to make the jump more responsive

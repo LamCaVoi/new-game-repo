@@ -1,13 +1,13 @@
-Control
+Node2D
+Node
 CanvasLayer
+Control
 ColorRect
 AnimationPlayer
 CollisionShape2D
 TileMapLayer
-Node
 Solid
 Movement
-Node2D
 AnimatedSprite2D
 Area2D
 Camera2D
