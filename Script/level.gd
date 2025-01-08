@@ -38,6 +38,13 @@ func _ready() -> void:
 
 func save():
 	var scene = PackedScene.new()
+	var spawn_point :Vector2 = Global.curr_spawn_point.round()
+	if(not intersect(Rect2(spawn_point,Vector2.ZERO),camera.current_room_rect)):
+		camera.is_first_time = true
+	else: 
+		camera.is_first_time = false
+	player.global_position = spawn_point
+	reset_physics_interpolation()
 	scene.pack(self)
 	ResourceSaver.save(scene, DATA_FILE)
 

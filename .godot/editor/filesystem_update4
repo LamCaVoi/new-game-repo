@@ -5,3 +5,4 @@ res://Chapters/Chapter 2/chapter_2.tscn
 res://Camera/player_camera.tscn
 res://UI/Main menu/main_menu.tscn
 res://Player/player.tscn
+res://Script/level.gd
