@@ -69,4 +69,5 @@ text = "Back"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/C1" to="." method="_on_c_1_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/C2" to="." method="_on_c_2_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/C3" to="." method="_on_c_3_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

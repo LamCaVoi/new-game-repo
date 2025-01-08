@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://crfa71m4557rv"]
 
-[ext_resource type="Script" path="res://Dash_refill.gd" id="1_c50eb"]
+[ext_resource type="Script" path="res://Script/Dash_refill.gd" id="1_c50eb"]
 [ext_resource type="Texture2D" uid="uid://dee4x7txnesar" path="res://Assets/Objects/strawberry/normal00.png" id="2_0dvfi"]
 [ext_resource type="Texture2D" uid="uid://dosceudidv1f6" path="res://Assets/Objects/strawberry/normal01.png" id="3_fpup7"]
 [ext_resource type="Texture2D" uid="uid://duqt5qwadavmn" path="res://Assets/Objects/strawberry/normal02.png" id="4_8y60c"]
@@ -48,7 +48,7 @@ script = ExtResource("1_c50eb")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_naowe")
 autoplay = "default"
-frame_progress = 0.488491
+frame_progress = 0.0359914
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2

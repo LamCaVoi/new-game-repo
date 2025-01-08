@@ -1,14 +1,11 @@
-res://Chapters/Chapter 1/chapter_1.tscn
+res://Chapters/Chapter 3/chapter_3.tscn
 res://Player/Movement Data/DefaultDataMoveMent.tres
-res://Script/level.gd
-res://Tilemap/Tilemap.tscn
+res://Chapters/Chapter 1/chapter_1.tscn
 res://UI/Pause menu/pause_menu.tscn
 res://Chapters/Chapter 2/chapter_2.tscn
 res://Camera/player_camera.tscn
 res://UI/Main menu/main_menu.tscn
 res://Player/player.tscn
-res://Dash_refill.gd
-res://Global Script/Events.gd
-res://Player/player.gd
-res://Player/State Machine/state_machine.gd
+res://Tilemap/Tilemap.tscn
 res://Scene/dash_refill.tscn
+res://UI/Select chapter menu/select_chapter.tscn

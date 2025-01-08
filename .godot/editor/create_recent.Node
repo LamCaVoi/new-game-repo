@@ -1,14 +1,14 @@
+CanvasLayer
 CollisionShape2D
+Sprite2D
+Level
 AnimatedSprite2D
 Area2D
-Sprite2D
 Node2D
 Node
-CanvasLayer
 Control
 ColorRect
 AnimationPlayer
 TileMapLayer
 Solid
 Movement
-Camera2D
