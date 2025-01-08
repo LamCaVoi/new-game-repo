@@ -1,6 +1,6 @@
 extends Control
 
-@export var main_menu : PackedScene
+const MAIN_MENU = "res://UI/Main menu/main_menu.tscn"
 
 @onready var vbcontainer = $PanelContainer/VBoxContainer
 @onready var option_menu = $PanelContainer/Setting
@@ -18,7 +18,8 @@ func _on_resume_pressed():
 
 func _on_exit_pressed():
 	resume()
-	get_tree().change_scene_to_packed(main_menu)
+	Events.save_game.emit()
+	get_tree().change_scene_to_file(MAIN_MENU)
 	
 func _on_option_pressed() -> void:	
 	vbcontainer.hide()

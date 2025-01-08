@@ -18,12 +18,7 @@ extends CharacterBody2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 const STATE_MACHINE = preload("res://Player/State Machine/state_machine.tscn")
-#
-#func _draw() -> void:
-	#draw_rect(rect2,color)
-#
-#func _physics_process(delta: float) -> void:
-	#queue_redraw()
+
 
 func _ready() -> void:
 	Events.player_colliding_x.connect(state_machine.set_colliding_x)
@@ -48,9 +43,6 @@ func get_current_climb_direction():
 
 func is_climbing():
 	return state_machine.state.name == "Climb"
-	
-func get_facing_direction() -> int:
-	return -1 if animated_sprite.flip_h else 1
 
 func is_grounded()->bool:
 	return state_machine.state.is_colliding_y == 1

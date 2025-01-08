@@ -4,12 +4,13 @@ class_name Level
 const PLAYER_HORIZONTAL_RANGE = 1
 const PLAYER_VERTICAL_RANGE = 2
 const TILE_SIZE = Vector2(8,8)
+const DATA_FILE = "res://data.tscn"
 
 @export var player: Player
 @export var level_layer: TileMapLayer
 @export var camera: PlayerCamera
 
-var solids: Array[Node]
+@export var solids: Array[Node]
 var used_cell_dict: Dictionary
 var curr_collided_tile_rect: Rect2
 var edge_detected : bool = false
@@ -22,26 +23,36 @@ func _input(event: InputEvent) -> void:
 			get_tree().reload_current_scene()
 
 func _ready() -> void:
-	for i in level_layer.get_used_cells():
-		used_cell_dict[i] = 1
 	Global.curr_level = self
 	camera.player = self.player
 	Events.player_entered_kill_zone.connect(player_respawn)
+	Events.save_game.connect(save)
+	for i in level_layer.get_used_cells():
+		used_cell_dict[i] = 1
 	solids = find_children("*", "Solid")
+	var spawn_point :Vector2 = Global.curr_spawn_point.round()
+	if (spawn_point):
+		player.global_position = spawn_point
+	reset_physics_interpolation()
+	
 
-func player_respawn():
-	Engine.time_scale = 0.5
-	await player.die()
-	Engine.time_scale = 1
+func save():
+	var scene = PackedScene.new()
+	scene.pack(self)
+	ResourceSaver.save(scene, DATA_FILE)
+
+func player_respawn(kill_player: bool = true):
+	if (kill_player):
+		Engine.time_scale = 0.5
+		await player.die()
+		Engine.time_scale = 1
 	var spawn_point :Vector2 = Global.curr_spawn_point.round()
 	if(not intersect(Rect2(spawn_point,Vector2.ZERO),camera.current_room_rect)):
 		camera.is_first_time = true
-		#camera.skip_exit = true
 	else: 
 		camera.is_first_time = false
-		#camera.skip_exit = false
-	reset_physics_interpolation()
 	player.global_position = spawn_point
+	reset_physics_interpolation()
 
 func update_player():
 	player_tile = level_layer.local_to_map(to_local(player.global_position))

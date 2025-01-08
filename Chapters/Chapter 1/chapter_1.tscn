@@ -39,7 +39,7 @@ position = Vector2(161, 69)
 [node name="Spawn Point" parent="." instance=ExtResource("5_o1c0c")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn Point"]
-position = Vector2(26, 94)
+position = Vector2(139, 96)
 shape = SubResource("RectangleShape2D_knjrv")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Spawn Point"]
@@ -57,8 +57,7 @@ position = Vector2(436, -61)
 shape = SubResource("RectangleShape2D_pc1bg")
 
 [node name="Solid" parent="." instance=ExtResource("7_gjurd")]
-position = Vector2(175, 78)
-yellow_time = 1.0
+position = Vector2(202, 79)
 target = Vector2(175, 11)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

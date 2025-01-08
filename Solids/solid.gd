@@ -6,7 +6,6 @@ class_name Solid
 @export var retract_time: float= 5.0
 @export var target: Vector2 = Vector2.ZERO
 @export var player_speed : Vector2 
-
 @onready var movement: SolidMovement = $Movement
 @onready var sprite: Sprite2D = $Sprite
 

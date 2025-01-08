@@ -10,7 +10,6 @@ enum CAMERA_ANCHOR{LEFT = -1, CENTER, RIGHT}
 @export var look_ahead_distance: float = 30.0
 #The width and height of the death zone
 @export var deathzone: Vector2 = Vector2(20,20)
-
 @export var player_anchor: CAMERA_ANCHOR = CAMERA_ANCHOR.CENTER
 
 var look_ahead_offset: float = 0
@@ -41,7 +40,7 @@ func on_player_enter_new_room(room_rect: Rect2):
 	if (is_first_time):
 		is_first_time = false
 		var target_position = change_room()
-		start_camera_transition(target_position)
+		#start_camera_transition(target_position)
 
 func on_player_exit_room(room_top_left: Vector2 = current_room_rect.position):
 	if(room_top_left != current_room_rect.position):

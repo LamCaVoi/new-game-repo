@@ -6,7 +6,7 @@ class_name Player_State
 static var movement_data: PlayerMovementData
 static var movement_input: MovementInput
 static var movement: PlayerMovement
-static var parent:CharacterBody2D
+static var parent: Node2D
 static var animated_sprite: AnimatedSprite2D
 
 static var can_dash = false

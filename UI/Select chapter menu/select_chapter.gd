@@ -1,5 +1,8 @@
 extends Control
 
+const CHAPTER_1 = "res://Chapters/Chapter 1/chapter_1.tscn"
+const CHAPTER_2 = "res://Chapters/Chapter 2/chapter_2.tscn"
+
 @onready var back_button = $PanelContainer/VBoxContainer/Back
 
 signal back_option_menu
@@ -13,8 +16,8 @@ func _on_back_pressed() -> void:
 	set_process(false)
 
 func _on_c_1_pressed() -> void:
-	get_tree().change_scene_to_file("res://Chapters/Chapter 1/chapter_1.tscn")
+	get_tree().change_scene_to_file(CHAPTER_1)
 
 
 func _on_c_2_pressed() -> void:
-	get_tree().change_scene_to_file("res://Chapters/Chapter 2/chapter_2.tscn")
+	get_tree().change_scene_to_file(CHAPTER_2)

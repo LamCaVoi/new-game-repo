@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bssln01afnsr8"]
+[gd_scene load_steps=5 format=3 uid="uid://bssln01afnsr8"]
 
 [ext_resource type="Script" path="res://UI/Pause menu/pause_menu.gd" id="1_esykc"]
 [ext_resource type="FontFile" uid="uid://co4h5s8iw2b8h" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_44o5m"]
-[ext_resource type="PackedScene" uid="uid://c67ngaaftwhcu" path="res://UI/Main menu/main_menu.tscn" id="2_aef6p"]
 [ext_resource type="PackedScene" uid="uid://bu6kuuamie4a5" path="res://UI/Setting menu/setting.tscn" id="3_qlno1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmxf7"]
@@ -21,7 +20,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_esykc")
-main_menu = ExtResource("2_aef6p")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
