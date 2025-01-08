@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		return
 	var look_ahead_distance = (float(player_anchor) * zoom_view_size.x)/3
 	look_ahead_offset = round_toward(lerp(look_ahead_offset, look_ahead_distance, 1 - pow(0.5,delta)), look_ahead_distance)
-	var target_position = calculate_target_position(look_ahead_offset)
+	var target_position = calculate_target_position(int(look_ahead_offset))
 	if abs(target_position.x - global_position.x) <= deathzone.x:
 		target_position.x = global_position.x
 	if abs(target_position.y - global_position.y) <= deathzone.y:

@@ -17,3 +17,4 @@ res://Player/State Machine/player_state.gd
 res://Player/State Machine/state_machine.gd
 res://Player/State Machine/States/Fall State/fall.gd
 res://Player/State Machine/States/Jump State/jump.gd
+res://Camera/player_camera.gd
