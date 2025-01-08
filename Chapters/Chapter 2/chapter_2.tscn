@@ -40,7 +40,7 @@ position = Vector2(113, 13)
 position = Vector2(100, 78.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
-position = Vector2(151, 32.5)
+position = Vector2(152, 40.5)
 shape = SubResource("RectangleShape2D_14fhi")
 debug_color = Color(0.997339, 0, 0.168131, 0.42)
 

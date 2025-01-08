@@ -44,7 +44,6 @@ func save():
 	else: 
 		camera.is_first_time = false
 	player.global_position = spawn_point
-	reset_physics_interpolation()
 	scene.pack(self)
 	ResourceSaver.save(scene, DATA_FILE)
 
@@ -122,6 +121,8 @@ func is_tile_collidable(tile_coord:Vector2i,rect: Rect2 = player_rect) -> Rect2:
 	var tile_rect = Rect2(level_layer.map_to_local(tile_coord) + TILE_SIZE * -0.5, TILE_SIZE)
 	var tile_data :TileData = level_layer.get_cell_tile_data(tile_coord)
 	if (tile_data and tile_data.get_custom_data("can_go_through")):
+		return Rect2()
+	if (tile_data and tile_data.get_custom_data("can_jump_through")):
 		if ((rect.position.y + rect.size.y) > tile_rect.position.y):
 			return Rect2()
 	return tile_rect

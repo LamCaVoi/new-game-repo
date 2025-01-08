@@ -1,0 +1,24 @@
+res://Camera/player_camera.tscn::275456868e6150808dd8dfe23453307b::1736374124::res://.godot/exported/133200997/export-82023da93b7bf309c12abf6cc88b4574-player_camera.scn
+res://Chapters/Chapter 1/chapter_1.tscn::bd90b4406902cc0d732c837707d93eb1::1736374123::res://.godot/exported/133200997/export-7604978625b227fe727d7b1232f140f1-chapter_1.scn
+res://Chapters/Chapter 2/chapter_2.tscn::fbbb25babdb48e957aee894ad63afa32::1736374124::res://.godot/exported/133200997/export-8e866221d7358dd6e44720549747a390-chapter_2.scn
+res://Player/Movement Data/DefaultDataMoveMent.tres::f1b71e3b2a9493b7e87c73e23639a757::1736374123::res://.godot/exported/133200997/export-59951d48cfce3b0ccedd2a752698fcf2-DefaultDataMoveMent.res
+res://Player/State Machine/States/Dash State/ghost.tscn::c34f7efad3bfb134804e738cc33401c9::1736351540::res://.godot/exported/133200997/export-4669872a0f7218c8da03e6d98bdbf510-ghost.scn
+res://Player/State Machine/state_machine.tscn::1eb33e173d41f9b3d98782a81150df5e::1736358717::res://.godot/exported/133200997/export-207aca304d7a6be288cefb1325b09a8c-state_machine.scn
+res://Player/player.tscn::72c11a35b621619ccf84090f0707ed90::1736374124::res://.godot/exported/133200997/export-d267b47f7e81a3258979164d56d0d9c2-player.scn
+res://Prototype/Prototype1/disappearing_platform/disappear_platform.tscn::c4dc2b2f25c22855b120cd1b2dc0b8de::1736351540::res://.godot/exported/133200997/export-c09188dab3ab7050d6ad9ec53e075a2e-disappear_platform.scn
+res://Prototype/Prototype1/prototype.tscn::fa4735e873a314e9084b584c5395d00c::1736351540::res://.godot/exported/133200997/export-503c8d81ed1f45194e123731fb73d679-prototype.scn
+res://Prototype/Prototype2/Prototype2.tscn::c5901bcacf4ff82f2e1bad923dc69122::1736351540::res://.godot/exported/133200997/export-351270d85f15ad6827149debea4c4f43-Prototype2.scn
+res://Prototype/Prototype3/Prototype3.tscn::6347377572e76256e13fc51638c3a8e4::1736351540::res://.godot/exported/133200997/export-427be40f9b8842e2fb997340327a0fe2-Prototype3.scn
+res://Prototype/Prototype5/Prototype5.tscn::d77f37ea9e6068e3528455cba58fde3b::1736351540::res://.godot/exported/133200997/export-1ce36fb6c69afcb8de7365bdd49f59a6-Prototype5.scn
+res://Prototype/Prototype6/Prototype6.tscn::854e22eae6910110104412b19a007f88::1736351540::res://.godot/exported/133200997/export-2747a83705cec343386a5b226f4850a1-Prototype6.scn
+res://Prototype/Prototype7/Prototype7.tscn::a77139f145e67235e875df7bff5bb29d::1736351540::res://.godot/exported/133200997/export-ac163f6873397c8819653898d60f5527-Prototype7.scn
+res://Room/room_area.tscn::1c9458565178840a3cde08eaa7bc03b1::1736351540::res://.godot/exported/133200997/export-d6dffd73e26f0d46ef6e13b1f2da12e4-room_area.scn
+res://Scene/coin.tscn::bd3310d14a9be7ed10ba786dc8ccf456::1736351540::res://.godot/exported/133200997/export-e11062fc039d432fd039eaadad0ffb94-coin.scn
+res://Scene/kill_zone.tscn::eee42535558a011ac0d87c87ea6f931a::1736351540::res://.godot/exported/133200997/export-26dc94dd86b8536f8858cffd2dd900de-kill_zone.scn
+res://Solids/solid.tscn::48d6409918623358a2bc97d0c129cf99::1736356916::res://.godot/exported/133200997/export-f1416e1e4cce15cec18dcc8172ce332e-solid.scn
+res://Spawn point/spawn_point.tscn::d3158e65bf0bafe198594ed95e28ed86::1736356917::res://.godot/exported/133200997/export-5d9494d481f8a9309ddbf16f233505f2-spawn_point.scn
+res://Tilemap/Tilemap.tscn::3330f5dd08a9a967c75f88325d9ca1ef::1736351540::res://.godot/exported/133200997/export-6591db9aae600d3283075f24ecccbf06-Tilemap.scn
+res://UI/Main menu/main_menu.tscn::d0a336bca920ab95579f0ec6b7d56a78::1736374124::res://.godot/exported/133200997/export-e9bb93501875414c5e3b85eb86dec390-main_menu.scn
+res://UI/Pause menu/pause_menu.tscn::7d19153df9d8ed848ba56afc8b6133f7::1736374123::res://.godot/exported/133200997/export-9f8ae918adbdba4489b1809803049428-pause_menu.scn
+res://UI/Select chapter menu/select_chapter.tscn::31a1502cf5d1fa9c0c7bf85f0d540714::1736357037::res://.godot/exported/133200997/export-b66d85fa0b38e729bedeca4e41aea93e-select_chapter.scn
+res://UI/Setting menu/setting.tscn::8bdc09d16d98d5a08b56f66dcd4d2d6d::1736357037::res://.godot/exported/133200997/export-bd960a4ff6907453fdf5b3d714ccd63e-setting.scn
